@@ -1,0 +1,54 @@
+algorithm classification
+	simple recursive
+	divide and conquer
+	dynamic programming
+	greedy
+	brute force
+	randomized
+
+simple recursive
+	solves base cases directly
+	recur with a simpler problem until base case
+
+divide and conquer
+	separate into smaller parts
+	deal with eah small part
+	combine back into whole
+	subproblems generally dont overlap
+	no memory of previous or other subproblems
+
+dynamic programming
+	remembers past results
+		uses them to find new results
+	used for optimization problems
+	multiple solutions exist
+		need to find the bst one
+	requires "optimal substructure" & "overlapping subproblems"
+		optimal substructure
+			optimal sol contains optimal sol to subporblems
+		overlapping subproblems
+			solutions to subproblems can be stored and reused
+				in bottom-up fashion
+
+greedy
+	optimization problem -> find the BEST solution
+	works in phases/steps
+		take best you can get right now
+			no regard for future consequences
+	choose local opimum at each step in search of global optimum
+
+brute force
+	tries all possibilities until satisfactory solution is found
+	may require finding all solutions
+		if val for best is known
+			will stop then
+	satisfying
+		stop as soon as a solution is found that is good enough
+	improvements
+		heuristic
+			rule of thumb to decide which possibilities look best at first
+		optimization
+			way to eliminate certain possibilities without full exploration
+
+randomized
+	uses a random number during computation to make a decision

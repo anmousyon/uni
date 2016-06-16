@@ -1,0 +1,192 @@
+what
+    method of data analysis that automates analytical model building
+
+how
+    iteratively learns from data
+    find hidden insights
+        without being explicitly programmed where to look
+
+with
+    R language
+
+noise instance
+    an incorrect data point
+
+regression
+    real value
+    infinite classes
+
+classification
+    place in 1 -> k classes
+    finite classes
+
+performance
+    how close is prediction to actual data
+
+error metric
+    if hypothesis doesnt match the actual value, penalize the mdel
+    simplest error function
+        E(D) = sum(all x part of D) [1*(h(x) != y)]
+    h(x) denotes hypothesis
+    y is actual value
+    D is the dataset
+
+learn from experience E with respect to task T
+    if performance P at T increases with E
+
+if it gets worse with more data
+    bad data
+    not a good learner
+
+more data is always good
+    if data is labeled
+    if data is correct
+
+X can not be a set of random variables
+
+dont use ml when
+    no correlation between x and y
+    no clear function f
+
+supervised
+    training data includes desired output
+
+unsupervised
+    training data does not incude desired output
+    find hidden/interesting structure in data
+
+semi-supervised
+    learner interacts with the world via "actions"
+    tries to find an optimal policy of behaviour with respect to "rewards"
+        receives "rewards" from the envirnoment
+
+############
+
+supervised learning
+    data
+    labels
+    pattern
+    meaningful data
+
+output
+    prediction of class label (h)
+        h is an approximation of the "global best" function f
+    generalization
+        using a specific set of examples to come up with a function h
+            trying to ensure it generalizes well over unseen data
+
+inductive -> major focus of class
+    tries to discover general concepts
+        from a limited set of training examples
+    generalization
+        based on limited set of data
+    goes from specific to general
+    tries to obtain new knowledge
+    new data points may force you to change old hypothesis
+    try to find separating function from a set of data
+
+deductive -> not focus of class
+    given general premises and logical arguments to infer conclusions
+    tries to obtain knowledge that is implicit in orginal knowledge
+
+inductive learning = supervised learning
+    because training data has class labels
+
+supervised
+    learn to predict output when given an input vector
+
+X^j = (x1, x2, ... xn)^T
+    input vector for customer X^j
+
+X = {x^1, x^2, ... x^N)
+    set of all customers
+
+y = {0, 1}
+    binary output
+
+f: x -> y
+    global best function
+
+linear separator
+    perceptron
+
+extension of linear to non-linear
+
+tree-based classifier
+
+perceptron
+    straight line that separates two classes
+    plane in higher dimensions
+    y = sum(i) wi * xi
+
+easy class separation
+    if sum(i) wi * xi > threshold
+        assign class1
+    else
+        assign class2
+
+linear formula
+    h(x) = sign((sum(i=1 -> d) wi * xi) - threshold)
+
+in vector form
+    h(x) = sign(w T x)
+        T -> dot product
+
+decision tree
+    decision based on if/else
+    depth of decision makes a difference
+
+how to separate classes
+    perceptron
+        linear classifier
+        divides plane into three parts
+            y<0 , y=0, y>0
+    decision tree
+        used to model rules
+            leaves represent the output
+
+each prediction needs to have some associated probability
+
+conditional probability
+    P(X=a|Y=b) = [P(X=a, Y=b)/P(Y=b)]
+    joint prob
+        P(X=a, Y=b)
+    condition
+        P(Y=b)
+
+*Baye's Rule*
+    P(h|e) = (P(e|h) * P(h)) / P(e)
+    h -> hypothesis
+    e -> evidence
+
+mean
+    expected value
+    E(x) = sum(x) x * P(x)
+
+variance
+    sum(x)[x^2 * P(x)] - u^2
+    u -> expected value
+    data points are more spread out
+
+discrete uniform function
+    defined between two values (ie. a and b)
+    P(x)  = 1/n for 1 <= x <= n
+        E(x) = right in th middle
+        var(x) = 
+
+continuous Uniform
+    defined between two values (ie. a and b)
+    P(x) = 1/(b-a)
+
+bernoulli disricution
+    binary outcome
+    P(1) = p
+    P(0) = 1-p
+    P(x) = p^x * (1-p)^(1-x)
+    example
+        coin toss distribution is bernoulli
+
+binomial
+    binary outcome
+    n independent Bernoulli trials
+    P(x) = (n;k) * p^k * (1-p)^(n-k)

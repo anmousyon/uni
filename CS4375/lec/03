@@ -1,0 +1,231 @@
+Decision Trees
+	learn from data
+	eager learner
+	non-linear
+	propose a hypothesis
+
+two types of nodes
+	inside nodes
+		splitting agent
+		guide for how to split
+	leaf nodes
+		predict the class
+
+Can you get 100% training accuracy using a decision tree?
+	yes
+		if the data is consistent
+	build a tree that perfectly fits the training data
+	will not generalize well
+	will need a really complex tree and gen. problem
+
+problems with decision tree
+	over-zealous learner
+	will tear down tree on noisy data and rebuild
+
+avoiding overfitting
+	stop growing when splits are not statistically significant
+	grow tree then post-prune
+		remove nodes and see if true error decreases
+
+linear classification
+	perceptron
+		by itself it isnt very power
+		combine many to make neural network
+	a line separating data into two parts
+	finds the best fit it can
+	not a super eager leaner
+	need bias parameter
+		to get straight line NOT always through origin
+
+bias
+	how far is line from the origin
+
+move in direction with lowest possible error
+
+come up with line and move line based on error of result
+	move by changing weights and bias
+
+hypothesis
+	h(x) = g(w(T)x)
+		g outputs -1 or +1
+
+h -> hypothesis
+y -> true label
+
+good prediction -> product is positive
+
+decision surface of perceptron is a stright line
+
+perceptron cant represent XOR
+
+wi <- wi + delta(wi)
+where
+delta(wi) = n(t-o)xi
+
+perceptron
+	linearly seperable
+	n is small
+		otherwise it wont converge
+
+w0 = w0 + n(t-o)x0
+
+t -> target value
+o -> perceptron output
+n -> small constant called learning rate
+
+error -> t-o
+
+perceptron_alg(ex, n){
+	initialize weights w to some random val
+		until conv do{
+			calc delta(wi)
+			if(delta(wi) != 0)
+				shift weights around
+		}
+}
+
+perceptron training
+	converges on linearly separable
+	if not linearly separable
+		may not converge
+		many cases it wont converge
+	use gradient descent to guarantee convergence
+		yields new rule called the Delta Rule
+		take on step at a time to come to minima
+
+error -> (t-o)^2
+
+E(w) = ()1/2)*sum((t-0)^2)
+
+linear unit training uses gradient descent
+	guaranteed to converge hypo with min squared error
+	given sufficiently small learning rate n
+
+batch vs incremental gradient descent
+	do until conv
+		compute gradient delta(Ed[w])
+		w <- something
+
+incremental can approximate batch arbitrarily closely
+
+sigmoid unit
+	delta(wi) = n(t-o)o(1-o)xi
+
+sigmoid used for better separability
+
+naive bayes
+	probalilistic classifier
+
+perceptron
+	reacts to error
+	pros
+		only works with linearly separable
+		error driven
+		doesnt always converge
+		activation function concept is nice
+	cons
+		not most efficient
+		not best fit
+	how to extend to non-linear data?
+
+neural net
+	using many perceptrons for more power
+	can represent XOR
+		using multiple (2) hidden units
+
+perceptron
+	has only one decision unit
+	input -> sum of input -> function -> decision
+
+we can derive gradien descent rules to ttrain
+	one sigmoid unit
+	multilayer networks -> backpropogation
+
+bp_alg
+	initialize all weights to small rand nums
+	until conv
+		for each example
+			input it to net and compute outputs -> forward pass
+			for each output unit k
+				out function
+			for each hidden unit h
+				hidden function
+			update each net weight wi,j -> backward pass
+				update function
+
+there is a weight on every edge of the net
+
+input -> hidden layer -> output
+
+o
+	output of current network
+
+if o not close enough
+	retrain the network using backward pass
+
+backpropogation
+	gradient descent over entire network weight vector
+	easily generalized to arbitrary directed graphs
+	will find local, not always global wrror minimum
+		in practice, often works well
+	often include wight momentum a
+		the update at step n depends n step n-1
+	minimizes error over training ex
+		will it generalize well to subsequent ex?
+	training can take thousands of iterations -> slow
+	using net after training is very fast
+
+expressiveness of neural nets
+	boolean functions
+		every boolean function can be represented with single hidden layer
+		might require exponential hidden units
+	continuous functions
+		every bounded cont function can be expressed
+		has overfitting
+			training error goes down
+			validation set error flattens, then goes up
+
+## every learner has overfitting ##
+
+overfitting avoidance
+	penalize large weights
+	train on target slops as well as values
+
+###########################################################################
+
+Decision Tree
+	over eager learner
+	overfitting
+		e(test) >> e(train)
+	when to stop learning?
+		more learning harms e(test) [true error]
+	what is the decision surface?
+	
+	can it represent any possible boolean function?
+	
+	can it give 0 training error? 0 test error?
+		training error can be 0 from overfitting
+		test error almost never 0
+
+perceptron
+	simple unit of decision
+	net -> weighted sum of inputs
+	either a linear activation or a sigmoid function
+	0 training error always?
+		only if linearly separated
+	perceptron training rule
+		varies the weights to get 0 error
+	gradient descent
+	function representation
+
+neural net
+	group of perceptron working together
+	input -> hidden -> output
+	error is calculated only on output nodes
+	very representative
+		can represent any boolean function with one hidden layer
+		can represent any bounded continuous function
+	backpropogation
+		forward pass
+		backward pass
+	r packages to make it easy

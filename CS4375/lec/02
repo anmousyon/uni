@@ -1,0 +1,383 @@
+P -> Performance Measure
+T -> Task
+E -> Experience
+
+true value -> ground truth
+	the answer for experiences
+
+experience
+	data that you give the machine
+
+given a bad classifier (predictor)
+	give it more data
+	check for noise (bad data)
+	check weights on attributes
+		re-train classifier
+	look at data distribution
+		linear or non-linear
+
+types
+	supervised
+	unsupervised
+	semisupervised
+	reinforcement
+
+#review#
+
+lottery results
+	not learnable
+
+rewards and punishment
+	reinforcement
+
+looking at purchase history in past
+	supervised
+
+finding groups (or clusters) of similar news items by looking at similar words
+	unsupervised
+
+predicting grade by looking at grades of similar students
+	supervised
+
+learning actions from previously encountered scenarios
+	semisupervised
+		giving it some data but not all data
+
+predicting outcome of game of craps
+	not learnable
+
+classifying car by looking at previous examples
+	supervised
+
+linear classifier
+	weights are the A, B, C values of Ax+By+C = 0
+	works only iwth linear data
+
+vector notation
+	w = (C A B)
+	X = (1 x1 x2)
+		x1 -> age
+		x2 -> income
+
+first thing is to find how the data is distributed
+	linear or nonlinear
+
+inductive
+	learning from labeled examples
+	generalize from a set of given data
+
+deductive
+	given a set of rules
+		apply to find a classification
+
+#inductive learning#
+
+given a set of labeled training examples
+	<x, f(x)>
+	global f(x) is unknown to us
+	distribution of x is unknown to us
+	Find: an sppoximation of f(x)
+
+Learning to play checkers
+	T -> play checkers
+	P -> % of games won
+	E -> opportunity to play against a player
+	at each step choose from a set of finite moves
+	local assessment function V
+		guides us at each step
+
+!hill climbing algorithm
+	d measures how different a state is from the final state
+	guides us at every local step
+	choose move that lowers the distance to the final point
+
+class labels
+	output
+
+instances
+	an data examples
+
+attributes
+	features of the data
+
+make a hypothesis in the form of conjunctions
+	(shape = circle) & (fill shade = dark)
+or a combination of conjunctions and disjunctions
+	(shape = circle & fill shade = dark) & (crust = thick)
+
+f:X -> Y where X is a set of 5 boolean attributes
+	X = <x1, x2, ,x3, x4, x5>
+	possible instances
+		2^5 = 32
+	possible labelings
+		2^(2^5) = 2^32
+
+hill climbing
+	searching through the data space to find perfect classification
+
+continuous attributes
+	if attributes are continuous
+		infinite possible hypotheses
+	changing to discrete
+		make buckets
+
+false positive
+	not positive but marked so
+
+false negative
+	positive but marked negative
+
+anything between most specific and most general hypothesis is consistent
+
+most specific
+	pros
+		no false positives
+		works perfectly with data consistent to training data
+	cons
+		doesnt generalize well
+		many false negatives
+
+most general
+	pros
+		generalizes well
+		no false negatives
+	cons
+		lots of false positives
+
+#inductive learning#
+
+unknowns
+	every possible labeling
+	global distribution of data
+	real hypothesis
+
+known
+	labeling of training data
+	distribution of training data
+
+concept learning
+	derive a boolean function from training examples
+		combination of conjunctions and disjunctions
+	generate hypotheses from conecpts
+
+#representing hypotheses#
+conjunction of constraints
+
+possible values
+	specific
+		water=warm
+	dont care
+		water=?
+	no value
+		water=(empty set) => abstract concept used for initialization
+
+most general
+	everything allowed
+	<?,?,?,?,?>
+
+most specific
+	nothing allowed
+	<0,0,0,0,0>
+
+#weather example#
+
+96 distinct instances in X
+	3*2^5
+5120 syntactially distinct hypotheses
+	two more values for each attribute
+	(3+2)*(2+2)^5 = 5 *4^5
+
+every hyp containing one or more 0 symbols
+	represents empty set of instances
+	classifies every instance as negative
+
+973 left semantically distinct hypotheses
+
+96 instances
+2^96 labelings
+
+order from most specific to most general
+
+##Find-S Algorithm##
+
+only considers positive training instances
+
+go from most specific to most general
+
+given a positive example
+	add it to hypothesis
+
+given a negative example
+	skip it
+
+if a contradictory positive example comes
+	change hypothesis to fit new data
+
+problems:
+	throws away negative examples
+	cant tell if it has learned the concept
+		depending on h, there might be several h's that fit TEs
+		pciks a maximally specific h
+	cant tell when training data is inconsistent
+		because it ignores negative TEs
+
+consistent hypothesis
+	no error on training data
+
+version space
+	set of all consistent hypothesis
+
+same result no matter what you start with
+
+##List-Then-Eliminate Algorithm##
+find version space
+eliminate all hypohtesis that are not consistent
+
+brute force
+
+same result, no matter what you start with
+
+#Conjunctions & Disjunctions#
+
+f:X->Y where X={0,1}^n and Y={0,1}
+
+Conjunctions
+	assume hypotheses are in form of monotone conjunction
+		x1 & x2 & x3 & x4
+how to learn
+	take bitwise AND of all pos examples
+	construct monotone conjunction of these attributes
+	check over negative examples
+	if you get pos for any neg examples
+		concept is not learnables
+
+CNF
+	conjunctive normal form
+	!A AND (B OR C)
+
+k-CNF
+	k term CNF
+
+DNF
+	disjunctive normal form
+	(x1 AND x2) OR (x1 AND !x3)
+	very easy to learn
+
+DNF Example
+	given: monotone conjunctions x1 AND x4
+	(x1 & !x2 & !x3 & x4 & x5) OR (x1& !x2 & x3 & x4 & !x5)
+
+k-DNF
+	useful in decision trees
+
+each leaf in a decision tree is an instance
+each leaf can be either a + or -
+2(2^n)
+
+##Decision Tree##
+
+way to represent training data
+
+leaf nodes
+	decide values of output variables
+
+internal nodes & edges
+	represent splitting data along boolean values
+
+Keep Asking Questions -> until you get a pure separation
+
+depth1
+	decision stump
+	can represent any boolean function of 1
+
+depth2
+	can represent any boolean function of 2; some of 3
+
+Finding the best split
+	split order DOES make a difference
+	want split with maximum purity
+
+#Entropy#
+
+entropy = sum(all i) (-)[p(i) * log(base 2)[p(i)]]
+	MAKE SURE IT IS IN BASE 2
+
+p(i) is the probablility of class i
+
+higher the entropy the more information content
+
+E=0
+	p=0, p=1
+	0/1
+	least entropy
+E=1
+	p=.5
+	50/50
+	maximum entropy
+
+#Mutual Information / Information Gain#
+
+does it help you?
+do you get any information gain or reduction in entropy?
+do you get any increase in purity?
+
+H(Y) = sum(y) P(y) log(base 2)[P(y)]
+
+H(Y|X) = ?
+
+goal is to find the most informative attributes
+
+entropy of examples
+
+fair coin
+	1
+
+fair dice
+	-log(base 2)[1/6]
+
+#Conditional Probability
+
+use bayes
+
+P(H|C) = [P(C|H) * P(C)] / P(H)
+
+#Calculating Information Gain
+
+IG = E(P) = E(C(avg))
+	information gain =parent entropy - weighted average entropy of children
+
+entropy is ONLY computed on the classification
+
+choose the one that gives the most information gain
+
+##ID3 Algorithm##
+
+Top-Down Induction of Decision Tree
+finds the best decision attribute for each node
+finds the best decision tree
+
+if you encounter a pure node
+	stop; it is now a leaf
+
+gaurantees the most compact tree
+
+decision tree is a nonlinear classifier
+
+ID3 performs a heuristic search through space of decision trees
+	stops at the smallest acceptable tree
+	is a greedy algorithm
+
+###ocam's razor: prefer the simplest hypothesis that fits the data###
+
+Decision Tree
+	pros
+		nonlinear classifier
+		mathematically sound if used with ID3
+		can work with large dimensions
+		can handle inconsistent data
+
+	cons
+		data order dependent
+		over eager learner (overfitting prone)
+			biggest problem
+		noisy data -> it rebuilds

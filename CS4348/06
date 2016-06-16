@@ -1,0 +1,66 @@
+implicit threading
+	creation and management done by compilers and run-time libs
+	three methods
+		thread pools
+		openMP
+		grand central dispatch
+
+thread pools
+	create a # of threads in a poll where they await work
+	pros
+		faster to service request of existing thread than creating new one
+		allows # of threads in an app to be bound by size of pool
+		separating task to be performed from mechanics of creating task
+			and running task
+
+OpenMP
+	parallelizes regions of code
+	provides support for parallel programming in shared-mem env
+
+producer-consumer problem
+	producer enqueues
+	consumer dequeues
+	in & out pointers
+		used to find the two ends of the circular queue
+		full and empty look the same
+	problem using counter
+		code for counter ++/-- can get interwoven
+		value for counter becomes incorrect
+			either 1 more or 1 less
+
+race condition
+	two sets of code trying to read and wrtie to some data
+	can read wrong different data based on order of code execution
+
+ciritical section problem
+	each process has a critical section segment
+		process may be changing common vars
+		while one process in critical section
+			no other process may be
+	each process asks permission to enter critical section in entry section
+	may follow critical section with exit section
+	then remainder section
+
+solution to critical section problem
+	mutual exclusion
+		if process Pi is executing in its critical section
+			no other process can be in its critical section
+	progress
+		if no process is executing in its critical section
+		and there is a process that wish to enter their critical section
+			then the selection of the processes that will enter
+			cannot be postponed indefinitely
+	bounded waiting
+		bound must exist on the # of time that other processes
+		can access critical section
+
+handling of critical section in OS
+	preemptive
+		allows preemption of process when running in kernel mode
+			prone to race conditions
+	non-preemptive
+		runs until exits kernel mode, blocks or yields CPU
+			essentially free of race conditions in kernel mode
+			places constraints on scheduling
+
+

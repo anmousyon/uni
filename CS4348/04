@@ -1,0 +1,98 @@
+Quiz on June 9
+    material from beginning - June 7
+
+stack and heap grow toward each other in memory
+    stack => high to low
+    heap => low to high
+
+heap
+    dynamically allocated memory
+
+stack
+    store info from function calls
+
+iterative code is better than recursive
+
+Process Control Block
+    process state
+        running, waiting, etc
+    program counter
+        location of next instruction
+    cpu regs
+        contents of all process-centric regs
+    cpu scheduling info
+        priorities, scheduling queue pointers
+    memory-management info
+        mem allocated to the process
+    accounting info
+        cpu used
+        clock time elapsed since start
+        time limits
+    i/o status info
+        i/o devices allocated to process
+        list of open files
+
+context switch
+    takes time to switch between processes
+
+threads
+    executing multiple locations at once
+    share the same address space
+
+threads share same address space
+    processes do not
+
+task structure
+    pid
+        process identifier
+    state
+        state of the process
+    time_slice
+        scheduling info
+
+tree of processes
+    have a heirarch
+
+process creation
+    address space
+        child is a duplicate of parent
+        child has a program loaded into it
+    fork()
+        system call creates a new process
+    exec()
+        system call used after fork()
+            replaces process' mem space with new program
+        tells the child what program it needs to be
+            instead of being a copy of parent
+        gets rid of stack and heap of parent
+
+copy on write
+    copy over stack and heap
+    
+better version
+    if theyre the same
+        only make separate copies of what changes
+
+schedulers
+    short-term scheduler / cpu scheduler
+        selects which process should be exec next and allocateds cpu
+        sometimes the only scheduler
+        invoked frequently
+    long-term scheduler / job scheduler
+        selects which processes should be brought into ready queue
+        invoked infrequently
+        controls the degree of multiprogramming
+
+process descriptions
+    i/o-bound process
+        spends more time doing i/o then computations
+        many short cpu bursts
+    cpu-bound process
+        spends more time doing computations
+        few very long cpu bursts
+
+resouce sharing options
+    parent and child share all resources
+        thread probably better
+    children share subset of parents resources
+    parent and child share no resources

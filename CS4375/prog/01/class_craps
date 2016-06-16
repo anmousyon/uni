@@ -1,0 +1,20 @@
+source("./craps.game.R")
+
+for(i in 1:10){
+	games <-  0
+	balance <- 1000
+	bet <- 100
+	while(balance > 0 && games < 10){
+    	games = games + 1
+    	outcome <- craps()
+    	if(outcome){
+        	balance <- balance+bet
+        	bet <- 100
+    	}
+    	else{
+        	balance <- balance - bet
+        	bet <- min(2*bet, balance)
+    	}
+	}
+	cat("Balance: ", balance, " after ", games, " games\n")
+}

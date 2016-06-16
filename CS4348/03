@@ -1,0 +1,106 @@
+circular linked list
+    buffers
+        asynchronous communication
+
+bitmap
+    string of n binary digits representing the status of n items
+
+real-time embedded systems
+    most prevalent
+    vary consirerably, special purpose, limited purpose OS, real-time OS
+    use expanding
+
+real-time OS
+    well-defined fixed time constraint
+    correct operation only if constraint met
+
+admission control
+    check if you can handle admission
+
+system calls
+    between user interfaces and services
+
+user insterfaces
+    gui
+    batch
+    command line
+
+services
+    program execution
+    i/o operations
+    file systems
+    communication
+    resource allocation
+    accounting
+    error detection
+    protection and security
+
+cli -> command interpreter
+    sometimes implemented in kernel, sometimes by systems program
+    shells
+        multiple flavors
+    primarily fetches a command from user and executes it
+    sometimes commands built-in
+    sometimes just names of programs
+        adding new features doesnt require shell mods
+
+copying a file
+    read from file -> buffer -> write to file
+
+system-call interface
+    a number associated with each system call
+    maintains a table indexed according to these number
+    caller doesnt need to know how system call is implemented
+
+process control
+    create, end, load, exec, wait, allocation, etc.
+    debugger
+        determining bugs
+        single step execution
+    locks
+        managing access to shared data between processes
+
+file management
+    create/delete, open/close, read/write, get & set attributes, etc.
+
+device management
+    request/release, read/write, get & set attributes, attach/detach, etc.
+
+communications
+    create/delete connection
+    send/receive messages
+        if message passing model to host name or process name
+            from client to server
+    shared memory model
+        create and gain access t memory regions
+    transfer status info
+    attach and detach remote devices
+
+info maintenance
+    get/set time/date
+    get/set system data
+    get/set proces, file or device attributes
+
+protection
+    control access to resources
+    get/set permissions
+    allow/deny user access
+
+System Programs
+    file manipulation
+    status info (sometimes stored in a file mod)
+    programming language support
+    communication
+    program loading and execution
+
+microkernel system structure
+    moves as much from the kernel into user space
+    communication takes place between user modules using message passing
+    pros
+        easier to extend a microkernel
+        esier to port the os to new architectures
+        more reliable
+        more secure
+    detriments
+        performance overhead
+    houses -> interprocess comm, mem management, cpu scheduing

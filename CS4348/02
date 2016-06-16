@@ -1,0 +1,149 @@
+cpu idles while waiting on memory
+
+caching
+    stores data that we think well need soon
+    copied from slower to faster storage temp
+
+fast storage checked
+    if not there
+        data copied to cache and used there
+    else
+        information used from cache
+
+multi-core problem
+    each processor has its own cache
+        level one cache
+    if p1 changes it cache
+        others have older version & dont know
+    if multiple proc have a copy of same data
+        change not propogated throughout the caches
+    ***
+
+solution
+    if one proc changes data
+        invalidate other caches that have that data
+
+safety - primary
+    ensure bad things dont happen
+
+liveness - secondary
+    get good things to happen
+
+direct memory access structure
+    one interrupt per block rather than one per byte
+    device controller transers blocks
+        from buffer to main without cpu intervention
+
+polling
+    cpu checks if all the data has been moved to ram
+
+notification
+    after one block have ram send an interrupt
+        then cpu processes interrupt
+    stops cpu from polling after every byte
+
+when not using resources
+    steal some cycles to transfer data
+
+multiprogramming (batch system)
+    needed for efficiency
+    organizes jobs so cpu always has one to execute
+    one job selected and run via job scheduling
+    when waiting for i/o, OS sqitches to another job
+
+timesharing (multitasking)
+    switches jobs so frequently
+        users can interact with each job while running
+        allows for interactive computing
+    response time <1 sec
+    each user has at least one program executing in memory
+        process
+    if several jobs ready to run at the same time
+        -> cpu scheduling
+    if processes dont fit in memory
+        -> swapping
+            moves them in and out to run
+    virtual memory
+        allows execution of processes not completely in memory
+        as if ram were much larger
+
+swapping can cause a cycke
+    cpu spends a lot of time swapping
+        instead of processing tasks
+
+process (management)
+    proc is a program in execution
+    termination requires reclaim of any reusable resources
+    single-threaded proc
+        one program counter
+        specifies location of next instruction to exec
+        execs instructions sequentially until completion
+    multi-threaded
+        one program counter *per thread*
+    typical system has many proc running concurrently
+        concurrency by multiplexing the cpus among proc/threads
+
+os responsibilites for proc management
+    creating and deleting proc
+    suspending and resuming proc
+    proc sync
+    proc comm
+    deadlock handling
+
+memory (management)
+    to exec a program
+        all (or part) of
+            instrution must be in memory
+            data must be in memory
+    determines what is in memory and when
+        optimizing cpu util and computer response to users
+    activities
+        keeping track of which parts of memory are being and used and by whom
+        deciding which proc and data to move into and out of memory
+        allocating and deallocating memory space as needed
+
+compaction
+    trying to create the largest block of free space
+    ***
+
+storage (management)
+    file
+        abstract physical props to logical storage units
+    file system management
+
+mass-storage (management)
+    os activities
+        free-space management
+        storage allocation
+        disk scheduling
+            schedule read and write to maximize throughput
+
+cache coherency
+    all cpus have the most recent value in their cache
+
+i/o subsystem
+    buffering
+        temp storage of data
+    caching
+        storing parts of data for faster performance
+    spooling
+        overlapping of output of one job with input of other jobs
+    general device-driver interface
+    drivers for specific hardware devices
+
+security
+    protection
+        any mech for controlling access of processes or resources
+    security
+        defense of the system against internal and external attacks
+        dos, worms, viruses, id theft, theft of service
+    user ids
+        name and number for user
+        one per user
+    group id
+        sets of users to be defined and control managed
+        associated with each process, file
+    privilege escalation
+        allows user to change to effective id for more rights
+
+

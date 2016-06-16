@@ -1,0 +1,48 @@
+alg behaviour
+    running time
+    mem/storage requirement
+    bandwidth/power/logic gates/etc
+
+cases
+    best
+    worst
+    average
+
+selection
+    best and worst
+        O(n^2)
+
+insertion
+    worst
+        O(n^2)
+    best
+        O(n)
+
+bubble
+    worst
+        O(n^2)
+    best
+        O(n)
+
+quicksort
+    best and average
+        O(nlog(n))
+    worst
+        O(n^2)
+
+heapsort
+    best and worst
+        O(nlog(n))
+
+tight boundary
+    best = worst
+
+quicksort
+    pick number
+    anything smaller goes to left
+    anything larger goes to right
+    repeat on left side
+    repeat on right side
+    will now be sorted
+
+

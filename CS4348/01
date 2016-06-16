@@ -1,0 +1,88 @@
+expectations
+    performance
+    reliability
+        good uptime
+    security
+        boundaries between users, their assets, and their resources
+        limiting access for users to the system
+    fairness
+        proportional allocation of uses
+    efficiency
+        using resources in best possible way
+    ease of use
+        no unnessecaryy complications
+    responsiveness
+        expect system to be able to work at any time
+
+os
+    resource allocator
+        manages all resources
+        mediates conflicting resource allocation requests
+    control program
+        controls execution of programs to prevent errors and improper use
+
+*response time
+  time of submission to time of completion
+
+allowing shorter tasks to always go first can starve longer tasks
+
+kernel
+    program that is running at all times
+    everything else is a system program or applications program
+
+dual-mode
+    allows os to protect itself
+    user mode and kernel mode
+    mode bit
+        distinguish between when system is running user or kernel code
+        privileged
+            only executable in kernel mode
+        system call changes to kernel then, on return, resets to user
+    multi-mode
+        vmm
+            virtual machine manager for guest VMs
+
+user process executing (user) ->
+calls system call (user) ->
+execute system call (kernel) ->
+return from system call (user)
+
+main memory
+    random access -> ram
+        accessing x+1 takes same time as x+y where y is arb
+        offset does not affect access time
+    typically volatile
+
+hdd
+    sequential access
+        access time is proportional to offset
+    nonvolatile
+    surface is divided into disks
+        subdivided into sectors
+    disk controller
+        determines logical interaction between device and computer
+
+sdd
+    faster than hdd
+    nonvolatile
+    sequential access
+
+row-major form
+    fill first row completely then go to next
+
+core dump
+    dumps contents of memory to file for debugging
+
+locality of preference
+    spatial
+        memory around used memory
+    temporal
+        memory used recently
+
+applications intensities
+    compute intensive
+        many arithmetic ops
+        constantly needs cpu
+    io intensive
+        many reads/writes to storage
+        cpu sits idle during io

@@ -1,0 +1,148 @@
+Taking Turns
+do {
+	while(turn == j);
+	//critical section
+	turn =j;
+	//remainder section
+} while(true);
+
+Peterson's Solution
+	two process solution
+	assume load and store machine language instructions are atomic
+		cannot be interrupted
+	processes share two variables
+		int turn;
+		boolean flag[2]
+	turn
+		indicates whose turn it is for critical section
+	flag
+		used to indicate if a process is ready to enter critical section
+		flag[i] = truee implies process Pi is ready
+
+synchronization hardware
+	many system provide hardware support for critical sections
+	based on idea of locking
+		protecting critical regions via locks
+	uniprocessors
+		could disable interrupts
+		currently running code would execute without preemption
+		generally too inefficient on multiprocessor systems
+	modern machines provide special atomic hardware instructions
+		atomic = non-interruptible
+		either test memory word and set value
+		or swap contents of two memory words
+
+solution using locks
+	do{
+		acquire lock
+			//critical section
+		release lock
+			//remainder section
+	}while(true);
+
+test and set instructions
+	bool test_and_set(bool *target){
+		bool rv = *target;
+		*target = True;
+		return rv;
+	}
+
+solution using test_and_set
+	do{
+		while(test_and_set(&lock));
+			//critical section
+		lock = false;
+			//remainder
+	}while(true);
+
+Not efficient
+	tons of while loops going -> busy lock
+
+compare_and_swap instruction
+	int compare_and_swap(int *value, int expected, int new_value){
+		int temp = *value;
+
+		if (*value == expected){
+			*value = new_value;
+		}
+		return temp;
+	}
+
+solution using compare_and_swap
+	do{
+		while(compare_and_swap(&lock, 0, 1) != 0);
+			//critical section
+		lock = 0;
+			//remainder section
+	}while(true);
+
+mutex locks
+	previous solutions are complicated
+	simplest is mutex lock
+	protect a critical section by first acquire() then release()
+		boolean variable indicating if lock id available or not
+	call to acquire() and release() must be atomic
+	this solution requires busy waiting
+		called spinlock
+
+semaphore
+	Semaphore S -> integer variable
+	can only be accessed via two atomic ops
+		wait(S){
+			while(S <= 0);
+			s--;
+		}
+		//critical section
+		signal(S){
+			s++;
+		}
+	counting semaphore
+		int value can range over unrestricted domain
+	binary semaphore
+		int value ranges only between 0 -> 1
+		same as mutex lock
+	can solve various synch problems
+	doesnt busy wait as much
+
+semapore -> no busy wait
+	with each semaphore there is an associated queue
+	each entry in a waiting queue has two data items
+		value
+		pointer to next record in the list
+	two ops
+		block
+			place the process invoking the op in the waiting queue
+		wakeup
+			remove one process from waiting queue, put in ready queue
+	typedef struct{
+		int value;
+		struct process *list;
+	} semaphore;
+
+wait(sem *S){
+	s_.value--;
+	if(S->value <0){
+		//add this process to s->list;
+		block();
+	}
+}
+
+signal(sem *S){
+	s->value++;
+	if(s->value >=0){
+		//something
+		//something
+	}
+}
+
+deadlock
+	two or more processes are waiting indefinitely for event from waiting process
+
+starvation
+	process may never be removed from sem queue in which it is suspended
+
+priority inversion
+	scheduling problem
+		lower-priority process holds lock needed by higher-priority
+	solved via priority-inheritance protocol
+

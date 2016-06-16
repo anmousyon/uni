@@ -1,0 +1,37 @@
+principle of optimality
+    every optimal solution to a problem contains
+        optimalsolutions to all subproblems
+    if you have optimal solution to all subproblems
+        cant necessarily combine them for optimal solution
+    
+tree
+    empty tree
+        no nodes
+    branching factor of a node
+        number of children it has
+    file systems usually implements as a tree
+
+depth-first
+    explores a path all the y to leaf
+    then backtracks and explores another path
+    search(node):
+        if node is goal
+            print node
+            return success
+        for child in node:
+            if search(c)
+                print child
+                return success
+        return failure
+    
+breadth-first
+    explores nodes nearest the root before going deeper
+    searches similarly to way priority queue fills
+
+heuristics
+    best guess for result
+    uses built-in knowledge and probability for decision making
+    more you know, the better it will do
+
+pbv -> preliminary backed-up value
+    explore down to a given value using dfs
