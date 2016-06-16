@@ -1,0 +1,50 @@
+starvation -> indefinite blocking
+    process may never be removed from sem queue where it is suspended
+
+priority inversion
+    lower priority process holds a lock needed by higher priority
+    solved via priority-inheritance protocol
+
+bounded buffer problem
+    n buffers, each can hold one item
+    semaphore mutex <- 1
+    semaphore full <- 0
+    semaphore empty <- n
+
+producer -> wait on full
+    do{
+        next_produced = produce()
+        wait(empty) //wait until there is space to place in the buffer
+        wait(mutex)
+        buffer.append(next_produced)
+        signal(mutex)
+        signal(full) //increments amount of objects in buffer
+    }while(true)
+
+consumer -> wait on empty
+    do{
+        wait(full) //wait until there is at least one itme in the buffer
+        wait(mutex)
+        next_consumed = buffer.remove()
+        signal(mutex)
+        signal(empty) //decrements the amount of items in the buffer
+        consume(next_consumed)
+    }while(true)
+
+readers-writers problem
+    dataset is shared among a numberof concurrent processes
+        readers
+            only read the data set
+            do not perform any updates
+        writiers
+            can both read and write
+    problem ->allow multiple readers to read at the same time
+        only one single writer can access the shared data at the same time
+    several variations of how readers and writers are considered
+        all involve some form of priorities
+    shared data
+        data set
+        semaphore rw_mutex <- 1
+        semaphore mutex <- 1
+        integer read_count <- 0
+    
