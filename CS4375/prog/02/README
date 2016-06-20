@@ -1,0 +1,6 @@
+Author:
+    Jared Mosley
+Platform:
+    Linux
+To run:
+    python id3.py train.dat test.dat
