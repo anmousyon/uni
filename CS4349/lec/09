@@ -1,0 +1,53 @@
+two-player games
+    uses min-max tree
+    search needs to be very different from single player games
+    each game has a payoff (rep as num)
+    prefer pos nums
+    results
+        1 -> win
+        -1 -> loss
+        0 -> tie/draw
+
+alpha-beta pruning
+    can prune nodes that we know wont affect outcome
+    can improve efficiency
+        does not alter the result of minimax in any way
+    beta -> minimum upper bound (init to inf)
+    alpha -> maximum lower bound (init to -inf)
+
+absearch(state)
+    v = max(state, -inf, inf)
+    retunr the action in Successors(state) with value v
+
+max(state, a, b)
+    if terminal-test(state)
+        return utility(state)
+    v = -inf
+    for a, s in Successors
+        v = math.max(v, min(s, a, b))
+        if v >= b
+            return v
+        a = math.max(a,v)
+    return v
+
+min(state, a , b) ->
+    if terminal-test(state)
+        return utility(state)
+    v = inf
+    for a, s in Successors
+        v = math.min(v, min(s, a, b))
+        if v <= a
+            return v
+        b = math.min(a,v)
+    return v
+
+when any new node is consiered, only works if
+    a <= N <= b
+
+pruning doesnt affect final result
+    may allow you to go deeper in tree
+    can skip unnecessary steps
+
+convention to pick left child first
+    efficiency affected by the order of branch examination
+

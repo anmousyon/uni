@@ -1,0 +1,224 @@
+classification problem
+    assigning input to one of k classes
+
+if output is discrete (1 of k classes)
+    classification
+
+if out is continuous (generate a value)
+    regression
+
+classification
+    input can be real value but output must be discrete
+
+decision tree
+    split the data on certain values until you get a pure region
+    learns too much
+    is a universal approximator
+        can represent any boolean function
+
+perceptron
+    learn ANY straight line separator
+    non-sigmoid
+        sum machine -> linear step machine
+    signmoid
+        sum machine -> non-linear step machine
+    w^T * x + b = 0
+        w = vextor of weights(initially unknown)
+        x = attribute vector
+        b = bias
+    if we add a ficticious attricute x[0] = 1
+        we can use w[0] = b and write it as: w^T * x = 0
+    w[new] = w[old] + n(t-o) * x[i]
+    only applicable in linear data
+    assumes inputs on sample are independent
+    testing
+        y = w^T * x
+        x[test] = (x[1], x[2], ..., x[n])
+        y = w^T * x[test]
+    can't represent XOR
+
+neural network
+    network of perceptrons
+    uses hidden layers
+    can separate data that is non-linear
+    input -> hidden layer -> output
+    output is non-linear
+    can represent XOR
+        x[1] XOR x[2] = (x[1] AND NOT x[2]) OR (NOT x[1] AND x[2])
+    disjunctive and conjunctive normal form
+    ANN is a universal approximator
+        can represent any boolean function
+    
+backpropogation algorithm
+    gradient descent applied to entire network
+    algorithm
+        initialize all weights to small rand nums
+        until conv, do
+            for each training ex, do
+                input it to net and comput net outputs
+                for each output unit k
+                    S[k] <- o[k](1-o[k])(t[k]-o[k])
+                for each hidden unit hidden
+                    S[h] <- o[h](1-o[h] sum(k of outputs) w[h],[k]S[k]
+                update each network weight w[i],[j]
+                    w[i],[j] <- w[i][j] + delta(w[i],[j])
+    can get stuck in a valley
+        start at multiple random points to fix this
+        take the lowest value from all runs
+    easily generalized to arbitrary directed graphs
+
+support vector machines
+    linear classifier extended in unique way
+    looks for the boundary points of each class
+    draws a line through boundary points (support vectors)
+        creates "street width" between boundary lines
+    maximizes gamma (street width) such that regions are pure
+    center of street width is the decision boundary
+    kernal spaces
+        change the coordinate system to x[1]^2 and x[2]^2
+        if not linearly separable
+            performs a kernel trick
+        only transforms boundary points into higher form
+    
+math behind it
+    orthogonality
+        equation of hyperplane
+            w^T * x + w[0] = 0
+                ie: x[1] + x[2] -1 = 0
+        normal vector to this plane is w
+        if dot product of two vectors is 0 
+            theyre orthogonal
+    parallel lines
+        dist = (c2-c1) / sqrt(a^2 + b^2)
+    distance between any point and a straight line
+        r = |y(x)| / ||w||
+    for linearly separable data
+        t[n] * y(x[n]) > 0
+
+if data is not linearly separable
+    transform the points to higher order and see if theyre linearly separable
+
+maximizing the margin
+    margin
+        2Y = a - (-a) / ||w||
+        2Y = 2a / ||w||
+        Y = a / ||w||
+    maximize: 1 / ||w||
+    constraints
+        points are in correct area
+        (real class) * (predicted class) >= 1
+    optimization
+        minimize: (1/2) * ||w||^2
+        this is the idea behind SVM
+
+SVM idea
+    locate support vectors
+    draw line such that distance between support vectors is maximized
+        such that (real) 8 (predicted) >= 1
+    y = 1 -> line passing through one support vector
+    y = -1 -> line passing through other support vector
+
+quadratic programmin
+    surface is paraboloid
+        has only one global minimum
+            thus avoids problem with ANN
+
+lagrange multipliers
+    !IMPORTANT!
+        y = sum(n=1 to N) (a[n] * t[n] * k(x, x[n])) + b
+    KKT conditions
+        an >= 0
+        t[n] * y(x[n]) - 1 >= 0
+        a[n] * {t[n] * y(x[n]) -1} = 0
+    a[n] = 0 & t[n]*y(x[n]) = 1 -> only true for support vectors
+    now you can find the k value (similarity?) only for the suport vectors
+        makes it much faster
+
+dot product
+    measure of similarity between two vectors
+    0 -> orthogonal
+    1 -> parallel
+
+kernel trick
+    k(x, x`) = phi(x)^T * phi(x`)
+    only need to transform support vectors
+    given x and x` we need z^T * z`
+    let z^T*z` = K(x,x`) -> the kernel "inner product" of x and x`
+    K(x, x`) = (1+x^T*x`)^2 = (1 + x[1]*x[1]` + x[2]*x[2]`)^2
+
+slack variables
+    distance needs to move to get it on correct side of decision surface
+    t[n]*y(x[n]) >= 1 - SLACKVAR[n]
+    if it is already on the correct side
+        then SLACKVAR is 0
+    if it is on the decision surface
+        then SLACKVAR is 1
+    new optimization condition
+        C*sum(n=1 to N) SLACKVAR[n] + (1/2)*||w||^2
+        C -> penalty for point on wrong side
+    margin support vectors -> (0 < a[n] < C)
+    non-margin support vectors -> (a[n] < C)
+
+soft margin SVM
+    hard margin -> data must be linearly separable
+    soft margin - > introduce a slack variable
+    100% accuracy only on hard margin
+
+advantages
+    computation is simplified
+        only worry about support vectors
+    can transform points to a different space x -> phi(x)
+    can classify non-linearly separable
+
+disadvantages
+    support vectors could be noise points
+    how to find best transformation or kernel
+    best value of c
+    much parameter tuning needed
+
+R SVM
+    ksvm
+        creates a model for you
+    predict()
+        predicts the model for you
+    e1071
+    mlbench
+        benchmark for machine learning
+
+***Review***
+
+SVM 
+    works with linear data in any transformation
+        first transform then apply svm
+    transform
+        convert entire dataset to a higher dimension
+    LUCKILY its not as much work
+        because we care only about support vectors
+    def:
+        support vector
+        street width
+            distance between support vectors in other classes
+        decision surface
+        slack variables
+    what are we trying to maximize?
+        1/w
+        or we can minimize
+            (1/2) w^2
+        with the constraint that (actual)*(predicted) >= 1
+            leads us to lagrange multiplier and quadratic programming
+    which points make a difference?
+        support vectors
+    hard margin
+    soft margin
+        need cost function
+            how much to penalize points on wrong side
+    advantages
+        mathematically sound
+        can be extended by changing the transformation
+        felxible
+        gets good results
+    disadvantages
+        paramter tuning
+        too much dependence on support vectors
+            what happens if they are noise?
+    

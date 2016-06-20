@@ -47,4 +47,39 @@ readers-writers problem
         semaphore rw_mutex <- 1
         semaphore mutex <- 1
         integer read_count <- 0
-    
+
+read-write conflict
+    cant have someone write while someone else is reading
+
+write-write conflict
+    cant have someone write while someone else is writing
+
+dining-philosophers problem
+    there are multiple philosophers
+    alternate between thinking and eating
+    dont interact with their neighbors
+    5 chopsticks
+    5 philosophers
+    to eat
+        pick up chopsticks (one at a time) to eat from a bowl
+        need both
+        release both when done
+    shared data
+        dataset (food)
+        semaphore (chopstick)
+
+basic concepts
+    max spu util obtained with multiporgramming
+    cpu-i/o burst cycle
+        process exec consists of a cycle of cpu exec and i/o wait
+    cpu burst followed by i/o burst
+    cpu burst distribution is of main concern
+
+cpu util
+    keep the cpu busy
+
+throughput
+    # of processes hat complete their exec per time unit
+
+tunraround time
+    amount of time to exec a particular process
