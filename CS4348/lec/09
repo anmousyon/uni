@@ -1,0 +1,142 @@
+cpu scheduler
+    short-term scheduler
+        selects from amoong processes in ready queue
+        allocates cpu to one of them
+    cpu scheduling happens when:
+        switches from running to waiting
+        switches from running to ready
+        switches from waiting to ready
+        terminates
+    scheduling under 1 and 4 is nonpreemptive
+    all other scheduling is preemptive
+        consider access to shared data
+        consider preemption while in kernel mode
+        consider interrupts occurring during crucial os activities
+
+dispatcher
+    gives control of the cpu to the process selected by short-term scheduler
+
+scheduling citeria
+    cpu util
+        keep cpu as busy as possible
+    throughput
+        # of processes the complete their execution per time unit
+    turnaround time
+        amount of time to execute a particular process
+    waiting time
+        amount of time  a process has been waiting in the ready queue
+    repsonse time
+        amount of time it takes from when a request was submitted
+        until first epsonse is produced (not output)
+
+convoy effect
+    short process behind long process
+    leads to longer repsonse time
+
+shortest-job-first (sjf)
+    associate with each process the length of its next cpu burst
+        use these lengths to schedule the process with te shortest time
+    sjf is optimal
+        gives min avg waiting time for a given set of processes
+        difficulty is knowing the length of the next cpu request
+
+estimating length of cpu burst
+    can only estimate the length
+        pick process with shortest predicted next cpu burst
+    done by using length of previous cpu bursts
+        using exponential averaging
+        t[n] = acutal length of nth cpu burst
+        t[n+1] = predicted value for next cpu burst
+        a, 0 <= a <= 1
+        define: t[n-1] = a * t[n] + (1-a)*t[n]
+        commonly, a set to 1/2
+    preemptive version called shortest-remaining-time-first
+
+aging
+    older processes get priority over newer tasks
+
+round robin
+    each process gets a small unit of cpu time (time quantum q)
+    if n processes in ready queue and time qunatum is q
+        each process gets 1/n of the cpu time in chunks of at most q at once
+    no process waits more than (n-1)*q
+    timer interrupts every wuantum to schedule next process
+    performance
+        q large -> FIFO
+        q small -> q must be large with respect to context switches
+            otherwise overhead is too high
+    typicaly higher avg turnaround than sjf, but better response
+    q usually 10ms to 100 ms, context switch < 10 usec
+
+
+### REVIEW ###
+
+storage structures
+    ram
+    hdd
+    ssd
+
+storage hierarchy
+    cost vs performance
+    order
+        regs
+        caching
+        main memory
+        ssdhdd
+        optical disk
+        magnetic tapes
+
+os services
+    order
+        user
+        user interfaces -> gui, batch, command line
+        system calls
+        services -> i/o, file systems, resource allocation, etc
+        os
+        hardware
+
+system calls
+    uses system APIs to safely interact with system on your behalf
+    each call is correlated to a number (index) to access its code
+
+processes
+    state
+        text -> code for program
+        data -> variables and saved info
+        heap -> grows up
+        stack -> grows down
+    states
+        new
+        ready
+        waiting
+        running
+        terminated
+
+process creation
+    copy on write
+        parent and child have a pointer to unchanged data that is shared
+    parent can create children
+    pid
+        process id
+    switching between process has a context switch
+
+threads
+    lightweight processes
+    interthread communication
+    context switch is much cheaper than with processes
+
+process synch
+    race conditions
+        two processes trying to read/write shared data
+        get different results based on relative speeds of processes
+    mutexes
+    producer-consumer problem
+    semaphores
+        mediation
+        counting
+            0-n values
+        binary
+            0-1
+        busy waiting/spin locking
+
+up till 6.23

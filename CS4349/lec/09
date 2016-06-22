@@ -51,3 +51,5 @@ pruning doesnt affect final result
 convention to pick left child first
     efficiency affected by the order of branch examination
 
+dijkstras
+    solves shortest path to all possible nodes
