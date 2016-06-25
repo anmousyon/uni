@@ -48,7 +48,7 @@ estimating length of cpu burst
         t[n] = acutal length of nth cpu burst
         t[n+1] = predicted value for next cpu burst
         a, 0 <= a <= 1
-        define: t[n-1] = a * t[n] + (1-a)*t[n]
+        define: t[n+1] = a * t[n] + (1-a)*t[n-1]
         commonly, a set to 1/2
     preemptive version called shortest-remaining-time-first
 
@@ -125,7 +125,7 @@ threads
     interthread communication
     context switch is much cheaper than with processes
 
-process synch
+process sync
     race conditions
         two processes trying to read/write shared data
         get different results based on relative speeds of processes

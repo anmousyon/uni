@@ -69,7 +69,7 @@ dining-philosophers problem
         semaphore (chopstick)
 
 basic concepts
-    max spu util obtained with multiporgramming
+    max cpu util obtained with multiporgramming
     cpu-i/o burst cycle
         process exec consists of a cycle of cpu exec and i/o wait
     cpu burst followed by i/o burst
@@ -79,7 +79,7 @@ cpu util
     keep the cpu busy
 
 throughput
-    # of processes hat complete their exec per time unit
+    # of processes that complete their exec per time unit
 
 tunraround time
     amount of time to exec a particular process

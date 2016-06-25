@@ -1,0 +1,110 @@
+response time
+    time of submission to time of completion
+
+starvation
+    smaller tasks keep getting in front of larger tasks
+
+multi-core
+    problem
+        change not propogated through each processors cache
+    solution
+        change on one processor invalidates same data on other cache
+
+process management
+    multithreaded
+        one program counter per thread
+
+compaction
+    trying to create the largest block of free space
+
+system-call interface
+    a number is associated with each system call
+    maintains a table indexed according to these numbers
+    caller doesnt need to know how system call is implemented
+
+process control
+    create, end, load, exec, wait, allocation, etc
+    locks
+        managing access to shared data between processes
+
+context switch
+    takes time to switch between processes
+
+threads
+    share the same address space
+        processes do not
+    more efficient when switching between tasks
+    kernels are generally multithreaded
+
+task structure
+    pid
+        process id
+    state
+        state of process
+    time_slice
+        scheduling info
+
+resource sharing options
+    parent and child share everything
+        thread probably better
+    children share subset of parents resources
+    parent and child share no resources
+
+system calls
+    fork
+        creates a child process
+        child inherits everything
+    exec
+        code and data in child is overwritten with new code
+
+amdahls law
+    IDs performance gains from additional cores
+    s -> serial portion
+    n -> processing cores
+    speedup = 1/(s+((1-s)/n))
+    as n approaches inf, speedup approaches 1/s
+    speedup increases in a sublinear fashion
+
+race condition
+    two sets of code trying to read and write to same data
+    can read wrong/different data cased on order of exec
+
+critical section
+    process may be chaning shared vars
+    no other process can be in their critical section at that time
+
+semaphore
+    no busy wait / spinlocking
+    counting
+        0-n values
+    binary
+        0 or 1
+
+deadlock
+    two or more processes are waiting forever for event from waiting process
+
+priority inversion
+	scheduling problem
+		lower-priority process holds lock needed by higher-priority
+	solved via priority-inheritance protocol
+
+throughput
+    # of proc that complete their exec per time unit
+
+turnaround time
+    time to exec a process
+
+convoy effect
+    short processes behind long processes
+
+sjf (shorest job first)
+    optimal solution
+    can lead to starvation
+
+estimate cpu burst length
+    average of last
+    t[n+1] = a * t[n] + (1-a)*t[n-1]
+    a usually 0.5
+
+aging
+    older processes get priority over newer processes

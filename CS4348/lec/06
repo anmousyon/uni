@@ -30,7 +30,7 @@ producer-consumer problem
 
 race condition
 	two sets of code trying to read and wrtie to some data
-	can read wrong different data based on order of code execution
+	can read wrong/different data based on order of code execution
 
 ciritical section problem
 	each process has a critical section segment

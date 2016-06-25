@@ -1,0 +1,30 @@
+agenda
+    point estimation
+    naive bayes
+    review
+
+point estimation
+    sampling a population and trying to guess the parameters
+
+random variables
+    denotes domething about which we are uncertain
+    ie
+        A = True if randomly drawn person is female
+        A = The hometown of a randomly drawn person from our class
+    function defined over the sample space
+
+sample space
+    set of possible worlds (instances)
+
+event
+    subset of the sample space
+
+conditional probability
+    P(A|B) = (P(A&B)/P(B))
+
+bayes rule
+    P(A|B) = [(P(B|A)*P(A))/P(B)]
+    P(A) -> prior
+    P(A|B) -> posterior
+    P(B|A) -> likelihood
+

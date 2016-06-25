@@ -20,7 +20,7 @@ admission control
 system calls
     between user interfaces and services
 
-user insterfaces
+user interfaces
     gui
     batch
     command line

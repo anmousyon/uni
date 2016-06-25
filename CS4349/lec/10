@@ -1,0 +1,55 @@
+#dfs on tree
+dfs(root):
+    add root node to stack
+    while stack not empty
+        remove node from stack
+        if node is goal
+            return success
+        put all children of node onto stack
+    return failure
+
+#dfs on graph
+dfs(node):
+    add starting node to stack
+    while stack not empty
+        remove node from stack
+        if node is visited
+            continue
+        if node is goal
+            return success
+        put all adjacent nodes onto stack
+    return failure
+
+dijkstras(v1, v2):
+    for v in vertices
+        v.dist = inf
+        v.prev = none
+    v1.dist = 0
+    v_list = vertices
+    while v_list not empty
+        v = list.removemin()
+    v.known = true
+    #for each unknown neighbor of v
+    for n in v.unkown
+        dist = v.dist + edge(v, n)
+        if dist < n.dist
+            n.dist = dist
+            n.prev = v
+    #reconstruct using previous pointers
+    reconstruct(v1, v2)
+
+A*
+    generates an optimal solution if h(n) is an admissible heuristic
+        search space is tree must be tree
+    h(n) is admissible if it never overestimates cost to destination node
+    takes into account heuristic info along with weights
+
+consistent heuristic
+    for every node n and every successor P of N
+        estimated cost of reaching goal from N
+        is no greater than the step cost of getting to P
+        plus the estimated cost of reaching goal from P
+
+applications
+    applicable to any general path-finding scenario
+        where we have some heuristic knowledge to go on
