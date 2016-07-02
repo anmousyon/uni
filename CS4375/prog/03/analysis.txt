@@ -1,0 +1,9 @@
+The results showed that we have learned, generally, increasingly more accurate
+ml techniques.
+The best performing method was Naive Bayes. This is because the data was
+usually independent and easy to create conditions for and svm because the data
+did not have a lot of noisy points. The worst method was
+perceptron, because the data was not usually linearly separable. This caused
+the perceptron to be generally useless. The decision tree was very good when
+run on the same data as it was trained on comapared to th others, but quickly
+fell apart and got barely better than .5 when run on new data.

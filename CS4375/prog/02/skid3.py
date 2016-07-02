@@ -1,13 +1,34 @@
 '''sklearn id3'''
+import sys
 from sklearn.datasets import load_iris
 from sklearn import tree
-import itertools
-from id3 import get_args, get_data
+#from id3 import get_args, get_data
+
+def get_args():
+    '''read args and return a list of strings'''
+    return sys.argv
+
+def get_data(args, arg_num):
+    '''read in training and testing data'''
+    #fill the matrix
+    data_matrix = fill_data(args, arg_num)
+    return data_matrix
+
+def fill_data(args, arg_num):
+    '''read in the data and return the matrix'''
+    data_matrix = []
+
+    with open(args[arg_num]) as data:
+        for line in data:
+            if line.split():
+                row = []
+                for word in line.split():
+                    row.append(word)
+                data_matrix.append(row)
+    return data_matrix
 
 def id3():
     '''main program'''
-    iris = load_iris()
-
     args = get_args()
 
     data = get_data(args, 1)
@@ -20,14 +41,10 @@ def id3():
 
     data_col = [row[len(data[0])-1] for row in data]
 
-    print('data', len(data[0]))
-
     for row in data:
         del row[len(data[0])-1]
 
     test_col = [row[len(test[0])-1] for row in test]
-
-    print('test', len(test[0]))
 
     for row in test:
         del row[len(test[0])-1]
@@ -36,21 +53,8 @@ def id3():
         if test_col[i] != data_col[i]:
             print('different')
             break
-
-    #data = list(map(list, zip(*data)))
-
-    #data_col = list(map(list, zip(*data_col)))
-
-    #test = list(map(list, zip(*test)))
-
-    #test_col = list(map(list, zip(*test_col)))
-
-    '''
-    print(classes)
-
+    print(data)
     print(data_col)
-    print(test_col)
-    '''
 
     clf = tree.DecisionTreeClassifier()
     clf = clf.fit(data, data_col)

@@ -1,0 +1,135 @@
+system model
+    system consists of resources
+    each resource R[i] has W[i] instances
+    process utilizes as
+        request
+        use
+        release
+
+deadlock necessary conditions
+    mutual exclusion
+        only one process can use a resource
+    hold and wait
+        a process holding at least one resource
+        is waiting to acquire additional resources hild by others
+    no preemption
+        a resource can be released ony voluntarily by process holding it
+            after it has completed its task
+    circular wait
+        there exists a set {P[0], P[1], ..., P[n] of waiting processes
+        st P[0] is waiting on P[1]'s resource
+        and P[1] is waiting on a resource that is held by P[2] and so on
+        in a circular fashion
+            ie p[0] -> p[1] -> ... -> p[n] -> p[0]
+
+necessary
+    needed to happen, but doesnt gaurantee it will happen
+
+sufficient
+    needed to happen, it will definitely happen
+
+resource-allocation graph
+    V is partitioned into two types:
+        P = {p[1], p[2], ..., p[n]} -> set of all processes in system
+        R = {r[1], r[2], ..., r[n]} -> set of all resource type in system
+    request edge -> directed adge p[i] -> r[j]
+        process to resource
+    assignment edge -> directed edge r[j] -> p[i]
+        resource to process
+
+cycle is necessary but not sufficient for a deadlock
+    if there are multiple resource instances
+    or it uses an OR model
+    then a deadlock might not happen
+
+graph reductions
+    if there exists a sequence of graph reductions
+    then there is no deadlock
+
+knots
+    cycle with no edge leading out of the cycle
+
+handling deadlock
+    prevention
+        policies to ensure at least on of 4 deadlock conditions is false
+    avoidance
+        don't do things that lead to deadlocks
+
+deadlock prevention
+    mutual exclusion
+        not required for sharable resources
+        must hold for non-sharable resources
+    hold and wait
+        must guarantee that whenever a process requests a resource
+            it does not hold any other resources
+        process must request & be allocated all its resources before it begins
+        allow process to request resources only when none are allocated to it
+        low resource utilization; starvation possible
+    no preemption
+        if a process holding a resource requests another that cant be allocated
+        then all resources currently being held are released
+        preempted resources added to list of resources process is waiting for
+        process will be restarted only when it can gain its old resources
+            as well as new ones that it is requesting
+    circular wait
+        impose a total ordering of all resource types
+            require each process request resources in inc order of enumeration
+
+deadlock avoidance
+    requires the system has some additional a priori info available
+    simplest and most useful model requires each process declare
+        max num of resources of each type it may need
+    dynamically examines the resource-allocation state to ensure
+        there can never be  circular-wait conditions
+
+safe state
+    process requests an available resource
+        system must decide if immediate allocation leaves system in safe state
+    in safe state if
+        p[i] resource needs are not immediately available
+            p[i] can wait until all p[j] have finished
+        when p[j] is finished
+            p[j] can obtain needed resources
+            then return allocated resources once done and then terminate
+        when p[i] terminates
+            p[i+1] can obtain needed resources, and so on
+
+bankers algorithm structure
+    n = number of processes
+    m = number of resource types
+    available
+        vector of length m
+        if available [j]=k 
+        then there are k instances of resource type R[j] available
+    max
+        nxm matrix
+        if max[i,j]=k
+        then process p[i] may request at most k instances of resources r[j]
+    allocation
+        nxm matrix
+        if allocation[i,j]=k
+        then p[i] is current allocated k instances of r[j]
+    need
+        nxm matrix
+        if need[i,j]=k
+        then p[i] may need k more instances of r[j] to complete its task
+    need[i,j] = max[i,h]-allocation[i,j]
+
+safety algorithm
+    1.
+        let work and finish be vectors of length m and n
+        work = available
+        finish[i] = false for i=0,1,...,n-1
+    2.
+        find i such that
+            finish[i] = false
+            need[i] <= work
+        if no such i, got to 4
+    3.
+        work = work + allocation
+        finish[i] = true
+        go to 2
+    4.
+        if finish[i] is true for all i
+        then the system is in a safe state
+

@@ -1,0 +1,180 @@
+stable sort
+    guarantees the relative order of equal items stays the same
+    insertion, bubble, merge, quick, heap, radix
+
+heapsort
+    left justified
+    balanced
+
+tree
+    branching factor
+        number of children a node has
+
+depth first
+    explores a path all the way to leaf
+    then backtracks and explores another path
+    search(node)
+        if node is goal:
+            print node
+            return success
+        for child in node:
+            if search(c)
+                print child
+                return success
+        return failure
+
+breadth first
+    explores nodes nearest the root nefore going deeper
+    searches similarly to way priority queue fills
+
+runtimes
+    selection
+        worst   n^2     avg     n^2
+    bubble
+        worst   n^2     avg     n^2
+    insertion
+        worst   n^2     avg     n^2
+    merge
+        worst   n*logn  avg     n*logn
+    quick
+        worst   n^2     avg     n*logn
+    radix
+        worst   n       avg     n
+    tree
+        worst   n^2     avg     n*logn
+    heap
+        worst   n*logn  avg     n*logn
+
+types of algorithms
+    simple recursive
+    divide & conquer
+    dynamic programming
+    greedy
+    brute force
+    randomized
+
+simple recursive
+    backtracking
+        based on depth-first recursive search
+    solve base cases directly
+    recur with a simpler problem until base case
+
+divide & conquer
+    divide problem into smaller parts
+    solve smaller problems recursively
+    combine solutions to subproblems into solution for large one
+    examples
+        quicksort
+        mergsort
+        NOT binary search
+    #top-down algorithm
+
+dynamic programming
+    remembers past results and uses them to find new results
+    used for optimization problems
+        optimal substructure
+            optimal solution contains optimal solutions to subproblems
+        overlapping subproblems
+            solutions to subproblems can be stored and reused in bottom-up way
+    simplifies fibonacci
+    used for optimization problems
+        especially ones that would otherwise take exponential time
+    #bottom-up algorithm
+
+greedy algorithms
+    optimization probelm
+        not just find a solution but the best one
+    phases
+        take best you can get right now, without regard to future
+        hope choosing local optimum at each step leads to global optimum
+
+brute force
+    optimizing
+        finding best solution out of many
+    satisficing
+        stop on solution that is "good enough"
+    often requires exponential time
+    heuristics
+        "rule of thumb" t0 help you decide choices to look at first
+        eliminate certain possibilities without looking at them
+
+randomized
+    uses a random number at least once in the computation to make a decision
+    examples
+        using rnadom number to choose pivot in quicksort
+
+principle of optimality
+    if the optimal solution to a problem 
+        always contains optimal solutions to all subproblems
+    NOT if you have optimal solution to all subproblems
+        you can combine them to get optimal solution
+
+A* serach problem
+    takes into account weight AND heruistic info
+    calculates an estimated cost from next node to  goal node
+    h(n) <- estimation
+        admissable if it never overestimates cost to rach destination node
+    generates an optimal solution
+        if h(n) is a consistent heuristics -> h(n) <= c(N,P) + h(P)
+        search space is a graph
+    consistent heuristics are admissable
+    admissable heuristics are often (but not always) consistent
+    applications
+        any general path-finding scenario with heuristic knowledge
+        tile-based games
+        shooters
+
+heurisitics
+    heuristic function
+        computes an estimated payoff
+        uses built in knowledge
+    make two key assumptions
+        opponent uses same heuristic function
+        more moves you look ahead, better you will do
+
+Prelimiary backed-up value (PBV)
+    explore down to a given level using dfs
+    as you reach lowest-level node, eval using heuristic function
+    back up values to next higher node, according to minimaxing rules
+        if your move, bring up largest value
+        if opponents move, bring up smallest value
+
+alpha-beta pruning
+    prune nodes that wont effect outcome
+    greatly improves efficiency
+        doesnt alter minimax in any way
+    if we know based on exploring some part of search space
+        that we are already gauranteed a certain value
+        then we ignore parts of search space that wont alter val per minimax
+    alpha
+        maximum lower-bound of possible solutions
+    beta
+        minimum upper bound of possible solutions
+    new solution N only works if
+        alpha <= N <= beta
+    pruning doesnt affect final results
+        can ignore unnecessary steps
+        can go deeper in tree
+    best to eval 'better' branches first so we can prune more
+
+dfs on graph
+    dfs(node):
+        add starting node to stack
+        while stack not empty:
+            remove node from stack
+            if node is visited:
+                continue
+            if node is goal
+                return success
+            put all adjacent nodes onto stack
+        return failure
+
+dfs on tree
+    dfs(root):
+        add root to stack
+        while stack not empty:
+            remove node from stack
+            if node is goal:
+                return success
+            put all children of node onto stack
+        return failure

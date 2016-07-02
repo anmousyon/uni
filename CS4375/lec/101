@@ -1,0 +1,100 @@
+types of learning
+    supervised/unsupervised
+        only supervised covered so far
+        supervised = labeled classes for training data
+
+think in terms of learning a concept
+
+50/50 split gives an entropy of 1
+
+ml -> learning a concept from data
+
+hypotheses
+    most specific
+        no margin
+    most general
+        largest margin
+    real
+        somewhere between most specific and most general
+
+trying to find approximation of true function
+    h ~= f
+
+f is never known without ALL the data possible
+
+2^n instances
+2^(2^n) labelings
+
+decision tree
+    splitting the data at every depth based on best attribute
+    overfitting
+        tries to learn too much
+        tries to split too much
+        training accuracy goes up
+        testing accuracy goes down
+
+sources of overfitting
+    noise
+    small number of examples
+    ## need to leave room for generalization ##
+
+entropy
+    E = sum(i) (-p[i] * log[2](p[i]))
+    p[i] -> probability of class i
+
+information gain
+    determine which attribute is best to split for purest classes
+    tells us which attribute gives most information gain
+    IG = entropy(parent) - [avg_entropy(children)]
+
+Hints
+    compute log only when necessary
+    can use e function, if given
+    IG decides which attribute is best to split on
+
+Binary Classification
+    in n dims, hyperplane is sol to equation w^T x + w[0] = ?
+    
+perceptron
+    simple linear classifier
+    w[new] = w[old] + n(t-o)*x
+    cant represent XOR
+
+ANN
+    combination of perceptrons with hidden layer
+    can represent any boolean function
+
+backpropogation
+    !!## compute forward pass and backward pass ##!!
+
+support vectors
+    input vectors that just touch the boundary of the margin (street)
+    trying to maximize the margin (stree width)
+    divider should be in middle of the road
+
+lines
+    +1, -1, and 0
+
+non-separable data
+    hard-margin
+    soft-margin
+    slack variable
+        e[i]
+        can be added to allow mid-classification of noisy points
+
+large-margin classifier
+    minimize (1/2)||w||^2 + C * sum(i) e[i]
+
+MLE
+    different from MAP
+    do examples in worksheet
+    maximum likelihood
+
+MAP
+    maximum posterior
+
+naive bayesian
+    what is MAP?
+    read equation
+    learn steps well
+    do examples

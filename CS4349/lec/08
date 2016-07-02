@@ -12,7 +12,7 @@ tree
     file systems usually implements as a tree
 
 depth-first
-    explores a path all the y to leaf
+    explores a path all the way to leaf
     then backtracks and explores another path
     search(node):
         if node is goal

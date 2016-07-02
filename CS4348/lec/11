@@ -1,0 +1,125 @@
+priority scheduling
+    priority number is associated with each process
+    cpu allocated to process with highest priority
+        preemptive
+        nonpreemptive
+    SJF
+        priority is the inverse of predicted cpu time
+    problem -> starvation
+        low priority process never executes
+    solution -> aging
+        as time progresses increase the priority of the process
+
+round robin
+    each process gets a time quantum (q)
+    then process is preempted and added to end of ready queue
+    no process waits more than (n-1)*q
+    example
+        if total of n processes
+        1 processor
+        slow down no worse than around 1/n
+    need to minimize context switch overhead
+
+## work conserving ##
+
+multilevel queue
+    ready queue is partitioned into separate queues
+        foreground (interactive)
+        background (batch)
+    process permanently in a given queue
+    each queue has its own scheduling algorithm
+        foreground -> RR
+        background -> FCFS
+    scheduling must be done between the queues
+        fixed priority scheduling -> possibility of starvation
+        time slice
+            each queue gets certain amount of CPU time
+            each queue can delegate it as necessary
+            ie
+                80% -> foreground
+                20% -> background
+    split things at very small level
+
+multi-processor scheduling
+    homogeneous processors within a multiprocessor
+    asymmetric multiprocessing
+        only on processor accesses the system data structure
+        alleviates need for data sharing
+    symmetric multiprocessing (SMP)
+        each processor is self-scheduling
+        all processes in common ready queue
+        or each has its own private queue
+    processor affinity
+        process has affinity for processor on which its already on
+        soft affinity
+        hard affinity
+        variations including processor sets
+
+load balancing
+    attempts to keep workload evenly distributed
+
+push migration
+    periodic task checks load on each processor
+    if found, pushes task from overloaded cpu to other cpus
+
+pull migration
+    idle processors pulls waiting task from busy processor
+
+memory stall cycle
+    time cpu is waiting for data from memory
+
+ideal version
+    while one thread is waiting for memory, other is using cpu
+
+real-time cpu scheduling
+    can present obvious challenges
+    soft real-time systems
+        no gaurantee as to when critical real-time process will be schedules
+    hard real-time systems
+        task must be serviced by its deadline
+    two types of latencies
+        interrupt latency
+            time from interrupt to start of routine that sercices interrupt
+        dispatch latency
+            time for schedule to take current process off cpu and switch
+
+priority-based scheduling
+    for real-time scheduling
+        scheduler mustsupport preemptive, priority-based scheduling
+    for hard real-time
+        must also provide ability to meet deadlines
+    processes have new characteristics
+        periodic ones require cpu at constant intervals
+            has processing time t, deadline d, period p
+            0 <= t <= d <= p
+            rate of periodic task is 1/p
+
+rate monotonic scheduling
+    priority is based on the inverse of its period
+    shorter periods = higher priority
+    longer periods = lower priority
+    sum(i) t[i]/p[i] <= 1
+
+priorities are assigned according to dealines
+    earlier the deadline, higher the priority
+    later the deadline, lower the priority
+
+alg eval
+    deterministic modeling
+        type of analytic eval
+        takes a particular predetermined workload
+        then defines performance of each alg for that workload
+    need many GOOD examples
+
+## skip thread scheduling section of chapter 6 ##
+
+queueing models
+    describes the arrival of processes, and CPU / I/O bursts probabilistically
+        commonly exponential, described by mean
+        computes avg throughput, util, waiting time, etc
+    system seen as network of servers, each with queue of waiting processes
+        knowing arrival rates and service rates
+        computes util, avg queue length, avg wait time, etc
+
+arrival rate = y
+service rate = u

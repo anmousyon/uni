@@ -28,3 +28,113 @@ bayes rule
     P(A|B) -> posterior
     P(B|A) -> likelihood
 
+joint distribution
+    make a truth table listing all combos
+        for n vars, 2^n rows
+    for each combo, say how probable it is
+    the sum of all combos must be 1
+
+expected value
+    E(X) = sum(x) x*P(x)
+    what value do you expect to occur (like an average)
+
+variance
+    var(X) = sum(x) (x - E(x))^2 * P(x)
+    how spread out the data is
+
+bernoulli distribution
+    1 parameter and 1 trial
+    Bern(x|u) = u^x * (1-u)^(1-x)
+    E(x) = u
+    var(x) = u(1-u)
+
+binomial distribution
+    1 parameter but n trials
+    Bin(m|N, u) = (N m) * u^m * (1-u)^(N-m)
+    E(m) = sum(m=0 to N) m*Bin(m|N,u) = N*u
+    var(m) = sum(m=0 to N) (m-E(m))^2 * Bin(m|N, u) = N*u(1-u)
+
+maximum likelihood estimation
+    x = (a[h] / (a[h] + a[t]))
+
+## log likelihood maximization ##
+    1. assume a parameter
+    2. get data
+    3. Find log of probability of data using given parameters
+    4. Find maximum estimate of parameters
+
+poisson distribution
+    P(X=x|y) = ((y^x * e^(-y))/(x!))
+
+when you know the distribution but not the parameters
+    use maximum likelihood
+
+the more samples, the better the estimate
+    error has a fixed upper bound
+    hoeffdings inequality
+
+PAC learning
+    PAC -> probability approximate correct
+
+parameter estimation
+    data from fixed distribution
+        characterized by theta
+    get data D from its class
+    evaluate which value of theta most likely gens the data
+    find most likely parameter that gens this data
+    ## known as MLE ##
+
+gaussian
+    fancy name for normal distribution
+        other names (bell or normal)
+    log-likelihood = sum(i=1 to R) [(x[i]-u)^2] + C
+
+estimators
+    u[mle] = (1/R) * sum(i=1 to R) x[i]
+    var = (1/R) sum(i=1 to R) (x[i] - u[mle])^2
+    u[mle] = u
+        u[mle] is unbiased
+    var[mle] != var
+        var[mle] is biased
+
+three methods to establish a classifier
+    model directly
+        decision trees, perceptron, svm
+    model probability of class membership
+        logistic regression
+    make a probabalistic model of data within each class
+        naive bayes, model based classifiers
+
+posterior = ((likelihood*prior) / evidence)
+    posterior = P(C|X)
+    likelihood = P(X|C)
+    prior = P(C)
+    evidence = P(X)
+
+naive bayes
+    assumes that the attributes are independent
+    try to estimate the likelihood
+    plug that value into bayes rule
+    compare P(yes) to P(no)
+
+@ -> directly proportional
+
+P(Y|x') @ P(x'|Y)*P(Y)
+P(N|x') @ P(x'|N)*P(N)
+
+naive bayes assumption
+    can still end up with zero probabilities
+        use laplace smoothing
+
+laplace smoothing
+    instead of starting everyone with 0
+    start everyone with 1/k
+        k = total number of possible values of x
+
+violation of independence assumption
+    naive bayes works suprisingly well even without independence
+
+zero conditional probability problem
+    if no example contains the attribute value
+    in this case, probabilities = 0 during test
+    so, estimate conditional probabilities with laplace
