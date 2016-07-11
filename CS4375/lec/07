@@ -1,0 +1,319 @@
+w^T * x + b
+    gives a scalar
+        ie 10
+    gives a stright line in 2d when plotting
+        ie 3x + 4y = 6
+    to move the line up and down, change b
+||w||
+    (w[1]^2 + w[2]^2)^(1/2)
+    ie (3^2 + 4^2)^(1/2) = 5
+
+features
+    attributes
+
+instance
+    a specific data point
+
+never know the entire distribution of the population
+    always using a sample of the population
+    can only see training instances and their outcome
+
+model evaluation
+    metrics for performance evaluation
+        how to eval performance of a model
+    methods of performance eval
+        how to obtain reliable estimates
+    methods of model comparison
+        how to compare relative performance of different models
+
+training data learning -> model -> test data evaluation
+
+metrics for performance evaluation
+    focus on predictive capability of a model
+
+confusion matrix
+    actual class x predicted class
+            yes     no
+    yes     TP      FN
+    no      FP      TN
+    TP = true positive
+    FN = false negative
+    FP = false positive
+    TN = true negative
+
+cost matrix
+    actual class x predicted class
+            yes         no
+    yes     C(Y|Y)      C(Y|N)
+    no      C(N|Y)      C(N|N)
+    example
+        -1      100
+        1       0
+    reward getting it right on positive
+    no reward for getting it right on negative
+    penalty for getting it wrong
+
+cost-sensitive measures
+    accuracy = ((TP + TN) /  (TP + TN + FP +FN))
+        how many were correctly predicted
+    precision = (TP / (TP + FP))
+        biased towards TP and FP
+        how many of the predicted postives are actually positive
+    recall = (TP / (TP + FN))
+        biased toward TP and FN
+        how many of the postives can be recalled
+    f-measure
+        biased towards all but TN
+        ((2TP) / (2TP + FP + FN))
+
+learning curve
+    plot of accuracy vs training data
+
+derivative of sigmoid function
+    ds/dx s(x) = s(x) * (1 - s(x))
+
+naive bayes
+    assumes all features are independent
+    doesnt create model
+        makes prediction based on counting
+
+logistic regression
+    creates a model
+        s = (1 / (1+e^(-x)))
+    tries to control overfitting with regularization
+        by adding penalties on large weights
+
+##look into spark with logistic regression##
+
+methods of estimation
+    holdout
+        reserve 2/3 for training and 1/3 for testing
+    random sampling
+        repeated holdout
+    cross validation
+        every instance gets a chance to be test AND train
+        partition data into k disjoint subsets
+        k-fold
+            train on k-1 partitions
+            test on remaining one
+        leave-one-out
+            k=n
+            only one test point
+            k-1 training points
+    bootstrap
+        sampling with replacement
+        sampling multiple times
+
+receiver operating characterisic (ROC)
+    ROC curve plots
+        true positive rate (TPR) against false positive rate (FPR)
+    TPR = (TP / (TP + FN))
+    FPR = (FP / (FP + TN))
+    1-d data set containing 2 classes (+ and -)
+        any points located on x > t classified as +
+    farther above 45 degree line (random guessing line) the better
+        below the line is worse than random guessing
+    random guessing line -> TPR = FPR
+    area under the curve -> better accuracy
+
+ROC curve construction
+    use classifier that produces posterior prob for each instance
+
+lazy classifier / instance based learning / k-nearest neighbor
+    does the least amount of work
+    looks around the point to find its class
+    doesnt create a model
+
+k-nearest neighbor
+    locally weighted linear regression
+    key idea
+        store all training examples
+    advantages
+        training is fast
+        learn complex functions easily
+        dont lose info
+    disadvantages
+        testing is slow
+        easily fooled
+    non-parametric
+        distribution or density is data-driven
+        relatively few assumptions made a priori about the functional form
+
+k-nearest alg
+    store all training examples
+    for the given test example x
+        find k training examples {(x[i], y[i])}(i=1 to k) that are nearest to x
+    if classification problem
+        return majority class among the k examples
+    if regression problem
+        return average y value of the k examples
+    want k to be an odd number to ensure a good vote
+
+distance-weighted k-NN
+    give higher weights to closer instances
+    use inverse of distance as weighted
+        w[i] = (1 /( d(x, x[i])^2))
+
+choosing k
+    benfits drop off
+
+issues
+    k-nn is memory-based
+    must make a pss through data for each classification
+    disadvantages
+        curse of dimensionality
+            in high-dimensions problem that nearest neighbor might not be closer
+        irrelavent attributes
+            easily fooled by irrelavent attributes
+
+distance metrics
+    properties
+        D(a,b) >= 0 (positive)
+        D(a,b) = 0 iff a=b (reflexive)
+        D(a,b) = D(b,a) (symmetric)
+        for any other vector c,
+            D(a,b) + D(b,c) >= D(a,c) (triangle inequality)
+    euclidean distance -> most popular
+        problems with scaling
+
+generalization of euclidean distance
+    minkowski distance or L[k] norm
+        L[k](x[i], x[j]) = (sum(a=1 to d)((|x[i,a] - x[j,a]|^k))^(1/k)
+    manhattan distance
+        L[1] norm
+    euclidean distance
+        L[2] norm
+    L[inf] norm
+        mximum of the projected distances
+
+nearest-neighbor is good for low dimensions
+    calcuations get very hard with high dimensions
+
+edited nearest-neighbor
+    storing all training examples can require a huge amount of memory
+    select a subset that still give good classification
+    incremental deletion
+        loop throughtraining data and test each point
+        if it can be correctly classified fiven other points
+            delete it from data set
+    incremental growth
+        start with an empty data set
+        if not correctly classified by points already stored
+            add point to data set
+
+knn advantages
+    no overfitting
+    no optimization or training required
+
+also known as locally weighted linear classification
+
+locally weighted regression
+
+collaborative filtering (recommender systems)
+    problem
+        predict whether somone will like something
+    previous approach
+        look at content
+    collaborative filtering
+        look at what similar users liked
+        similar users = similar likes & dislikes
+    represent each user by vector of ratings
+
+instance-based learning
+    non-parametric
+    trade decreased learning time for increased classification time
+    issues
+        appropriate distance metrics
+        curse of dimensionality
+        efficient indexing
+
+random variables / expectation & variance
+    trying to estimate 'true' classification function f(x)
+        trying to estimate it by taking labeled samples from population
+    estimate made by looking at sample & estimating separating function h(x)
+
+sample error
+    error[s](h) = (1\n) * sum(all x in S)(delta(f(x), h(x))
+
+sampling theory
+    when we measure sample error
+        we are performing a random experiment
+    outcome of random experiment is sample error
+    as we do more experiments, we get a binomial distribution
+
+binomial distribution
+    expected value (mean/avg)
+        E(x) = sum(i=1 to n) x[i] * p(x[i])
+    variance
+        var(x) = np(1-p)
+    standard deviation
+        sd(x) = sqrt(np(1-p))
+    collecting more than 30 samples
+        binomial -> gaussian by central limit theorem
+
+standard normal function
+    Z = ((X - u) / (sd)) ~ N(0,1)
+    E(Z) = 0
+
+variance
+    var(x) = E(X^2) - E(x)^2 = E(X^2) - u^2
+
+bias
+    measures difference between
+        expected value (E(X)) and true parameter (p) is seeks to represent
+        E(X) - p
+
+get insight into tradeoff through decmp of gen error
+    bias^2 + variance
+    model that is too simple or inflexible will have large bias
+    model with too much flexibility will have high variance
+
+bias
+    measure accuracy
+    high bias means poor match
+
+variance
+    measures precision
+    high variance mean low precision
+
+bias-variance analysis in regression
+    true function is y = f(x) + e
+        e (error) is normally distributed with zero meand and sd of o
+    given training examples {(x[i], y[i](}
+        fit hypothesis h)x_ = w * x + b to data
+        minimize squared error sum(i)((y[i]-h(x[i]))^2)
+
+equation
+    y -> true label
+    f(x) -> best function
+    e - error
+    y = f(x) + e
+    minimize E((y[i] - h(x[i]))^2)
+
+decompose the expected value into
+    bias
+    variance
+    noise
+
+expected prediction error = variance + bias^2 + noise^2
+    no control over noise
+    trying to balance variance and bias^2
+    variance
+        how much h(x) differs from one training set to another
+    bias
+        describes average error of h(x)
+    noise
+        how much y varies from f(x)
+
+bias
+    low bias
+        fit very closely
+    high bias
+        constant function
+        linear regression on non-linear data
+
+variance
+    low variance
+        constant function
+    high variance
+        fit very closely

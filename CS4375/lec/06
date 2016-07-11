@@ -1,0 +1,127 @@
+naive bayesian
+    model two different curves
+    read prob vals of two different classes
+    assigned class of higher value
+
+multi-class classification
+    one-vs-rest / one-vs-all
+        separate a class from all other classes
+        has n classifiers
+        has n boundaries
+        easier to learn
+        has to test for each classifier
+        w for each class
+            w[y]
+        score
+            w[y] * f(x)
+        prediction
+            y = arg[y]max w[y] * f(x)
+    all-vs-all
+        build n(n-1) classifiers
+        expensive to learn
+        test once
+
+classification vs regression
+    discrete (1 of k) -> classification
+    continuous (real value) -> regression
+
+optimization
+    min or max an eval function J(w1, ..., wn) given data d
+    w is parameter you need to tune
+    input x, desired output y -> linear regression
+    alg
+        find error
+        set the derivative of J to zero and solve to get min
+        find best value of parameter
+
+difference generative & discriminative classifiers
+    discriminative
+        learns an explicit function
+        learns the P(Y|X) directly
+            this is logistic regression
+    generative
+        learns joint probability of class and data and maximizes prob
+        approximate the function P(Y|X) using joint probability
+        usually assume data forms a gaussian distribution
+
+difference between mle and map
+    mle
+        maximize P(D|O)
+    map
+        maximize P(O|D)
+
+logisitic regression
+    combination of classification and regression
+    learn P(Y|X) directly
+    modeling joint probability as a function of x
+    P(Y|X) = f(x)
+    instead of using jump function, learn sigmoid function
+        allows function to be differentiable
+    P(Y=1|X) = sigmoid(w[0] + sum(i)(w[i] * X[i]))
+    implies
+    P(Y=0|X) = 1 - sigmoid(w[0] + sum(i)(w[i] * X[i]))
+    assign Y=0 if
+        1 < P(Y=0|X)/P(Y=1|X)
+    linear classification rule -> Y=0 if RHS>0
+        0 < w[0] + sum(i)(w[i] * X[i])
+    to estimate parameter
+        use MLE
+        W = arg[W]max sum(l)(ln(P(Y^l|X^l, W))
+        l(W) = sum(l)(Y^l ln(P(Y^l=1|X^l, W)) + (1-Y^l)ln(P(Y^l=0|X^l, W)))
+        differerntiate w with respect to each i
+        l(w) is concave function of w
+        w[i] = w[i] + n*sum(l)(X[i]^l * (Y^l - P(Y^l = 1|X^l,W)))
+        has no local minima
+        easy to optimize using gradient ascent
+    mle prefers higher weights
+        can cause overfitting
+        larger influence of corresponding features on decision
+        higher likelihood of (properly classified) examples close to decision boundary
+    regularization
+        helps avoid very large weights
+        punish them with last part of sum
+            W = arg[w]max sum(l)(ln(P(Y^l|X^l,W)) - (lambda/2)*(||W||^2))
+
+types of classification
+    discriminative
+        y=f(x)
+    generative
+        counting
+        P(Y|X)
+    logisitic regression
+        P(Y=1|X) = f(w[0]+sum(i)(w[i]*x[i]))
+
+logistic regression
+    dont assume that features are independent of each other
+    estimate parameters from training data
+    can handle discrete and continuous features
+
+gaussian naive bayes
+    sometimes assume variance
+    P(X|Y) assume X[i] cond independence given Y
+    model P(X[i]|Y=y[k]) as gaussian N(u[ik], sigma[i])
+    model P(Y) as bernoulli (pi, 1-pi)
+    to calc P(Y|X=x)
+        P(Y|X) ~~ P(X|Y) * P(Y)
+        P(Y=1| ...X[i]...) = sigmoid(w[0] + sum(i)(w[i] * X[i]))
+    start at different place than logistic regression
+        end up at the same equation
+    w[i] = (u[i0] - u[il] / sigma[i]^2)
+    w[0] = ln((1-pi)/pi) + sum(i)((u[il]^2 - u[i0]^2) / 2*signma[i]^2)
+
+logistic regression and gaussian naive bayes are essentially the same
+    start with different assumptions
+    converge to same functional form
+
+both converge to sigmoid(w[0] + sum(i)(w[i] * X[i]))
+
+LR optimized by conditional likelihood
+    no closed form
+    concave! global optimum with gradient ascent
+    MAP corresponds to regularization
+
+gradient
+    descent
+        move in opposite direction of gradient
+    ascent
+        move in direction of gradient

@@ -79,7 +79,7 @@ real-time cpu scheduling
         task must be serviced by its deadline
     two types of latencies
         interrupt latency
-            time from interrupt to start of routine that sercices interrupt
+            time from interrupt to start of routine that services interrupt
         dispatch latency
             time for schedule to take current process off cpu and switch
 
@@ -100,7 +100,7 @@ rate monotonic scheduling
     longer periods = lower priority
     sum(i) t[i]/p[i] <= 1
 
-priorities are assigned according to dealines
+priorities are assigned according to deadlines
     earlier the deadline, higher the priority
     later the deadline, lower the priority
 
@@ -109,7 +109,7 @@ alg eval
         type of analytic eval
         takes a particular predetermined workload
         then defines performance of each alg for that workload
-    need many GOOD examples
+    need MANY GOOD examples
 
 ## skip thread scheduling section of chapter 6 ##
 

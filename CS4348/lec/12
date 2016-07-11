@@ -11,22 +11,22 @@ deadlock necessary conditions
         only one process can use a resource
     hold and wait
         a process holding at least one resource
-        is waiting to acquire additional resources hild by others
+        is waiting to acquire additional resources held by others
     no preemption
         a resource can be released ony voluntarily by process holding it
-            after it has completed its task
+            AFTER it has completed its task
     circular wait
         there exists a set {P[0], P[1], ..., P[n] of waiting processes
-        st P[0] is waiting on P[1]'s resource
+        such that P[0] is waiting on P[1]'s resource
         and P[1] is waiting on a resource that is held by P[2] and so on
         in a circular fashion
             ie p[0] -> p[1] -> ... -> p[n] -> p[0]
 
 necessary
-    needed to happen, but doesnt gaurantee it will happen
+    needed to happen, doesnt gaurantee it will happen
 
 sufficient
-    needed to happen, it will definitely happen
+    needed to happen, gaurantees it will definitely happen
 
 resource-allocation graph
     V is partitioned into two types:

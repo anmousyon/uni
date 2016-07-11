@@ -1,0 +1,168 @@
+minimum spanning tree
+    connected graph
+        subgraph that includes all of the vertices
+    graph can have several possible spanning trees
+    subgraph with minimum sum of weights
+
+kruskals
+    starts with an edge
+    start with T = phi
+    consider edges in ascending order of cost
+    insert e in T unless it would cause a cycle
+    
+
+prims
+    starts with a node
+    connect to one of the current nodes using min cost available edge
+
+clustering
+    unsupervised classification
+        no predefined classes
+    similar to objects in same clustering
+    not similar to objects in other clusters
+    high intra-class similarity
+    low inter-class similarity
+
+requirements for clustering in data mining
+    scalability
+    ability to deal with different types of attributes
+    discovery of clusters with arbitrary shape
+    minimal domain knowledge to determine input parameters
+    ability to deal with noise and outliers
+    insensitivity to order of input records
+    robustness with respect to high dimensionality
+    uses user-spec constraints
+    interpretability and usabiity
+
+distance based learning (most common)
+    d(i,j) >= 0
+    d(i,i) = 0
+    d(i,j) = d(j,i)
+    d(i,j) <= d(i,k) + d(k,j)
+
+clustering approaches
+    partitioning
+        construct various partitions and then eval them
+        create a bunch of groups completely separate
+    hierarchical
+        create hierarchical decomposition of set
+        build clusters into trees
+    model-based
+        hypothesize a model for each cluster and find best fit of models
+        uses predefined info from model to build the clusters
+    density-based
+        guided by connectivity and density functions
+
+partitioning algs
+    partitioning method
+        construct a partition of a database D of n objects into k clusters
+    given a k
+        find partition of k clusters
+        that optimizes chosen partitioning criterion
+    global optimal
+        exhaustively enumerate all partitions
+    heuristic methods
+        k-means
+            each cluster is represented by center of cluster
+        k-medoids
+            each cluster is represented by one of the objects in the cluster
+
+k-means clustering
+    given k
+        selet initial centroids at random
+        assign each object to the cluster with the nearest centroids
+        compute each centroid as the mean of the objects assigned to it
+        repeat previous 2 steps until no change
+    strengths
+        relatively efficient
+            O(tkn)
+                n = number of objects
+                k = number of clusters
+                t = number of iterations
+            normally, k,t << n
+        often terminates at a local optimum
+            global optimum may be found using techniques such as
+                simulated annealing
+                genetic algorithms
+    weaknesses
+        applicable only when mean is defined
+        need to specify number of clusters in advance
+        trouble with noisy data and outliers
+        not suitable to discover clusters with non-convex shapes
+
+hierarchical clustering
+    use distance matrix as clustering criteria
+    doesnt require number of clusters (k) to be specified
+        does need a termination condition
+    agglomerative
+        AGNES
+    divisive
+        DIANA
+
+agglomerative (AGNES)
+    produces tree of clusters (nodes)
+    initially each object is a cluster (leaf)
+    recursively merges nodes that have the least dissimilarity
+    criteria
+        min distance, max distance, avg distance, center distance
+    eventually all nodes belong to the same cluster
+
+divisive (DIANA)
+    inverse order of AGNES
+
+other hierarchical clustering methods
+    major weakness of agglomerative
+        doesnt scale well
+            time complexity of at least O(n^2)
+            can never undo what was done previously
+    integration of hierarchical with distance-based clustering
+        BIRCH
+            uses CF-tree and incrementally adjusts the quality of sub-clusters
+        CURE
+            elects well-scattered points from the cluster
+            shrinks them toward center of the cluster by specified fraction
+        both of these still suffer the same weaknesses
+
+model-based clustering
+    basic idea
+        clustering as probability estimation
+    one model for each cluster
+    generative model
+        probability of selecting a cluster
+        probability of generating an object in cluster
+    MLE of MAP model
+    missing info
+        cluster membership
+    use EM algorithm
+    quality of clustering
+        likelihood of test objects
+
+mixtures of gaussians
+    cluster model
+        normally
+    assume diagonl covariance, known variance, same for all clusters
+    mle
+        mean = avg of samples
+    estimate probability that point belongs to cluster
+    mean = weighted avg of points, weight = probability
+    to estimate probabilities we need model
+        leads to chicken and egg problem
+        use EM algorithm
+
+density-based clustering
+    clustering based on density (local cluster criterion)
+        such as density-connected points
+    major features
+        discover clusters of arbitrary shape
+        handle noise
+        one scan
+        need density parameters as termination condition
+    representative algorithms
+        DBSCAN
+        DENCLUE
+
+definitions
+    Eps
+        max radius of neighborhood
+    MinPts
+        min number of points in an Epd-neighborhood of a point

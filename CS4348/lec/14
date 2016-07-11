@@ -1,0 +1,61 @@
+deadlock detection
+    allow system to enter deadlock state
+    detection algorithm
+    recovery scheme
+
+several instances of a resource type
+    available
+        vector of length m indicates number of available resources of each type
+    allocation
+        a nxm matrix
+
+detection algorithm (similar to bankers algorithm)
+    1.
+    let work and finish be vectors of length m and number
+    work = available
+    for i < n:
+        if allocation[i] != 0:
+            finish[i] = false
+        else:
+            finish[i] = true
+    2.
+    find an index i such that
+        finish[i] == false
+        request[i] <= work
+    if no such i got to step 4
+    3.
+    work = work + allocation[i]
+    finish[i] = true
+    go to step 2
+    4.
+    if finish[i] == false for some i st 1<=i<=n :
+        p[i] is deadlocked
+
+usage
+    if detection alg invoked arbitrarily
+        we wont know which deadlocked process caused it
+
+    one process will need to be rolled back
+        for each disjoint cycle
+
+recovery from deadlock
+    abort all -> extreme
+        lose a lot of potential work
+    abort one at a time until deadlock eliminated -> extreme
+        how to choose which one to abort
+            priority
+            already computed time and estimated remaining completion time
+            resources used on process
+            resources needed for process to finish
+            how many processes will need to be terminated
+            is processes interactive or batch
+    resource preemption
+        selecting a victim
+            minimize cost
+        rollback
+            return to some safe state
+            restart process for that state
+        starvation
+            same process may always be picked as victim
+            include number of rollback in cost factor
+        
