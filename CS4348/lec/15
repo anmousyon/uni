@@ -1,0 +1,56 @@
+compile time
+    if memory location known a priori
+        absolute code can be generated
+        must recompile cose if starting location changes
+
+load time
+    must gen relocatable code if memory location isnt known at compile time
+
+execution time
+    binding delayed until run time if process can be moved during execution
+
+variable partitions
+    variables sizes for efficiency
+
+hole
+    block of available memory
+    holes of various sizes are scattered throughout memory
+
+memory compaction
+    moving things around to combine the space from the holes
+
+first fit
+    allocate the first hole that is big enough
+
+best fit
+    allocate the smallest hole that is big enough
+    must search entire list, unless ordered by size
+    produces smallest leftover hole
+
+worst fit
+    allocate the largest hole
+    must also search entire list
+    produces largest leftover hole
+
+external fragmentation
+    total memory space exists to satisfy a request but not contiguous
+
+internal fragmentation
+    allocated memory may be slightly larger than requested memory
+    this size diff is memory internal to a partition, but not being used
+
+first fit analysis
+    given N block allocated, 0.5N lost to fragmentation
+    1/3 may be unusable -> 50% rule
+
+page table
+    transaltes logical to physical address
+
+page number (p)
+    used as an index into a page table
+    which contains base address of each page in physical memory
+
+page offset (d)
+    combined with base address
+    to define memory address that is sent to the memory unit
+

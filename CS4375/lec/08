@@ -1,0 +1,174 @@
+ensemble
+    mixture of experts
+
+expected value
+    E(f) = sum(i)(p[i] * f[i])
+    long term (porbability weighted) average
+bias
+    difference between real value and expected value
+    Bias = y - E(f)
+    long term average error
+    how different is my prediction from the real value
+    want bias to be low
+    average error of h(x)
+variance
+    variation in the estimates
+    difference between various estimates
+    how spread out are the estimates
+    want a low variance (ideally)
+        not always possible because of data
+    var(mean) = (1/n)*(sigma^2)
+        more samples decreases variance
+    describes how much h(x) varies between datasets
+
+expected value can be broken don into three parts
+    bias^2 + variance + noise
+    bias^2 + variance -> reducible error
+    noise -> irreducible error
+
+model complexity
+    complex model higher -> bias lowers, variance increases
+
+bias
+    low
+        linear regression applied to linear data
+        2nd degree polynomial applied to quadratic data
+        higher accuracy
+
+variance
+    causes
+        overfitting
+        more complex models try to fit data more
+
+simple model
+    high bias
+    low variance
+
+complex model
+    low bias
+    high variance
+
+goals
+    low bias
+    low variance
+    reasonable model complexity
+    avoid overfitting
+
+averaging reduces variance
+    var(avg) = var(x)/n
+    train on multiple training sets
+    using multiple models
+
+bootstrapping
+    take one dataset and generate multiple datasets from it
+    sample WITH REPLACEMENT on a sample
+    simulate a population by CLONING a sample many times
+        but keep the same size for new sample
+    reduces the variance
+    random sample taken with replacement from the original sample
+        with same size as original
+
+boostrap aggregation -> bagging
+    given data D
+        take repeated bootstrap samples of D
+        train distinct classifier on each D[i]
+        classify new instance by majority vote or average
+
+bagging
+    in each bootstrap sample
+        each point has prob (1-(1/n))^n of not being selected
+    expected number of datapoints in each sample
+        N * (1-(1-(1/n)^n) ~~ n*(1-exp(-1)) = 0.632 * n
+        each bootstrap has ~63% of original data and rest are repeats
+    var(bagging(L(x,D))) = (var(L(x,D)) / n)
+        because models are correlated by 63%
+
+unstable learner
+    small change in data will give a very different result
+    ie decision tree, neural net
+    bagging can help it
+
+stable learmer
+    small change in data wont change result much
+    ie k-nn and naive bayes
+    bagging can hurt it
+
+random forests
+    twist on bagging
+    do bootstrapping
+    train each subclassifier on a subset of the features
+
+boosting
+    uses averages and reduces bias
+    theroy of weak learners
+        create army of weak learners
+        then combine them to form strong learner
+        has trouble with noisy data
+
+boosting algorithm
+    weight all training smaples equally
+    train model
+    compute error of model
+    increase weights on training cases model gets wrong
+    train new model on re-qeighted training sets
+    re-compute errors on weighted training sets
+    increase weights again on cases model gets wrong
+    repeat until tired (100+ iterations)
+    final model -> weighted prediction of each model
+
+boosting vs bagging
+    bagging doesnt work well with stable models
+        boosting might still help
+    boosting night hurt performance on noisy datasets
+        bagging doesnt have this problem
+    boosting helps more than bagging on average
+        though boosting can hurt performance
+    bagging can be done in parallel
+
+gradient boosting (for regression)
+    boosting -> (y - f(x)) -> residual
+    minimize a function by moving in opposite direction of gradient
+    loss function
+        L = (1/2) * (y-f(x))^2
+
+adaptive boosting (adaboost)
+    initialize data weight coefficients {w[n]}
+        by setting w[n] = 1/N for n = 1, ..., N
+    for m = 1, ..., M
+        fit classifier y[m](x) to training data by min weight error function
+        do something like backpropogation to fix the weights
+    make new prediction using updated classifier
+
+##review##
+
+bagging
+    reduces variance
+    takes bootstrap samples of data and trains diff classifier on each sample
+    emperically shown that error goes down
+    works well for unstable learners
+        ie dt & nn
+
+random forests
+    almost identical to bagging
+    only diff is that for each boostrap
+        limit the number of chosen features
+    generally weak learners (stumps are popular)
+
+boosting
+    reweighting technique
+    gives more weights to misclassified points
+        put more effort into those points
+    iterative process
+    suffers from noisy data
+    generally gets very good results
+    classifiers are generally weak
+
+gradient boosting
+    works on top of boosting
+    removes any errors from boosting by gradient descent
+    works well for regression data
+
+mixture of experts / committee method / ensemble technique
+
+take a hypothesis from each classifier
+    then take majority vote of weighted avg

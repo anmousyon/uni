@@ -1,0 +1,51 @@
+review
+    fragmentation
+    swapping
+    contiguous allocation of memory
+    memory allocation algorithms
+    absolute vs relative address
+
+relative address
+    base register
+        beginning of code
+    relative
+        offset from beginning of base register
+
+fits
+    best fit
+        find smallest that it fits in
+    worst fit
+        find largest block it fits in
+    first fit
+        find first block it fits in
+        longer it runs, the worse it gets
+    next fit
+        first block it fits, starting from address at end of last insertion
+        small and large blocks are evenly distributed throughout space
+
+conitguous not always the best
+    dont necessarily know amount of needed memory at start of execution
+
+paging
+    dividing allocated memory for process into pages
+    pages dont need to be in contiguous spaces
+    least significant -> log[2](page size) first digits in binary rep
+        offset
+    most significatn -> all digits - least significant
+        base
+    3 level tables
+
+hashed page tables
+    page table only grows when memory grows
+    like a reverse directory lookup
+
+buddy list
+    memory = 1024 = 2^10 pages
+    assume memory is initially empty
+    maintain an array of 10+1 = 11 pointers
+    initially first 10 pointers go to null
+    last pointer goes to 0 (first element) which goes to null
+    if larger than needed, split last block and reasign pointers to previous and 1/2 page size
+    repeat last step until it fits correctly
+    fill in block that it fits in
+    as they are released, combine them back together
