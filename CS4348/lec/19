@@ -1,0 +1,81 @@
+SCAN
+    like an elevator
+
+SSTF
+    go to closest request
+
+C-SCAN
+    more uniform wait time than SCAN
+    goes from one end to the other like SCAN
+        but goes back to start without servicing once it reaches the end
+        instead of going backward and servicing requests on return
+    treats cylinders as a circular list
+        that wraps around from the last cylinder to the first one
+
+mean service time
+    higher with SCAN than C-SCAN because of backward pass
+
+variance
+    high variance is bad
+    scheduling becomes unpredictable
+
+C-LOOK
+    arm only goes as far as last request
+    goes back to first request instead of start of disk
+
+raid
+    redundant array of inexpensive disks
+    reliability via redundancy
+    increases mean time to failure
+    increases speed
+    mean time to repair
+        exposure time when another failure could cause data loss
+    mean time to data loss
+        based on above factors
+    frequently combined NVRAM to improve performance
+
+reliability -> redundancy
+speed & performance -> striping
+
+raid levels
+    raid 0
+        non-redundant striping
+    raid 1
+        mirrored disks
+        need n more disks
+    raid 2
+        memory-style error-correcting codes
+        need log(n) more disks
+    raid 3
+        bit-interleaved parity
+    raid 4
+        block-interleaved parity
+    raid 5
+        block-interleaved distributed parity
+    raid 6
+        P+Q redundancy
+
+raid 2
+    uses checksums to detect errors
+    can detect faults (almost always) but cant always correct faults
+
+    0 bit error
+        no error
+    1 bit error
+        can detect, can correct
+    2 bit error
+        can detect, cant always correct
+    3 bit error
+        cant detect, cant correct
+
+    hamming distance
+        distance in bits
+        1 less than that is how many you can reliably correct for
+
+    cant detect which bit in the row or column is wrong by themselves
+        if only one error in row and column
+            by combining them together you can detect which bit is wrong
+
+raid 3
+
+

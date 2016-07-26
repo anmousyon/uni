@@ -1,0 +1,28 @@
+compression
+    get rid of unneeded whitespace
+    replace repeating information with a token
+
+lossless compression
+    ids statistical redundancies in the representation and trying to eliminate it
+    thus info is rerepresented with smaller foot-print, but not lost
+
+huffman coding
+    fixed length encoding
+        each character in the text will ahve unique representation of only 5 bits
+    usually some kind of redundancy
+    if distribution is not uniform
+        we can replace more frequent items with smaller number of bits
+        and larger number of bits for infrequent items
+    not two tokens can have the same prefix
+
+prefix codes in binary trees
+    all codes are on leaf nodes
+    0 is left, 1 is right
+    depth of location in tree = length of code
+    building the tree
+        determine frequency of each character
+        sort chars by frequency
+        build the tree from bottom up
+    for n > 1
+        lowest level always contains at least two leaves
+    order in which items appear does not matter

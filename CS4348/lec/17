@@ -1,0 +1,72 @@
+demand paging
+    could bring entire process into mem at load time
+    or bring a page into me only when needed
+        less i/o needed, no unnecessary i/o
+        less mem needed
+        faster response
+        more users
+    similar to paging system with swapping
+    page is needed -> reference to its
+        invalid reference -> abort
+        not-in-mem -> bring to mem
+    lazy swapper
+    never swaps a page into memory unless page will be needed
+    swapper that deals with pages is a pager
+
+prefetch
+    fetching a page before its needed
+    can get unnecessary data
+    dont really know what is needed
+
+performance of demand paging
+    three major activities
+        service the interrupt
+            careful coding means just several hundred instructions needed
+        read the page
+            lots of time
+        restart process
+            again just a small amount of time
+    page fault rate (probability) 0 <= p <= 1
+        if p = 0
+            no page faults
+        if p = 1
+            every reference is a fault
+    effective acces time (EAT)
+        EAT =   (1 - p) * memory access
+                + p * (page fault overhead + swap page out + swap page in)
+
+swapping
+    swap allocated in larger chunks
+    less mngmt needed than file system
+
+copy-on-write
+    allows both parent and child processes to initially share memory
+
+what if there is no free frame?
+    used up by process pages
+    also in demand from the kernel, i/o buffers, etc
+    how much to allocate each?
+    page replacement
+        find some page in memory, but not really in use, page it out
+        algorithm -> terminate, swap out, replace the page
+        performance -> want an alg which will result in minimum number of page faults
+    same page may be brought into memory several times
+
+page replacement
+    prevent over-allocation of mem by modifying page-failt service routine to incude page replacement
+    use modify (dirty) bit to reduce overhead of page transfers
+        only modified pages are written to disk
+    page replacement completes separation between logical memory and physical memory
+        large virtual memory can be provided on a smaller physical memory
+    alg
+        want lowest page-fault rate on both first access and re-access
+
+frame-allocation algorithm
+    how many frames to give each process
+    which frames to replace
+
+frames
+    pages being stored in memory
+
+working set
+    on avg, how many pages are needed in memory to function properly

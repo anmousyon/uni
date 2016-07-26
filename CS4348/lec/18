@@ -1,0 +1,125 @@
+physical memory Quiz
+    1.
+        4gb = 2^32 bytes : 32 bit address
+    2.
+        page size = 512 bytes
+        # of pages = (ram size) / (page size) = 2^23
+        23 bits to represent page number
+        offset = 9 bits
+    3.
+        process address space = 2^30 bytes = rep by 30 bits
+        # of pages in process address space = 2^30/2^9 = 2^21
+    4.
+        minimum storage needed by process page table
+        each entry corresponds to ceil(21/8) = 3
+        total memory needed = 2^21 * 3 bytes = 6MB
+    5.
+        each variable access -> 2 memory accesses
+
+translation lookaside buffer (TLAB)
+    lookup at speed much faster than memory lookup
+    most often and recently accessed tables placed here
+    much faster
+
+least recently used (LRU) alg
+    use past knowledge rather than future
+    replace page that hasnt been used recently
+    associate time of last use with each page
+    temporal locality of reference
+    counter
+        every page has counter that stores last reference time from clock
+        when page needs to be changed looks at counter to find smallest value
+            search through table needed
+    stack
+        keep a stack of page nums in double link form
+        page referenced move to top
+        remove from bottom of stack
+
+LRU approximation alg
+    reference bit
+        associate a bit to each page, init to 0
+        when page referenced set to 1
+        replace any with reference bit = 0 (if on exists)
+            we dont know order
+    second chance alg
+        generally fifo, plus hw=provided ref bit
+        clock replacement
+        if page to be replaced has
+            reference bit = 0 -> replace it
+            reference bit = 1, then
+                set ref bit 0, leave pageg in memory
+                replace next page, subject to same rules
+
+    enhanced second chance
+        reference bit AND modify bit
+        (0,0)
+            not referenced, not modified
+            least like to keep
+        (0,1)
+            not referenced, was modified
+            must write before replacement
+        (1,0)
+            was referenced, not modified
+            probably used again soon
+        (1,1)
+            was referenced, was modified
+            most like to keep
+
+least frequently used (LFU)
+    replaces page with smallest count
+
+global replacement
+    process selects a replacement frame from set of all frames
+    one process can take a frame from another
+    process execution time can vary greatly
+    greater throughput so more common
+
+local replacement
+    each process selectes from only its own set of allocated frames
+    more consistent per-process performance
+    possibly underutilized memory
+
+thrashing
+    if process doesnt have enough pages, page-fault rate is very high
+        page fault to get page
+        replace existing frame
+        quickly need replaced frame back
+        leads to
+            low cpu utilization
+            os thinking that it needs to increase degree of multiprogramming
+            another process added to the system
+    Thrashing = a process is busy swapping pages in and out
+
+working-set model
+    delta = working-set window = fixed number of page references
+        ie 10,000 instructions
+    WSS[i] (working set of process i)
+        total number of pages referenced in most recent delta (vaires in time)
+            if too small delta
+                will not encompass entire locality
+            if delta too large
+                will encompass several localities
+            if delta = inf
+                will encompass entire programming
+        D = sum WSS[i] = total demand frames
+            approx of locality
+        if D > m -> thrashing
+            suspend or swap out processes
+
+seek time
+    move head to desired track
+
+rotational latency
+    time for desired sector to rotate under head
+
+transfer time
+    time to read and write data
+
+shortest seek time first (SSTF)
+    selects the request with the min seek time from current position
+    SSTF scheduling is a form of SJF scheduling
+        may cause starvation
+
+SCAN
+    elevator algorithm
+    sweeps track up and down

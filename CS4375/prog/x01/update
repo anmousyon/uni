@@ -1,0 +1,18 @@
+Dataset details:
+    6 features
+    ~14k instances (grows with time because of the nature of where I'm getting the data from)
+    I have included my current dataset in csv format along with this status report
+
+Techniques:
+    random forest for predicting sentiment
+    k-means clustering for grouping similar posts
+
+Experimental Methodology:
+    using random split through sklearn for splitting into train and test
+
+Coding Language:
+    Python 3.5
+
+Preliminary Results:
+    I have only done a decision tree implementation so far
+    I am getting around 70% accuracy on test data

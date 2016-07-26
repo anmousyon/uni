@@ -1,0 +1,11 @@
+The results showed that when you dont have a lot of data but you have
+"clean" data, then the simpler techniques such as clustering can
+perform very well as they dont make as many assumptions about the data.
+
+The best performing method was k-means. This is because the data
+did not have a lot of noisy points, which allowed for easy clustering.
+The worst method was bagging, because the datasets were no large enough.
+This caused the individual classifiers of the bagger to never become
+good enough to clasify their section well. The gradient boosting was very
+good but not quite as good as the clustering. Overall, the classifiers
+performed better than the previous ones we learned and ran faster as well.

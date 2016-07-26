@@ -1,0 +1,191 @@
+gradient boosting
+    given strong model (95% accuracy for example)
+    adds delta to increase strength
+
+bagging -> boosting aggregation
+    take one dataset and bootstrap it
+    on each bootstrap, train a model
+    to predict on a test dataset
+        either take avg prediction (regression)
+        or take majority vote (classification)
+    easy to do in parallel
+
+boosting
+    re-weighting approach
+    theory of weak learners
+        stumps
+    any data point that the weak learner gets wrong
+        increase its weight
+    create a new dataset with reweighted samples
+    keep on doing this until error decreases
+    hard to do in parallel
+
+supervised learning
+    need labeled data
+    learning from labeled examples
+
+inductive hypothesis
+    whatever you learn from training
+        applies everywhere
+    application of generalization
+
+generalization error
+
+computational learning theory
+    binary classification
+        fundamental question -> predict error rates
+    key assumptions
+        noise free
+        all attributes are discrete or boolean (not continuous)
+    sample complexity
+        active learning
+            learner proposes instances as queries to teacher
+            learner proposes x, teacher provides f(x)
+        if teacher (who knows f) provides training examples
+            teacher provides example sequence
+        if some random process proposes instances
+            x generated randomly, teacher provides f(x)
+        if examples are given by opponent (who knows f)
+            on-line learning, mistake-bound model
+            wont cover this
+
+active learning
+    student can ask for a particular data instance and teacher has to label it
+    log2(h) questions (where h is number of hypotheses)
+        to find out answer
+
+helpful teacher
+    cant make a general statement about sample complexity
+    depends on type of hypothesis learned
+    if n possible boolean attributes
+        n+1 questions
+        1 positive example
+        n where 1 attribute is hidden
+
+no control over seen data
+    set of instances X
+    set of hypotheses H
+    set of possible target concepts F
+    training instances gen by a fixed, unknown prob dist D over X
+    training error of hypothesis h with respect to target concept f
+        how often f(x) != f(x) over the training instances
+    true error of hypothesis h with respect to target concept f
+        how often h(x) != f(x) over future, unseen instances
+            but drawn according to D
+    can we bound the true error of a hypothesis given only training error?
+    how many examples do i need to see to make good approximation?
+    true error of h with respect to target concept c and dist D
+        is the prob that h will misclassify an instance drawn at random via D
+    to get h with true error 0
+        learner should choose among hyps with training error 0
+        as training ex are drawn randomly, there is  a non-0 prob that they will mislead the learner
+    demands on learner should be weakened
+        let error[D](h) < epsilon, with epsilon arbitrarily small
+        not every sequence of training examples should succeed
+            but only with prob 1-delta, with delta arbitrarily small
+
+PAC learning -> probably approximately correct
+    PAC-learnable if delta and epsilon < 0.5 and processed in poly time
+    if C is PAC-learnable and each taining example is processed i poly time
+        then each c in C can be learned from a poly number of training examples
+    usually to show that a class C is PAC-learnable
+        we show that each c in C can be learned from a poly num of examples
+        and the processing time for each ex is poly bounded
+
+## example ##
+
+someone claims with 90% conf they can predict value of a car with error bound 40% (in poly time)
+    delta = 1-0.9 = 0.1
+    epsilon = 0.4
+
+## example ##
+
+consistent learner
+    gets 0 training error
+
+version space
+    set of all consistent learners
+
+epsilon exhausted
+    if error[D](h) < epsilon, for all h in version space
+    0.25 exhausted -> all hyps have true error less than 0.25
+
+blumer bound
+    m >= (1/epsilon) * (ln(|H|) + ln(1/delta))
+        m is number of examples
+        need to see this many examples before a PAC claim ca be made
+
+boolean conjunctions over n features
+    |H| = 3^n -> 1,0,?
+    epsilon = (1/m)(n*ln(3) + ln(1/delta))
+    m increases as delta and epsilon go down
+
+non-agnostic
+    concept is in the hypotheses set gen by the machines
+
+agnostic learning
+    doesnt assume concept in H
+    c may or may not be perfectly learned in H
+    hyp with 0 training error cannot always be found
+    search for h that makes the fewest errors on training data
+    sample complexity
+        m >= (1/(2*e^2)) * (ln(|H|) * ln(1/delta))
+
+shattering
+    dichotomy of set
+        partition of S into two disjoint subsets
+    set of instances S is shattered by hyp space H
+    iff for every dichotomy of S there exists some hypothesis in H
+        consistent with this dichotomy
+    in other words
+        the instances can be classified in every possible way
+
+good heuristic
+    vc-dim = number of tunable parameters
+
+vc-dim measures the "power" of the learner
+    does not necessarily equal # of parameters
+
+vc(H) = k -> can shatter k examples
+    2^k labeleings of them
+    |H| >= 2^k
+    |x| = k <= log2(|H|)
+
+unsupervised classification
+    given data -> find patterns
+    fund clusters of data that are similar to each other
+    depends on my given similarity
+    !!!no external label!!!
+
+labeled
+    discrete -> classification
+    continuous -> regression
+
+non-labeled
+    discrete -> clusters
+
+clustering
+    define similarity
+    hierarchical clustering
+        decomposition of set into incresingly similar clusters
+    partitional clustering
+
+k-means
+    iterative clustering algorithm
+    pick k random points as cluster centers (means)
+    alternate
+        assign data instances to closest cluster center
+        change cluster center to the average of its assigned points
+    stop when no points' assignments change
+    initial center picks' effects on outcome
+        different center picks converge to almost the same end clusters
+        affects the number of iterations until end result
+    most simple and popular technique
+
+k-means algorithm
+    decide on value for k, the number of clusters
+    init the k cluster centers (randomly if necessary)
+    decide class membership of the N objects
+        by assigning them to nearest cluster centers
+    re-estimate the k cluster centers
+    repeat until convergence
