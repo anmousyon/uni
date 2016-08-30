@@ -1,0 +1,93 @@
+goal-based agents
+    plan ahead
+    ask "what if"
+    decisions based on predicted consequences of actions
+
+EXAMPLE
+    Romania
+        currently in Arad
+        flight leaves from Bucharest
+        goal
+            be in Bucharest
+        problem
+            states: various cities
+            actions: drive between cities
+        solution
+            drive through sequence of cities
+            e.g. Arad -> Sibiu -> Fagaras -> Bucharest
+        problem type
+            single agent
+            deterministic
+            fully observable
+            discrete
+
+state-space problem formulation
+    initial state
+    actions (successor function)
+        S(x) = set of actions-state pairs
+        S(Arad) = {<Arad -> Zerind, Zerind>, ...}
+    goal test (goal state)
+        x = "at bucharest"
+    path cost (additive)
+        sum of distances, number of actions executed, etc.
+        c(x,a,y) is the step cost, assumed to be >= 0
+    solution
+        sequence of actions leading from the initial state to the goal state
+
+abstraction/modeling
+    process of removing irrelevant detail to create an abstract representation
+    critical for automated problem solving
+
+input
+    state space
+        (amount of values)^(possible values)
+    successor function
+        moving from one state to another
+    start state
+        initial state
+    goal state
+        state youre in when goal is completed
+
+EXAMPLE
+    8-Queens
+        states
+            2d array
+            0 or 1 and sum of array = 8
+        initial state
+            any random state
+        actions
+            one queen in each column, one queen in each row
+        goal test
+            no two queens can reach eachother along column, row, or diagonal
+        path cost
+            do we care?
+            how?
+
+EXAMPLE
+    sliding tile
+        states
+            3x3 integer array
+            1-9 for possible values
+            each integer can only appear once
+        state space
+            9^9
+        start
+            random
+        goal
+            numbers are in order
+            blank is in 9th spot
+
+state space graphs
+    each node is a state
+    each successor function is an edge
+
+search strategies
+    blind search
+        dfs
+        bfs
+        iterative deepening search
+        uniform cost search
+    informed search
+    constraint satisfaction
+    adversary search
+

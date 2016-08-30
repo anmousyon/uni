@@ -48,8 +48,10 @@ raid levels
         need log(n) more disks
     raid 3
         bit-interleaved parity
+        need one more disk
     raid 4
         block-interleaved parity
+        need one more disk
     raid 5
         block-interleaved distributed parity
     raid 6
@@ -58,7 +60,8 @@ raid levels
 raid 2
     uses checksums to detect errors
     can detect faults (almost always) but cant always correct faults
-
+    can handle 1 -> 2 disk failures
+        depending on parity
     0 bit error
         no error
     1 bit error
@@ -77,5 +80,21 @@ raid 2
             by combining them together you can detect which bit is wrong
 
 raid 3
+    can handle a single disk failure
+    all data is spread out throughout the disks
+        even if read or write is small
+        so you can only do one i/o operation at a time
+    using maximum read or write of all disks at all times
+    operations are strictly sequential
 
-
+raid 4
+    parity is based on blocks instead of bits
+    takes advatage of sequential reads and writes of disks
+    allows for greater concurrency
+    in order to write the block
+        need to write
+        need to read the parity for all blocks
+        need to write the parity
+    instead use xor
+        (old data) xor (new data) xor (old parity) = (new parity)
+        called read, modify, and write

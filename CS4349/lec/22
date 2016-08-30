@@ -1,0 +1,66 @@
+topics
+    matching
+    complexity
+    sorting
+        bubble
+        insertion
+        merge
+            avg n*log(n)
+        quick
+        radix
+            can be linear
+    graphs
+        dijkstras/A*
+        ANN
+        Minimum Spanning Tree
+            Prim's
+                uses nodes
+                ensures tree at every step
+            Kruskal's
+                uses edges
+                combines forests into one larger graph
+    Tree
+        BFS
+            queue
+        DFS
+            stack (backtracking)
+        MinMax (games)
+            alpha-beta pruning
+    clustering/similarity
+    P vs NP
+        basic questions only
+        travelling salesman
+    compression
+        huffman coding
+    dynamic programming
+    string search
+
+## REVIEW ##
+
+dynamic programming
+    knapsack
+        build it up and pick greediest option available
+
+djikstras
+    s -> all
+    no heuristic
+    gaurantees optimal solution
+
+a*
+    s -> g
+    cost = actual + heuristic
+    try to NEVER overestimate the heuristic
+    faster
+    if heuristic is not admissiable
+        does not gaurantee optimal solution
+    otherwise
+        is optimal
+    not greedy
+
+ANN
+    and
+    or
+    xor
+
+MST
+    prims gaurantees a tree at every step

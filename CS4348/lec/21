@@ -1,0 +1,159 @@
+optimal page replacement alg
+    you would replace the page you wouldnt be needing for the longest time
+    cant see into the future
+
+LRU alg
+    replace page that hasnt been accessed in the longest time
+    you would need to timestamp every accessed
+    you would need to read and check every timestamp every time
+
+raid 4
+    small write on a single disk invloves:
+        target disk and parity disk
+    steps
+        read old contents from target
+        read old content from parity
+        write to target
+        compute parity using double XOR
+        write parity to disk
+    cant write concurrently because of serialization at parity
+    can only handle a single disk failure
+        data disk can be recoved using remaining data disks and parity
+        parity disk can be recreated using data disks
+
+symlink
+    similar to a hyperlink
+    used to make links between different file systems
+
+logical file system
+    manages metadata info
+    translates file name into:
+        file number
+        file handle
+        location by maintaining file control blocks (inodes in UNIX)
+
+boot control block
+    contains info needed by system to boot OS from that volume
+    needed if volume contains OS, usually first block of volume
+
+volume control block (superblock, master file table)
+    contains volume details
+    total # of blocks
+    # of free blocks
+    block size
+    free block pointers or array
+
+file control block (FCB)
+    contains many details about the file
+    inode number, permissions, size, dates
+    NFTS stores into in master file table using relational DB structures
+    permissions -> owner(rwx)|group(rwx)|other(rwx)
+
+directory implementation
+    linear list
+        pointers to the data blocks
+        simple to program
+        time consuming to execute
+            linear search time
+            could keep ordered alpha via linked list or use of b+ tree
+    hash table
+        linear list with hash data structures
+        decreases directory search time
+        collisions
+            situations where two file names hash to same location
+        only good if entries are fixed size, or use chained-overflow method
+
+contigous allocation
+    simplest solution
+    block to be accessed = Q + starting address
+    displacement into block = R
+    read and write is easy
+    causes heavy fragmentation
+
+linked allocation
+    harded read and write
+    pointer based
+    takes care of external fragmentation
+    need pointer at end of each block to next block
+
+file allocation table (FAT)
+    compromise between linked and contiguous
+    writes by blocks
+
+indexed allocation
+    ?each table has its own index block
+    index block
+        stores list of pointers to blocks in table
+    max file size is 128 blocks -> 64 kb
+    mapping
+        using multilevel tables to allow larger file sizes
+        heavy overhead no matter the file size
+        more levels -> more time to step through them
+
+combined schmeme -> UNIX UFS
+    direct
+        smallest files
+    single indirect
+        small files
+    double indeirect
+        large files
+    triple indirect
+        largest files
+
+PC Bus
+    arbitrates access to memory
+
+DMA trnasfer
+    1.
+        device driver told to transfer disk data to buffer at address X
+    2.
+        device driver told to transfer C bytes from disk to budder at address X
+    3.
+        disk controller initiates DMA transfer
+    4.
+        disk controller sends each byte to DMA controller
+        without interrupts with CPU
+    5.
+        DMA controller transfers bytes to buffer X
+        (byte or word at a time so it doesnt starve CPU)
+        increasing memory address and decreasing C until C=0
+        without interrupts with CPU
+    6.
+        when C=0, DMA interrupts CPU to signal transfer completion
+
+DMA Controller
+    acts as a proxy for the CPU
+    cycle stealing
+        keep track of CPU when it is trying to access memory
+        moves over PCI bus into memory when CPU is idle in accessing memory
+        fills in all the gaps it can, min cost to ongoing processes
+
+application i/o interface
+    device-driver layer hides differences among i/o controllers from kernel
+    new devices talking already-implemented protocols need no extra work
+    devices vary in:
+        chracter-stream or block
+        sequential or random-access
+        sync or async (or both)
+        sharable or dedicated
+        speed of operation
+        read-write, read only, write only
+
+EXAM -> everything after CPU scheduling (after first exam)
+    deadlocks
+        prevention
+        avoidance
+        detection
+        resolution
+    main memory
+        page tables
+        splitting between page number and offest
+    virtual memory
+    mass-storage structures
+        mask delay in accessing secondary storage
+        raid
+            raid 5
+                alleviates problem of parity disk becoming bottleneck
+                allows concurrent writes in many situations
+    file system
+    i/o systems

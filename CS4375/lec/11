@@ -1,0 +1,67 @@
+bayes network
+    all about belief
+    gives conditional independence
+        between items on same level
+    burglary -> alarm
+        implied alarm depends on burglary
+    without network
+        for 5 items, need 32 (2^5) instances
+        actually need 31 (32-1) because sum of all is known (1)
+        (2^5 - 1) needed instances
+            can figure out last one from all the others
+    we've made a local markov assumption
+        not always true
+    given a parent
+        two children are independent from each others
+
+d-separation (dependency separation)
+    if x1, x2, x3 are three disjoint subsets of nodes in a dag
+        then x2 is said to d-separate x1 and x2
+            if every undirected path from x1 and x3 are blocked by x2
+    direct connection x->y
+    indirect
+        x->y->z
+    serial connection
+        a->b->c
+        evidence about b blocks
+        no evidence about b allows
+    diverging
+        z->x and z->y
+        evidence about z will block
+        no evidence about z will allow
+    converging connection
+        a->b->c and d->b->c
+        comment effect
+        evidence about b or its children will allow
+        no evidence about b or its children will block
+    multiple paths
+        ALL paths must be blocked to stop flow
+
+hidden markov models
+    markov assumption (mth order)
+        each node depens on the previous m nodes
+    1st order -> O(k^2)
+    mth order -> O(k^(m+1))
+    n-1th order -> O(k^n)
+    distributions that characterize sequential data with few parameters
+        but are not limited by strong markov assumptions
+    example problems
+        how likely is a sequence, given models?
+            evaluation
+        what portion of the sequence was gen by fair die, by loaded die?
+            decoding
+        how loaded/fair is the die and how often does it switch?
+            learning
+            find params given hmm and sequence
+    forward alg
+        prob of sequence
+    forward-backward alg
+        prob third roll was loaded
+
+reinforcement learning
+    give a reward for making the right move
+    given a state, what is the best action to take to maximize rewards
+    horizon problem
+        need a time limit
+    discounted rewards
+        reward in future is not worth quite as much as a reward now

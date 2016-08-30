@@ -1,0 +1,144 @@
+general topics
+    what concepts can be learned
+
+find-s alg
+    start with most specific, if inconsistent go to more general
+
+# of hypothesis = 2^(2^n)
+
+types of learning
+    supervised
+    unsupervised
+    semi-supervised
+    reinforcement
+
+inductive vs deductive learning
+
+probability
+    mean
+    variance
+    conditional probability
+    normal, poission, binomial, bernoulli distributions
+    binomial -> bernoulli n times
+
+decision trees
+    entropy
+        measure of randomness
+    information gain
+        used to determine feature to split on
+    overfitting causes and prevention
+        prone to overfitting
+    decision boundary
+        drawing rectangles around points
+    when to use
+    I3
+        complete hypothesis space search
+        prefers shortest tree
+
+perceptron
+    how are weights optimized
+    must be linearly separable to get 0 error
+    w[new] = w[old] + delta(w)
+
+svm
+    tries to maximize points on street lines
+    kernel tricks to change data into higher dimensions
+
+decision surfaces
+    deparating points linearly or non-linearly
+
+naive bayes
+    MAP
+    MLE
+    computing likelihood
+
+K-NN
+    no model building
+
+logistic regression
+    know equation
+
+neural net
+    group of perceptrons grouped together
+    representing AND, OR
+    what are hidden nodes?
+    hidden layer between input and output
+        allows non-linearity
+    backpropogation algorithm
+
+ensemble
+    bias/variance tradeoff
+    MSPE = variance + bias^2 + noise
+        can control variance and bias
+        cant control noise
+    bias
+        want low bias
+        underfitting (lazy learner) causes high bias
+        consistent error
+        true value - predicted value
+    variance
+        want low variance
+        overfitting (over-eager leaner) causes high variance
+        how much model differs on different datasets
+    bagging
+        take bootstrap samples and averaging
+        reduces variance
+    random forests
+        bagging with random input vectors
+    boosting
+        combining weak learners to produce strong classifiers
+        increase weights of misclassified data
+
+k-fold cross-validation
+    how it gets split
+
+learning theory
+    PAC learning
+        i can be better than random guesser 50% of the time
+        0 < epsilon < 0.5
+        0 < delta < 0.5
+    sample complexity
+        number of examples needed to train with to gurantee PAC learning
+        ## m >= (1/epsilon) * (ln(H)+ln(1/delta)) ##
+    true error
+        error on the test data
+    consistent hypothesis
+        consistent with training data
+    agnostic learning
+        make no assumption that real concept is in set of hypotheses
+    vc dimension
+        d+1
+        straight line can shatter 3 points in 2d
+
+clustering
+    k-means, hierarchical
+    assignment using manhatan distances
+    how is clustering evaluated
+    hierarchical allows you to find outliers easier
+
+EM
+    e step
+    m step
+
+PCA (principle component analysis)
+    what do principle components represent?
+        linear combination of existing dimensions
+        directions that capture most of the variance in the data
+
+bayes network
+    joint probability questions
+    understand types of nodes
+        serial
+        converging
+        diverging
+    d-separation
+
+HMM
+    joint probability (casino dice question)
+
+long answers
+    kmeans: 10 pts
+    kNN: 10 pts
+    HMM: 10 pts
+    bayes net & naive bayes: 2 or 3 of 5 pts each
+    conceptual: 2 pts or 4 pts each

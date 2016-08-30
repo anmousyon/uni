@@ -1,0 +1,200 @@
+dichotomy
+    takes all points and labels them (ie +1 or -1_
+    number of dichotomies bound to 2^n = H
+    m[H](N) = max(for all x in X) | H(x[1], x[2], ..., x[N])
+
+clustering goals
+    high intra-cluster similarity
+    low inter-cluster similarity
+
+clustering
+    unsupervised
+    requires data, but no labels
+    detect patterns
+
+why clustering
+    partitioning
+    grouping data
+
+euclidean
+    d(x,y) = sqrt(sum(i)(x[i]-y[i])^2)
+
+manhattan
+    d(x,y) = sum(i)(|x[i] - y[i]|)
+
+correlation coefficient
+    how things are correlated
+
+hierarchical (agglomerative)
+    bottom up
+    start from bottom and cluster similar items
+    then cluster similar clusters, then repeat until clustered
+    can be used for outlier detection (last person to join dendogram)
+    shown using a dendogram
+
+partitional
+    top down
+    find increasingly specific clusters
+
+k-means
+    pick k random points (k is number of needed clusters)
+    find points closest to each k points and create the cluster
+    find center of each cluster and restart at assignment step
+    repeat until centers do not move
+    converges eventually
+    non-deterministic
+        requires initial points
+        # of steps until convergence changes based on initial choices
+
+k-means as optimization
+    0.
+        pick number of clusters
+        pick random points for start centers
+    1.
+        assign each point to the closest center
+        average distance to the center will always decrease
+    2.
+        update centers for each cluster
+    3.
+        repeat 1,2 until convergence or "close enough"
+
+k-means details
+    initial centers are often chosen randomly
+    k should ALWAYS be less than n (number of instances)
+    clustering reduces/simplifies the number of instances
+    complexity is O(n * k * I * d)
+        n -> number of points
+        k -> number of clusters
+    choosing different centers can only change the number of iterations
+        will not change the clusters
+
+agglomerative clustering
+    **Doesn't ask for k (number of clusters)**
+    map nicely into human intuition
+    doesnt scale well -> time complexity of at least O(n^2)
+    local optima are a problem
+    can detect outliers
+    procedure
+        first merge very similar instances
+        incrementally build larger clusters out of smaller clusters
+    alg
+        consider all possible merges
+        replace them by a single cluster
+        repeat until all clusters are fused
+
+computing distances between clusters
+    single link
+        distance of two closest members in each class
+        potentially long and skinny clusters
+    complete link
+        distance of two farthest members in each class
+    average link
+        take average distance of all pairs
+        most widely used
+        robust against noise
+
+soft clustering
+    expectation maximization (EM)
+    assigning to clusters with probabilities
+    gaussian mixture modeling (GMM)
+        every distribution beyond certain # of points, becomes gaussian
+        P(x) = (1/sqrt(q*pi*sigma^2)*e^(-(x-n)^2/2(sigma^2))
+        generative modeling framework
+
+GMM+EM -> soft k-means
+    like k-means but with probabilities
+    alg
+        decide number of clusters
+        init params (randomly)
+        e-step -> assign probabilistic membership to all input samples
+        m-step -> re-estimate params based on probabilistic membership
+        repeat until change in params is negligible (convergence)
+    weaknesses
+        can stop on local optimum
+        init is important
+        need to specify k in advance
+        makes strongest assumptions
+
+**every distribution tends toward gaussian after 30-40 instances**
+
+k-medoids
+    instead of using center of point
+        pick representative point from cluster
+    E = sum (i=1 to k)(sum(p in C)(|p - o[i]|))
+    alg
+        arbitrarily choose k objects from D as reps
+        repeat until no change
+            assign each remaining object to the cluster with the nearest rep
+            for each rep
+                randomly select a non-rep
+                compute total cost S of swapping rep with non-rep
+                if S<) replace rep with non-rep
+    advantages
+        more robust than k-means in presence of noise and outliers
+    disadvantages
+        doesnt scale well (slower)
+        requires user to specify k
+
+PCA (Principle Component Analysis) (Factor Analysis)
+    seeks to find thos attributes (fictitious or a linear combination of existing)
+        that capture most of the variation in the data
+    remove
+        constants
+        those that have very little info
+        those that are dependent on others
+    prinicple component
+        direction that carries the most variance in the data
+        1st pc
+            direction of greatest variability
+        2nd pc
+            direction of second most variability in data
+            orthogonal to 1st pc
+    mathematical tool from applied linear algebra
+    simple, non-param method of extracting relevant info from confusing datasets
+    provides a roadmap for how to reduce a complex dataset to a lower dimension
+
+covariance
+    how two attributes change with each others
+    high covariance
+        correlated
+    covariance < 0
+        inverse correlated
+    covariance = 0
+        independent
+
+bayesian networks (naive bayesian network)
+    random variable
+        basic element of probability
+    uses conditional probability
+    cpt -> conditional probabilities table
+    independence
+        if coin flips not independent
+            you need 2^n values in table
+        if independent
+            2n values instead
+            much simpler
+    directed acyclic graph
+        only need to worry about direct parent
+        arrow implies direct influence
+    properties
+        encodes the conditional independence between vars in graph structure
+        markov condition
+            dependent on parent
+            independent of its non-descendants
+    unconditional probability
+        sum of all probabilities that match the query
+        with no evidence of prior, multiply by prior
+
+inferences
+    diagnostic
+        use evidence of an effect to infer prob of cause
+    causal
+        use evidence of cause to infer prob of effect
+    inter-causal
+        use evidence of cause to infer prob of competing cause
+
+bayes network
+    intuitive, concise rep of joint rep
+    issues
+        building/learning network topology
+        sampling

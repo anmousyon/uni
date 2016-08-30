@@ -3,7 +3,7 @@ principle of optimality
         optimalsolutions to all subproblems
     if you have optimal solution to all subproblems
         cant necessarily combine them for optimal solution
-    
+
 tree
     empty tree
         no nodes
@@ -23,7 +23,7 @@ depth-first
                 print child
                 return success
         return failure
-    
+
 breadth-first
     explores nodes nearest the root before going deeper
     searches similarly to way priority queue fills

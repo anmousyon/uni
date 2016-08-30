@@ -9,7 +9,6 @@ kruskals
     start with T = phi
     consider edges in ascending order of cost
     insert e in T unless it would cause a cycle
-    
 
 prims
     starts with a node

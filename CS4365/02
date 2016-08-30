@@ -1,0 +1,132 @@
+applications
+    natural language processing
+        question answering
+        machine translation
+    computer vision
+        image recognition/analysis
+    robotics
+        self-driving cars
+
+what we will study
+    representations for constructing models
+        deterministic
+            propositional logic
+            first-order logic
+        non-deterministic
+            probability
+                models uncertainty
+    methods that operate/deduce answers
+        search/game playing
+        inference
+    learning
+        learn the model directly from data
+
+computational rationality intelligent agents
+    course is about DESIGNING RATIONAL agents
+    informally
+        agent is something that acts
+        rationality = intelligence
+
+agent
+    anything that can be viewed as perceiving the env
+        though sensors and acting upon env through actuators
+    human
+        sensors: eyes, ears, ...
+        actuators: hands, legs, mouth, ...
+    robotic
+        sensors: cameras, range finders, ...
+        actuators: motors, ...
+
+rational agent
+    agents intelligence is captured in a program
+        sensors are inuts
+        actuators are outputs
+    selects actions that maximize its utility function
+        utility function: indirect specification of what program should do
+    capabilities
+        ability to interact with real world
+            speech recognition
+            image and video understanding
+            ability to take actions, have an effect
+        knowledge representation, reasoning and planning
+            modelling the external world, given input
+            solving new problems, planning and making decisions
+            ability to deal with unexpected problems, uncertainties
+        learning and adaptation
+            modify and augment initial configuration
+                as agent gains experience
+            humans continuously learning and adapting; update 'models'
+        autonomy
+            should learn to compensate for partial or incorrect background knowledge
+
+specifying a rational agent
+    environment
+    percepts
+    actions
+    rationality
+        performance measure
+    agent program
+        map precepts to actions to maximize the performance measure
+
+vacuum world
+    env
+        squares a and b
+        dirty or clean
+    percepts
+        location, contents
+    actions
+        left, right, vacuum, ...
+    rationality
+        + for cleaning
+        - for power use
+
+env types
+    single agent vs multiagent
+        is the agent the only thing acting in the world?
+
+    deterministic vs stochastic
+        is there uncertainty in how the world works?
+        stochastic
+            uncertainty in future environment
+            one to many mapping
+
+    episodic vs sequential
+        do previous actions affect your future actions?
+        episodic
+            current moves dont affect future moves
+        sequential
+            current decisions could affect all future decisions
+
+    discrete vs continuous
+        is there a finite (or countable) number of possible env states?
+
+agent types
+    simple reflex
+        simplest
+        select action based only on current precept
+    model-based reflex
+        complex
+        agents keep track of the world (requires memory)
+    goal-based
+        more complex
+        attempts to find a wat to achieve some state
+        search and planning: find path to goal state
+    utility based
+        most complex
+        can trade off: immediate vs future payoffs; risk vs reward
+
+reflex agents
+    no memory
+    choose action based on current precept
+    dont consider future consequences of their actions
+    act on how world IS not will be
+
+can a reflex agent be rational?
+    yes
+
+goal based agents
+    start and end states
+    plans ahead
+        asks "what if"
+        decisions based on (hypothesized) consequences of actions
+    must have model of how world evolves in response to actions

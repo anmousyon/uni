@@ -34,7 +34,6 @@ int count_words (FILE *f) {
 }
 
 int main(int argc, char **argv){
-	printf("starting\n");
 	int num_maps = atoi(argv[1]);
 	int BUFSZ = 250;
 	int buffer[BUFSZ];
@@ -45,7 +44,6 @@ int main(int argc, char **argv){
 	int ctp[num_maps][2];
 	int total = 0;
 
-	printf("opening file\n");
 	//open the file
 	FILE *fp;
 	fp = fopen(argv[3], "r");
@@ -54,7 +52,6 @@ int main(int argc, char **argv){
 	int num_words = count_words(fp);
 	int to_read = num_words/num_maps;
 
-	printf("opening pipes\n");
 	//open pipes
 	int i;
 	for(i=0; i<num_maps; i++){
@@ -62,7 +59,6 @@ int main(int argc, char **argv){
 		pipe(ctp[i]);
 	}
 
-	printf("forking children\n");
 	//fork all new children
 	for(i=0; i<num_maps; i++){
 		if(pid != 0){
@@ -74,7 +70,6 @@ int main(int argc, char **argv){
 
 	//parent process
 	if(pid>0){
-		printf("parent process\n");
 		for(int i=0;i<num_maps;i++){
 			//close unnecessary pipes
 			write(ptc[i][0], buffer, sizeof(buffer));
@@ -98,7 +93,6 @@ int main(int argc, char **argv){
 
 	//child process
 	if(pid == 0){
-		printf("child process\n");
 		//close unnecessary pipes
     	close(ptc[cid][1]);
     	close(ctp[cid][0]);

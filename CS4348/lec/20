@@ -1,0 +1,113 @@
+RAID
+    raid 0
+        non-redundant striping
+    raid 1
+        mirrored disks
+        need n more disks
+    raid 2
+        memory-style error-correcting codes
+        need logn more disks
+    raid 3
+        bit-interleaved parity
+        parity used to recover from failures not check for correctness
+        touch every disk with every read and write
+        can only do one operation at a time
+    raid 4
+        only one copy of the data
+        block-interleaved parity
+        small reads and small writes only touch a single block
+        can only do one parity write at a time
+        can read from multiple at the same time
+    raid 5
+        parity is spread out between all the blocks
+        one block stores parity for all other blocks for 1/n of its disk
+        can do multiple writes at the same time
+        supports higher level of concurrency
+        most used
+    raid 6
+        adds more redundancy to raid 5
+        very expensive solution
+
+master boot record (mbr)
+    points to where os resides
+
+each block is separated into 3 parts
+    preamble
+        ?
+    data
+        where content is stored
+    checksum
+        check correctness on every read
+
+spare blocks are kept to recover from failures like bit flips
+
+redundancy
+    crc
+        disks can repair themselves
+    raid 4
+        one disk can be recovered
+    copied disks
+        whole set of disks can go down
+    replicated separate datacenter
+        whole datacenter can go down
+    has to write to many more places
+
+file ops
+    seek
+        reposition within file
+    write
+        at write pointer location
+    read
+        at read pointer location
+
+open files
+    open-file table
+        tracks open files
+    file pointer
+        poiter to last read/write location, per process that has file open
+    file-open count
+        counter of num of times a file is open
+        to allow removal of data from open-file table when last process closes
+    disk location of file
+        cache of data access info
+    access rights
+        per-process access mode info
+
+open file locking
+    similar to reader-writer locks
+    shared locking
+        similar to reader lock
+        several processes can acquire concurrently
+    exclusive lock
+        similar to writer lock
+    mediates access to a file
+    mandatory
+        access is denied depending on locks held and requested
+    advisory
+        processes can find status of locks and decide what to do
+
+two-level directory
+    separate directory for each user
+    access control is specified per user
+
+hard link (regular link)
+    changes attributes to original
+    increments file count
+    can remove original until hard link is removed
+
+symbolic link (symlink) (shortcut)
+    when making a link between different file systems, MUST make symbolic link
+    will invalidate link on removal of original
+
+mounting
+    file system must be counted before it can be accessed
+    an unmounted file system is mounted at a mount point
+
+client-server
+    server can serve multiple clients
+    client and user-on-client id is insecure or complicated
+    nfs
+        standard unix client-server file sharing protocol
+    cifs
+        standard windows protocol
+    standard os file calls are translated into remote calls
