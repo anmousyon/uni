@@ -42,3 +42,26 @@ improving backtracking efficiency
     can we detect inevitable failure early?
     can we take advantage of problem structure?
 
+minimum remaining values
+    choose variable with fewest legal values
+
+least constraining value
+    given a variable, choose least constraining value
+        the one that rules out the fewest values in the remaining variables
+
+forward checking
+    keep track of remaining legal values for unassigned variables
+    terminate search when any variable has no legal values
+    can we detect failures early?
+
+consistency enforcement
+    arc-consistency
+        transform the network into smaller network
+        only works over binary
+        O(n^2)
+        simplest form of propogation makes each arc consistent
+
+arc consistency
+    check if future values are allowed
+        check for consistency
+        repeat until no change
