@@ -1,0 +1,117 @@
+search contours
+    breadth = d(n)
+    depth = -d(n)
+    best = h(n)
+    A* = f(n) + g(n)
+
+depth first search is not complete
+
+A* graph search
+    optimal if consistent
+    all consistent heuristics are also admissable
+
+optimization algorithms
+    hill climbing
+    simulated annealing
+    genetic algorithms (in the book)
+    issues with local search
+
+local search and optimization
+    before: we were looking for path from start to goal
+    now: we are looking for specific state (solution)
+    memory-less
+    local search
+        keep track of single current state
+        move only to neighboring states
+        ignore paths
+    advantages
+        use very little memory
+        can often find reasonable solutions in large or infinite state spaces
+    pure optimization problems
+        all states have an objective function
+        goal is to find state with max (or min) objective value
+        does not quite fit into path-cost/goal-state formulation
+        local search can do quite well on these problems
+
+trivial algorithms
+    random sampling
+        generate a state randomly
+    random walk
+        randomly pack a neighbor of the current state
+    asymptotically complete
+
+hill-climbing (greedy local search)
+    function hc(problem) -> returns a state that is a local maximum
+        input:
+            problem , a problem
+        local vars:
+            current, a node
+            neighbor, a node
+        current = make_node(initial_state(problem))
+        loop do
+            neighbor = a highest valued successor of current
+            if value(neighbor) <= value(current) (min version reverses this inequality)
+                return state(current)
+            current = neighbor
+
+hill climbing <- BEST LOCAL SEARCH ALGORITHM
+    a loop that continuously moves towards increasing value
+        terminates on peak
+        greedy local search
+    value can be
+        objective function value
+        heuristic function value (minimized)
+    doesnt look ahead of immediate neighbors
+    can randomly choose among the set of best successors on tie (valley)
+    doesnt move at all (stops) on plateaus
+    start state matters
+        can get stuck on local maxima
+
+escaping plateaus
+    if no uphill moves, allow sideway moves in hopes of escape
+        need to place a limit on possible # of sideways moves
+            prevents infinite loops
+    restart with different initial state
+        expected number of restarts = 1/p
+        p =  probability of success
+    sometimes pick a downward move
+
+simulated annealing
+    physics inspired twist on random walk
+    basic idea
+        instead of picking the best move, pick one randomly
+        say the change in objective function is delta
+        if delta is positive then move to that state
+        otherwise
+            move to this state with probability delta
+            thus: worse moves are executed less often
+        over time, make it less likely to accept locally bad moves
+            using a parameter T called the temperature
+
+function sim_ann(problem, schedule) -> return solution state
+    input:
+        problem: a problem
+        schedule: mapping from time to temp
+    local vars:
+        current: a node
+        next: a node
+        T: a temp controlling prob of downward step
+    current = make node(initial_state(problem))
+    for t = 1 to inf do
+        T = schedule(t)
+        if T = 0 then return current
+        next = randomly selected successor of current
+        delta E =  value(next) - value(current)
+        if delta E > 0
+            current = next
+        else
+            current = next with probability e^(delta E / T)
+
+temperature T
+    current = next with prob e^(delta E / T)
+        delta E is gaurranteed to be negative
+        high T: prob of locally bad move is higher
+        low T: prob of locally bad move is lower
+    typically, T is decreased as the alg runs longer
+    i.e. there is a temperature schedule
+

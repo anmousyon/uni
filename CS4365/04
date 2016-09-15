@@ -1,0 +1,37 @@
+DFS
+    complete
+    not optimal
+    time = O(b^m)
+    space = O(bm)
+
+BFS
+    complete
+    optimal
+    time = O(b^d)
+    space = O(b^d)
+
+ID (iterative deepening)
+    complete
+    optimal
+    time = O(b^d)
+    space = O(bd)
+
+#costs on actions#
+
+uniform cost search
+    expand cheapest node first
+        fringe is a priority queue instead of a queue
+    complete
+    optimal
+    time = O(b^(C*/e))
+        where C* is cost of cheapest goal and e is min cost of an action
+    space = O(b^(C*/e))
+        where C* is cost of cheapest goal and e is min cost of an action
+    explores increasing cost contours
+    issues
+        explores options in every direction
+        no information about goal location
+
+search heuristics
+    any estimate of how close a state is to a goal
+    eg manhattan or euclidean distance

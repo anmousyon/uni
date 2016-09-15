@@ -91,3 +91,28 @@ search strategies
     constraint satisfaction
     adversary search
 
+building search trees
+    dfs
+        go down tree expanding deepest nodes until you reach goal
+    bfs
+        go down tree expanding shallowest nodes until you reach goal
+
+*ideas*
+    fringe
+        queue
+        frontier
+    expansion
+        dfs
+        bfs
+    exploration
+        left->right
+        random
+
+dfs
+    expand deepest node first
+    fringe is lifo / stack
+
+bfs
+    expand shallowest node first
+    fringe is fifo / queue
+

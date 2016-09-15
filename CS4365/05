@@ -1,0 +1,26 @@
+A*
+    f(n) = h(n) + g(n)
+    complete
+    optimal
+        when heuristic is admissable
+        admissable = underestimate
+    tradeoff between quality of estimate and work per node
+        calculating h(n) can be expensive
+    applications
+        pathing/routing
+        resource planning
+        language analysis
+        machine translation
+        speech recognition
+
+graph search
+    never expand a node twice
+    store a set instead of list to maintain uniqueness
+
+ensuring A* optimality
+    consistency
+        c(n, a, n') >= h(n) - h(n')
+        real cost must always exceed reduction in heuristic
+    in general, natural admissible heuristics tend to be consistent
+
+UCS is optimal because h=0 is consistent

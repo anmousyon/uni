@@ -1,0 +1,44 @@
+4-queen problem
+    Variables
+        X1, X2, X3, X4 -> Rows
+    Domains
+        1, 2, 3, 4 -> Columns
+    Constraints
+        there are C(4, 2) = 6 Constraints
+            between x[1] and x[1] is useless
+            between x[1] and x[2] is same as x[2] and x[1]
+        ie: R[1,2] = {(1,3), (1,4), (2,4), (3,1), (4,1), (4,2)}
+
+Standard search formulation
+    initial state
+        empty assignment
+    successor function
+        assign a value to an unassigned variable
+            that doesnt conflict with current assignment
+        fail if not legal assignments
+    goal test
+        current assignment is complete
+    properties
+        same for all CSPs
+        every solution appears at depth n with n Variables
+            use dfs
+        path is irrelevant, so can also use complete-state function
+        b = (n-l)*d at depth l, hence n!*d^n leaves (b is branching factor)
+
+backtracking search
+    variable assignment are commutative
+        [x = 1 then y = 2] is same as [y = 2 then x = 1]
+    only need to consider assignments to a single variable at each node
+        b = d and there are d^n leaves
+    essentially dfs for CSPs with single-variable assignments
+    size = b^n => d^n
+        much better than (nd)^n
+    caveat
+        must select an ordering of variables to be selected
+
+improving backtracking efficiency
+    which variable should be assigned next?
+    in what order should its values be tried?
+    can we detect inevitable failure early?
+    can we take advantage of problem structure?
+
