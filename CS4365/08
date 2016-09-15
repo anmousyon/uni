@@ -65,3 +65,4 @@ arc consistency
     check if future values are allowed
         check for consistency
         repeat until no change
+    go back and check if values can be used still
