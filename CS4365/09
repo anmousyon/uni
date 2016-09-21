@@ -1,0 +1,123 @@
+condition on strategic components
+    to separate the problem into separate components
+    ie on SA and Q in Australia map
+
+Tree-structured CSPs
+    theroem:
+        if the constraint graph has no loops
+            can be solved in O(n*d^2) time
+    compared to general CSPs where worst-case is O(d^n)
+    this proprerty also applies to logical and prob resoning
+
+Alg for tree-structured CSPs
+    1.
+        choose a var as root
+        order vars from root to leaves
+            such that every node's parent precedes it in the ordering
+    2.
+        for j from n down to 2
+            apply remove_inconsistent(parent(x[j]), x[j])
+    3.
+        for j from 1 to n
+            assign x[j] consistently with parent(x[j])
+
+##
+do arc-consistent bottom-up
+then after its consistent
+    solution can be found using opposite ordering
+##
+
+nearly tree-structured CSPs
+    conditioning
+        instantiate a var
+        prune its neighbor's domains
+    cutset conditioning
+        instantiate (in all ways) a set of vars
+            such that the remaining constraint graph is a tree
+    cutset size c: runtime O(d^c * (n-c)d^2)
+    complexity: O(d^2 * O(nd^2))
+
+complexity of connected components idea
+    O(d^h)
+    finding optimal separators
+
+iterative algs for CSPs
+    hill-climbing, simulated annealing tpically work with complete state
+        ie all vars assigned
+    to apply to CSPs
+        allow states with unsatisfied constraints
+        operators reassign var values
+    var selection
+        randomly select any conflicted var
+    val selection by min-conflict heuristic
+        choose val that violates the fewest constraints
+
+performance of min-conflicts
+    given rand initial state
+        can solve n-queens in almost const time for arbitrary n with high prob
+        same appears to be true for any randomly-generated CSPs
+            except in a narrow range of the ratio
+                VERY sharp bell spike at critical ratio
+        R = (constraints)/(variables)
+
+summary
+    CPSs are special kind of problems
+        states def by vals of a fixed set of vars
+        goal test def by constraints on var vals
+    backtracking = dfs with one var per node
+    var ordering and val selection heuristics helper alot
+    forward checking prevents asignments that guarantee later failure
+    constraint propogation (arc consistency) does extra work
+        to constrain vals and detect inconsistencies
+    CSP representation allows analysis of problem structure
+    tree-structure CSPs can be solved in linear time
+    iterative min-conflicts is usually effective in practice
+
+propositional satisfiability
+    notes
+        formula is in CNF if it is a conjunction of clauses
+        clause is a disjunction of literals
+        a literal is a proposition or its negation
+
+unit propogation
+    arc-consistency for CNFs
+    involve a single clause and a single literal
+    ie
+        (A or !B or C) and (B)
+            (A or C) and (B)
+        (A or B or C) and (B)
+            (B)
+        (A or B or C) and (!B or C) and (!C)
+            (A or B) and (!B) and (!C)
+                (A) and (!B) and (!C)
+
+look-ahead for SAT (finding if a problem is satisfiable)
+    dpll(x):
+        input a CNF theory x
+        output: decision of whether x is satisfiable
+
+        unit_propogate(x)
+        if empty clause id generated
+            return false
+        elif all vars are assigned
+            return true
+        else
+            q = some unassigned var
+            return (dpll(x and q) or dpll(x and !q))
+
+GSAT - local search for SAT
+    for i=1 to max_tries:
+        select a random assignment A
+        for j=1 to max_flips
+            if A satisfies all constraint
+                return A
+            else
+                flip a var to max the score
+                (score= number of satisfied constraints
+                if none increase score then flip at random)
+
+WalkSAT: adds random walk to GSAT
+    with prob p
+        random walk -> flip a var in some unsatisfied constraint
+    with prob 1-p
+        perform a hill-climbing step
