@@ -1,0 +1,85 @@
+solution counting/model counting
+    count the number of solutions
+    #P-Complete
+
+optimization
+    weight association
+    find solution with min/max weight
+    NP-hard
+
+satisfaction
+    finding a solution or prove no solution exists
+    NP-Complete
+
+##
+
+adverserial search
+    minimax search
+    alpha-beta search
+    evaluation functions
+    expectimax
+
+types of games
+    deterministic vs chance
+    perfect vs imperfect information
+    ie
+        chess -> perfect and deterministic
+        monopoly -> perfect and chance
+        battleship -> imperfect and deterministic
+        poker -> imperfect and chance
+
+deterministic games
+    many possible formalization, ie:
+        states: S
+        players: P
+        actions: A
+        transition function: SxA -> S
+        terminal test: S -> {t,f}
+        terminal utilities: SxP -> R
+
+deterministic single player
+    each node stores a value
+        best outcome it can reach
+        maximal outcome of its children
+    we dont have path sums as before (utilities at end)
+    after search, can pick move that leads to best node
+
+minimax properties
+    optimal
+        yes against perfect players
+    time complexity
+        O(b^m)
+    space complexity
+        O(b*m)
+
+alpha-beta pruning
+    alpha -> max nodes
+    beta -> min nodes
+    alpha is the best val max can get at any point along the current path
+    if node becomes worse than alpha, max will avoid it
+        so can stop considering node's other children
+    define beta similarly (opposite) for min
+
+##pseduocode
+
+max_val(state,a,b)
+    if test(state)
+        return utility(state)
+    v = -inf
+    for s in successors(state)
+        v = max(v, min_val(s,a,b))
+        if v>=b
+            return v
+        a = max(a,v)
+    return v
+
+min_val(state,a,b)
+    if test(state)
+        return utility(state)
+    v = inf
+    for s in successors(state)
+        v = min(v, max_val(s,a,b))
+        if v>=a
+            return v
+        b = max(b,v)
+    return v

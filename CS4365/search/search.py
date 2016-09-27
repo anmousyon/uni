@@ -73,31 +73,15 @@ def tinyMazeSearch(problem):
     return  [s, s, w, s, w, w, s, w]
 
 from game import Directions
-dirs = {
-    (0, -1): Directions.SOUTH,
-    (0, 1): Directions.NORTH,
-    (1, 0): Directions.EAST,
-    (-1, 0): Directions.WEST,
-    (0, 0): Directions.STOP
-}
-
-def get_goal(problem):
-    def  dfs(problem, start):
-        visited, stack = set(), [start]
-        while stack:
-            vertex = stack.pop()
-            if vertex not in visited:
-                visited.add(vertex)
-                new = set([x[0] for x in problem.getSuccessors(vertex)])
-                stack.extend(new - visited)
-        return visited
-    goal = None
-    for x in dfs(problem, problem.getStartState()):
-        if problem.isGoalState(x):
-            goal = x
-    return goal
 
 def get_actions(path):
+    dirs = {
+        (0, -1): Directions.SOUTH,
+        (0, 1): Directions.NORTH,
+        (1, 0): Directions.EAST,
+        (-1, 0): Directions.WEST,
+        (0, 0): Directions.STOP
+    }
     current = path[0]
     path.remove(path[0])
     actions = []
@@ -108,6 +92,21 @@ def get_actions(path):
         actions.append(direction)
         current = action
     actions.append(dirs[(0,0)])
+    return actions
+
+def translate(path):
+    dirs = {
+        'South': Directions.SOUTH,
+        'North': Directions.NORTH,
+        'East': Directions.EAST,
+        'West': Directions.WEST
+    }
+    actions = []
+    for action in path:
+        actions.append(dirs[action])
+    actions.remove(actions[-1])
+    actions.append(Directions.STOP)
+    print 'actions', actions
     return actions
 
 def depthFirstSearch(problem):
@@ -124,70 +123,142 @@ def depthFirstSearch(problem):
     print "Is the start a goal?", problem.isGoalState(problem.getStartState())
     print "Start's successors:", problem.getSuccessors(problem.getStartState())
     """
-    goal = get_goal(problem)
-
-    def dfs_path(problem, start, goal):
-        stack = [(start, [start])]
+    def dfs_path(problem, start):
+        stack = util.Stack()
+        stack.push((start, [start]))
         visited = set()
-        while stack:
+        while not stack.isEmpty():
             (vertex, path) = stack.pop()
             if vertex not in visited:
-                if vertex == goal:
+                if problem.isGoalState(vertex):
                     return path
                 visited.add(vertex)
-                new = list(set([x[0] for x in problem.getSuccessors(vertex)]))
-                for nexts in new:
-                    stack.append((nexts, path+[nexts]))
+                new = problem.getSuccessors(vertex)
+                for x in new:
+                    if x[0] in visited:
+                        new.remove(x)
+                for next in new:
+                    stack.push((next[0], path+[next[1]]))
 
-    return get_actions(dfs_path(problem, problem.getStartState(), goal))
+    actions = dfs_path(problem, problem.getStartState())
+    actions.remove(actions[0])
+    return actions
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    goal = get_goal(problem)
-
-    def bfs_paths(problem, start, goal):
-        queue = [(start, [start])]
-        while queue:
-            (vertex, path) = queue.pop(0)
-            new = set([x[0] for x in problem.getSuccessors(vertex)])
-            for next in list(set(new) - set(path)):
-                if next == goal:
-                    yield path + [next]
+    def bfs_paths(problem, start):
+        queue = util.Queue()
+        queue.push((start, [start]))
+        explored = []
+        while not queue.isEmpty():
+            (current, path) = queue.pop()
+            new = problem.getSuccessors(current)
+            for x in new:
+                if x[0] in explored:
+                    new.remove(x)
+            for next in new:
+                explored.append(next[0])
+                if problem.isGoalState(next[0]):
+                    yield path + [next[1]]
                 else:
-                    queue.append((next, path + [next]))
-    def sp(problem, start, goal):
+                    queue.push((next[0], path + [next[1]]))
+
+    def sp(problem, start):
         try:
-            return next(bfs_paths(problem, start, goal))
+            return next(bfs_paths(problem, start))
         except StopIteration:
-            return None
-    return get_actions(sp(problem, problem.getStartState(), goal))
+            print 'ERROR'
+            return [start]
+    
+    def pfa(start, actions):
+        dirs = {
+            Directions.SOUTH: (0, -1),
+            Directions.NORTH: (0, 1),
+            Directions.EAST: (1, 0),
+            Directions.WEST: (-1, 0),
+            Directions.STOP: (0, 0)
+        }
+        print actions
+        path = []
+        for action in actions:
+            x, y = start
+            dx, dy = dirs[action]
+            start = (x+dx, y+dy)
+            path.append(start)
+        return start
+
+    start = problem.getStartState()
+    goals = problem.isGoalState(start)
+    actions = []
+    total_path = []
+    if goals:
+        for goal in goals:
+            new_actions = sp(problem, start)
+            new_actions.remove(new_actions[0])        
+            actions += new_actions
+            start = pfa(start, new_actions)
+    else:
+        actions = sp(problem, problem.getStartState())
+        actions.remove(actions[0])
+    
+    return actions
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
-    goal = get_goal(problem)
-    def ucs(problem):
-        node = problem.getStartState(problem)
+    def ucs(problem, start):
         frontier = util.PriorityQueue()
-        frontier.push(node)
+        frontier.push(start, 0)
+        came_from = {}
+        total_cost = {}
+        came_from[start] = None
+        total_cost[start] = 0
         explored = []
-        while True:
-            if frontier.isEmpty():
-                return False
-            node = frontier.pop()
-            if node.state == goal:
-                return #path
-            explored.append(node.state)
-            new = set([x[0] for x in problem.getSuccessors(node.state)])
-            for next in new - explored:
-                child = node(problem, node, set([x[0] for x in problem.getSuccessors(node.state)]))
-                if not child.state in explored and not child.state in frontier:
-                    frontier.push(child)
-                elif child.state in frontier and child.cost > node.cost:
-                    node = child
+        goal = None
 
-    util.raiseNotDefined()
+        while not frontier.isEmpty():
+            current = frontier.pop()
+            if problem.isGoalState(current[0]):
+                goal = current[0]
+                break
+            if current != start:
+                current_c = current[0]
+            else:
+                current_c = start
+            new = problem.getSuccessors(current_c)
+            for x in new:
+                if x[0] in explored:
+                    new.remove(x)
+            for next in new:
+                new_cost = total_cost[current_c] + next[2]
+                explored.append(next[0])
+                if not next[0] in total_cost or new_cost < total_cost[next[0]]:
+                    explored.append(next[0])
+                    total_cost[next[0]] = new_cost
+                    priority = new_cost
+                    frontier.push(next, priority)
+                    if current != start:
+                        came_from[next[0]] = [current[0], next[1]]
+                    else:
+                        came_from[next[0]] = [current, next[1]]
+        return came_from, start, goal
+    
+    def path(came_from, start, goal):
+        current = goal
+        path = [goal]
+        while current != start:
+            path.append(came_from[current][1])
+            current = came_from[current][0]
+        path.reverse()
+        path.remove(path[-1])
+        return path
+
+    start = problem.getStartState()
+
+    came_from, start, goal = ucs(problem, start)
+
+    return path(came_from, start, goal)
 
 def nullHeuristic(state, problem=None):
     """
@@ -199,8 +270,66 @@ def nullHeuristic(state, problem=None):
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    def a_star_search(problem, start):
+        frontier = util.PriorityQueue()
+        frontier.push(start, 0)
+        came_from = {}
+        total_cost = {}
+        came_from[start] = start
+        total_cost[start] = 0
+        goal = None
+        explored = []
 
+        while not frontier.isEmpty():
+            current = frontier.pop()
+            if problem.isGoalState(current[0]):
+                goal = current[0]
+                break
+            if current != start:
+                current_c = current[0]
+            else:
+                current_c = start
+            new = problem.getSuccessors(current_c)
+            for x in new:
+                if x[0] in explored:
+                    new.remove(x)
+            for next in new:
+                new_cost = total_cost[current_c] + next[2]
+                explored.append(next[0])
+                if not next[0] in total_cost or new_cost < total_cost[next[0]]:
+                    total_cost[next[0]] = new_cost
+                    priority = new_cost + heuristic(next[0], problem)
+                    frontier.push(next, priority)
+                    if current != start:
+                        came_from[next[0]] = [current[0], next[1]]
+                    else:
+                        came_from[next[0]] = [current, next[1]]
+        return came_from, start, goal
+    
+    def path(came_from, start, goal):
+        current = goal
+        path = [goal]
+        while current != start:
+            path.append(came_from[current][1])
+            current = came_from[current][0]
+        path.reverse()
+        path.remove(path[-1])
+        return path
+
+    start = problem.getStartState()
+    test = problem.getSuccessors(start)
+    goals = problem.isGoalState((100,100))
+    total_path = []
+    if goals:
+        for goal in goals:
+            came_from, start, goal = a_star_search(problem, start)
+            total_path += path(came_from, start, goal)
+            start = total_path[-1]
+    else:
+        came_from, start, goal = a_star_search(problem, start)
+        return path(came_from, start, goal)
+    
+    return total_path
 
 # Abbreviations
 bfs = breadthFirstSearch
