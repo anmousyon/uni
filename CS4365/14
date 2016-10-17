@@ -1,0 +1,63 @@
+not every statement in propositional logic can be converted to a horn clause
+
+forward and backward chaining on horn clauses works in linear time
+
+resolution
+    needs CNF
+        conjunction of disjunctions of literals
+    resolution inference rule: complete for prop logic
+        l1 or l2 or ... or lk and m1 or m2 or ... or mn
+            l1 or li-1 or li+1 or ... or lk or m1 or ... or mj-1 or mj+1 or ... or mn
+        where li and mj are complementary literals
+    sound and complete for prop logic
+
+conversion to CNF
+    CNF(KB and (not a))
+    eliminate <->
+        a <-> b => (a -> b) and (b -> a)
+    eliminate ->
+        a -> b => (not a) or b
+    move not inwards using de Morgan's Law 
+        not (a or b) => (not a) and (not b)
+    apply distributivity
+        a and (b or c) => (a and b) or (a and c)
+
+resolution(KB, a):
+    inputs:
+        KB -> knowledge base, sentence in prop logic
+        a -> query, sentence in prop logic
+    clause = set of clauses in CNF rep of KV and not a
+    new = {}
+    loop do
+        for each ci, cj in clauses do
+            resolvents = pl_resolve(ci, cj)
+            if resolvents  contains empty clause
+                return true
+            new = new unioned with resolvents
+        if new subset of clauses
+            return false
+        clauses = clauses unioned with new
+
+if you get empty clause from resolution alg
+    (KB and (not a)) is unsatisfiable
+        therefor KB entails a
+
+kb |= a => (KB and (not a)) is unsatisfiable
+
+## summary ##
+
+logical agents apply inference to KB
+    to derive new info and make decisions
+
+soundness
+    derivations produce only entailed sentences
+completeness
+    derivations can produce all entailed sentences
+
+forward and backward chaining are linear-time, complete for horn clauses
+resolution is complete for propositional logic (CNF)
+
+prop logic is not very expressive
+    use first-order logic instead
+
+## summary ##

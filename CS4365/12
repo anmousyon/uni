@@ -1,0 +1,60 @@
+expectimax pruning?
+    extremely hard
+        exact: need bounds on possible values
+        approximate: sample high-probability branches
+    sampliing alg
+        helps you go deeper
+
+expectimax evaluation
+    quickly return an estimate for a node's true value
+    for minimax, evaluation function scale doesnt matter
+        we just want better states to have higher evaluations
+            --get ordering right--
+        called insensitivity to monotonic transformations
+            monotonic function -> changes values while preserving order
+    for expectimax, we need magnitudes to be meaningful
+        NOT insensitive to monotonic transformations
+
+mixed layer types
+    expectiminimax
+        2 player game with chance
+        as depth increases, prob of reaching a given node shrinks
+        at max
+            same
+        at min
+            same
+        at chance
+            computed expected values of children
+        pruning is VERY hard
+
+multi-player non-zero-sum games
+    similar to minimax
+        utilities are now tuples
+        each player maximizes their own entry at each node
+        propogate (or back up) nodes from children
+        can give rise to cooperation and competition dynamically
+
+knowledge base
+    set of sentences in a formal language
+    delcarative approach to building an agent (or other system)
+        tell it what it needs to know
+        then it can ask itself what todo
+            answers should follow from the kb
+    agents can be viewed at the knowledge level
+        ie: what they know, regardless of how implemented
+    or at the implementation level
+        data structures in KB and algs that manipulate them
+
+knowledge ->[learning]-> computer model <-[inference]-> question/answer
+
+knowledge representation and reasoning
+    important problems
+        representation
+            represent knowledge in a formal language
+        inference
+            answer a query posed over the model
+        learning
+            induce a model in a particular formal language that best fits data
+
+entailment
+    one thing follows from another

@@ -1,0 +1,97 @@
+search
+    bfs, dfs, ucs, a* (tree and graph)
+    completeness and optimality
+
+CSPs
+
+games
+
+prop logic
+
+search in discrete spaces
+    every disrete problem can be cast as a search problem
+        states, actions, transitions, cost, goal-test
+    types
+        uninformed systematic: often slow
+            dfs, bfs, ucs, iterative deepening
+        heuristic guided: better
+            greedy best first, a*
+            relaxation leads to heuristics
+                simplifying problem and removing constraints
+        local: fast, fewer guarantees; often local optimal
+            if you run until infinity you will probably find the solution
+            hill climbing and variations
+            simulated annealing: global optimal
+        (local) beam search
+
+adversarial search
+    minimax objective function
+        dfs
+        *** alpha-beta pruning *** <- guaranteed question
+    utility function for partial search
+        learning utility functions by playing with itself
+    openings/endgame databases
+
+search + KR&R examle: CSP (look at austraila example)
+    representation
+        vars, domains, constraints
+    reasoning
+        constraint prop
+            node consistency, arc consistency, k-consistency (forward checking)
+    search
+        backtracking search: partial var assignments
+            complete: can show if there is a solution or not
+            heuristics: min remaining values, min conflicts
+        local search: complete var assignments
+            incomplete: cant tell you if there isnt a solution
+    constraint graph (primal graph) used to solve CSP quickly
+        tree structured CSP are great
+            directional arc constency
+            use dfs to do top sort
+            run top sort backward?
+
+Knowledge representation and reasoning
+    representing
+        what i know
+    reasoning
+        what i can infer
+
+KR&R example: prop logic
+    rep
+        prop logic formula
+            CNF, horn clause (Horn normal form)
+    reasoning
+        deduction
+            forward/backward chaining
+            resolution
+    model finding
+        enumeration
+        SAT solving
+
+SAT solving
+    rep
+        CNF formula
+    resoning
+        pure literals, uit clauses, unit propogation
+    search
+        DPLL(nacktracking search)
+            MOM's heuristic
+                select node with most constraints and assign it to most desirable value
+        local
+            GSAT, WalkSAT
+
+## exam review ##
+
+arc consistency
+    remove parts of domain that cant be possible in range
+        redues size of the domains
+    go forward then backward
+
+CSP
+    if it is an arc-consistent tree network
+        then it is guaranteed to have a solution
+
+DPLL
+    DPLL(CNF(KB and (not a)))
+        want it to return false since were using (not a)
+        if it returns true then it is satisfiable

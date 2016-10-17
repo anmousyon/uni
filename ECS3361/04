@@ -22,6 +22,9 @@ road to hell is paved with good intentions
 users will try to break your stuff
 
 price and profit
-    cost -> what it costs to make it (labour and materials)
-    price -> what it is sold for
-    profit -> difference (price - cost)
+    cost
+        what it costs to make it (labour and materials)
+    price
+        what it is sold for
+    profit
+        difference (price - cost)

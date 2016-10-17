@@ -1,0 +1,71 @@
+resource limits
+    cannot search to leaves
+    depth limited search
+        instead, search a limited depth of tree
+        replace terminal utilities
+            with heuristic eval function for non-terminal positions
+    guarantee of optimal play is gone
+        optimal isnt always needed
+
+heurstic evaluation function
+    function which scores non-terminals
+    ideal function
+        returns the utility of the position
+    in practice
+        typically weighted sum of features
+        ie num of white queens - num of black queens
+
+iterative deepening
+    dfs which only searchs for paths of 1
+    then 2
+    then 3
+    etc
+
+stochastic single-player
+    expectimax search
+        chance nodes
+            like actions except env controls actions chosen
+        max nodes as before
+        chance nodes take average (expectation) of value of children
+        this is the optimistic approach
+            minimax is the pessimistic approach
+
+maximum expected utility
+    an agent should chose the path that maximizes its expected utility
+
+probability notes
+    random var
+        represents an event whose outcome is unknown
+    probability distribution
+        an assignment of weights to outcomes
+
+frequentist
+    averages over repeated experiments
+    assertion about how future experiments will go
+    makes one think of inherently random events
+
+bayesian
+    prior distribution (belief) with each outcome
+    degrees of belief about unobserved variables
+    often learn probs from past experiences
+    new evidence updates beliefs
+
+sources of uncertainty in random variables
+    inherently random processes
+    insufficient or weak evidence
+    ignorance of underlying processes
+    unmodeled variables
+        known unknowns
+        known knowns
+        unkown unknowns
+        unknown knowns
+    world is noisy -> doesnt behave according to plan
+
+expectimax search
+    we have a prob model of how the opponent (or env) will behave in any state
+        simple uniform distribution
+            ie roll a die
+        sophisticated and require a great deal of computation
+        have a node for every outcome out of our control
+            opponent or environment
+        model might say that adversarial actions are likely

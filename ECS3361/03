@@ -30,13 +30,13 @@ egoism
     focus oon own self-interest
     self-interest != group interest usually
 
-##BAD
+##GOOD
 
 kantianism
-    1.
+    formulation 1
         act in a way everyone should act
-    2.
-        act so you treat others as ends in themselves not a means to an end
+    formulation 2
+        act so you treat others as an end in themselves not a means to an end
 
 act utilitarianism
     morals to individual actions
@@ -47,21 +47,27 @@ act utilitarianism
         intensity
         duration
         certainty
-        ...
+        etc
     utilitarianism
         morally good actions help the most people
     validation can be hard to impossible
 
 rule utilitarianism
     propose rule -> evaluate rule
+    otherwise same as act
 
 social contract theory
     implicitly accepted
     rights
-        negative -> by leaving you alone
-        positive -> obligating others to do something on your behalf
-        absolute -> gauranteed without exception
-        limited -> restricted based on circumstance
+        negative
+            by leaving you alone
+        positive
+            obligating others to do something on your behalf
+        absolute
+            gauranteed without exception
+        limited
+            restricted based on circumstance
+            most rules are limited in some way
 
 objectivism
     morals are real
@@ -70,6 +76,13 @@ relativism
     morals are a human creation
 
 summary
-    k: interactions
-    u: consequences to actions
-    sc: rights
+    kantianism
+        interactions
+    utilitarianism
+        weighing consequences of actions
+        act
+            weighing idividual actions
+        rule
+            make a rule then weigh the rule
+    social contract
+        rights

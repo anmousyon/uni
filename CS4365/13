@@ -1,0 +1,117 @@
+knowledge representation and reasoning
+    inference
+        answer query posed over the model (deduction)
+    learning
+        induce a model in a formal language that best fits the data
+    
+logic
+    logic is a formal language for representing info
+    syntax
+        defines the sentences in the language
+        relationship between the sentences
+    semantics
+        define the "meaning" of sentences
+            ie define truth of a sentence in the language
+
+entailment
+    one thing follows from another
+        KB |= a
+            knowledge base KB entails sentence a
+                iff a is true in all worlds where KB is true
+    relationship between sentences (i.e. syntax) that is based on semantics
+
+models
+    formally structured worls with respect to which truth can be evaluated
+        truth evaluation construct
+    we say m is a model of a sentence a if a is true in m
+    M(a) is the set of all models of a
+        then KB |= a iff M(KB) subset of M(a)
+    eg:
+        KB = Giants won and Reds won
+        a = Giants won
+
+inference
+    KB |-[i] a = sentence a can be dervied from KB by procedure i
+    consequences of KB are a haystack; a is a needle
+    entailment = needle in haystack; inference = finding it
+    soundness:
+        i is sound if
+            whenever KB |-[i] a, it is also true that KB |= a
+            ie: (a and b) -> a is sound
+    completeness:
+        i is complete if
+            whenever KB |= a, it is also true that KB |-[i] a
+            ie: (a and b) -> a is not complete
+            ie: (a and b) -> a and b is complete
+    
+inference by enumeration
+    def entails(KB, a):
+        a, the query, a sentence in prop logic
+        symbols = a list of the prop symbols in KB and a
+        return check(KB, a, symbols, [])
+    def check(KB, a, symbols, model):
+        if empty(symbols):
+            if pl_true(KB, model):
+                return pl_true ???
+
+two sentences are logically equivalent iff true in same models
+    a == b iff a |= b and b |= a
+    learn the prop laws from discrete 1 again
+
+validity and satifiability
+    valid if true in all models
+        e.g. True, a or not a, a -> a, (a and (a -> b)) -> b
+    validity connected to inference via the deduction theorem
+        KB |= a iff (KB -> a) is valid
+    satisfiable if true in some model (np-complete)
+        e.g. a or b, c
+    unsatisfiable if true in no models
+        a and not a
+    satifiability is connected to inference via the following
+        KB |= a iff (KB and not a) is unsatisfiable
+        i.e. prove a by proof by contradiction
+
+proof methods
+    application of inference rules
+        proof =  a sequence of inference rule applications
+            can use inference rules as operators in a standard search alg
+    model checking
+        truth table enumeration
+
+forward and backward chaining
+    horm form (restricted)
+        KB = conjunction of Horn clauses
+        horn clause
+            prop symbol; or
+            (conjunction of symbols) -> symbol
+        modus ponens (for horn form): complete for horn KBs
+            from (a[1], ..., a[n]) and (a[1] and ... and a[n] -> b) infer b
+    can be used in forward and backward chaining in linear time
+        each rule will only be fired once
+
+forward chaining
+    idea: fire any rule whose premises are satisfied in the KB
+        add its conclusion to the KB, until query is found
+
+proof of completeness
+    if you have horn clauses (horn formula is conjunction of horn clauses)
+        forward is sound and complete
+    else
+        forward is sound but not complete
+
+backward (used by prolog)
+    idea:
+        work backwards from the query q
+            to prove q by BC
+                check if q is known or
+                prove by BC all premises of some rule concluding q
+    avoid loops
+        check if new subgoal is already on the goal stack
+
+resolution
+    sound and complete for ALL prop logic
+    CNF -> conjunction of disjunction of literal
+        disjunction of literals -> clauses
+    resolution inference rule (for CNF): complete for prop logic
+    (a or b) and (not b or c) => (a or c)
+        

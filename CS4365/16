@@ -1,0 +1,90 @@
+knowledge base is specific to application
+
+first order logic
+    more expressive and compact than propositional logic
+    more formal and precise than natural language
+
+propositional vs first order
+    ontology
+        prop
+            facts (P,Q)
+        first order
+            objects
+            *properties*
+            relations
+    syntax
+        prop
+            atomic sentences
+            connectives (and, or, not)
+        first order
+            variables and quantification
+            function symbols
+    semantics
+        prop
+            truth tables
+        first order
+            *interpretations*
+                can be different based on context
+            much more complicated
+    inference
+        prop
+            DPLL
+            WalkSAT
+            resolution
+        first order (mostly similar ideas)
+            unification
+            proplog
+            first order resolution
+
+syntax
+    constants
+        a, b, dog33
+        defines objects in the domain
+    variables
+        X, Y
+        refer to an object without naming it
+    predicate symbols (properties of objects)
+        flu, neighborhor
+        relations between objects
+    functions
+        dad-of
+        mapping from objects to objects
+    terms (predicates substituted with (variables, constants, etc))
+        dad-of(dog33), x, dog33
+        logical expression that refers to an object
+    atomic sentence
+        in(dad-of(dog33, food6))
+        can be true or false
+    connectives
+        and, or , not implies
+    quantifiers
+        forall (?A) and there exists (?E)
+
+semantics
+    sentences are true with respect to a model and an interpretations
+    model contains objects and relations among them
+    interpretations
+        constant symbols -> objects
+        predicate symbols ->
+        ...
+    interpretations = mappings
+    syntactic tokens -> model elements
+    regular
+        constants
+            richard, john
+        functions
+            leg(p, l)
+        relations
+            on(x, y)
+            king(p)
+    alternative semantics
+        bro(j,r) and bro(g,r) and j!=g and r=r and forall(x) bro(x,r) -> (x=j or x=g)
+    smart restrictions
+        unique-names assumptions
+            every constant symbol refers to a unique object
+        closed-world assumptions
+            atomic sentences not known to be true are in fact false
+        domain-closure
+            each model contains no more domain elements than those named by constant symbols
+    
+    

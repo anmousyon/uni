@@ -37,7 +37,7 @@ trivial algorithms
     random sampling
         generate a state randomly
     random walk
-        randomly pack a neighbor of the current state
+        randomly pick a neighbor of the current state
     asymptotically complete
 
 hill-climbing (greedy local search)

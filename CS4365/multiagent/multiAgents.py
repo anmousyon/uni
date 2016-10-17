@@ -44,8 +44,8 @@ class ReflexAgent(Agent):
         # Choose one of the best actions
         scores = [self.evaluationFunction(gameState, action) for action in legalMoves]
         bestScore = max(scores)
-        bestIndices = [index for index in range(len(scores)) if scores[index] == bestScore]
-        chosenIndex = random.choice(bestIndices) # Pick randomly among the best
+        bestIndices = [index for index, score in enumerate(scores) if score == bestScore]
+        chosenIndex = random.choice(bestIndices)  # Pick randomly among the best
 
         "Add more of your code here if you want to"
 
@@ -74,7 +74,50 @@ class ReflexAgent(Agent):
         newScaredTimes = [ghostState.scaredTimer for ghostState in newGhostStates]
 
         "*** YOUR CODE HERE ***"
-        return successorGameState.getScore()
+        oldPos = currentGameState.getPacmanPosition()
+        pellets = currentGameState.getCapsules()
+
+        evaluation = -currentGameState.getScore()
+
+        if newPos == oldPos:
+            evaluation -= 10
+
+        num_pellets = len(pellets)
+        num_ghosts = len(newGhostStates)
+        grid_size = newFood.width*newFood.height
+        num_food = newFood.count(True)
+        if num_food == 0:
+            return 100000
+
+        for foodx, row in enumerate(newFood):
+            for foody, col in enumerate(row):
+                if col:
+                    old_dist = util.manhattanDistance(oldPos, (foodx, foody))
+                    new_dist = util.manhattanDistance(newPos, (foodx, foody))
+                    if new_dist <= grid_size/(num_food+1):
+                        dist = new_dist if new_dist else old_dist
+                        evaluation += (old_dist-new_dist) * (grid_size/(dist*num_food))
+
+        for pellet_pos in pellets:
+            old_dist = util.manhattanDistance(oldPos, pellet_pos)
+            new_dist = util.manhattanDistance(newPos, pellet_pos)
+            if new_dist <= grid_size/(num_pellets+(num_food+1)):
+                dist = new_dist if new_dist else old_dist
+                evaluation += (old_dist-new_dist) * (grid_size/(num_pellets*dist))
+
+        for ghost in newGhostStates:
+            ghostPos = ghost.getPosition()
+            old_dist = util.manhattanDistance(oldPos, ghostPos)
+            new_dist = util.manhattanDistance(newPos, ghostPos)
+            if new_dist <= grid_size/(num_ghosts+(num_food+1)):
+                dist = new_dist if new_dist else old_dist
+                evaluater = (old_dist-new_dist) * (grid_size/(num_ghosts*dist))
+                if ghost.scaredTimer > 1:
+                    evaluation += evaluater
+                else:
+                    evaluation -= evaluater
+
+        return evaluation + successorGameState.getScore()
 
 def scoreEvaluationFunction(currentGameState):
     """
@@ -129,10 +172,38 @@ class MinimaxAgent(MultiAgentSearchAgent):
             Returns the total number of agents in the game
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+
+        agents = gameState.getNumAgents()
+
+        def minimax(state, depth):
+            if depth == self.depth*agents:
+                return (None, self.evaluationFunction(state))
+            agent = depth%agents
+            if agent:
+                return minormax(state, depth, agent, 1)
+            else:
+                return minormax(state, depth, agent, -1)
+
+        def minormax(state, depth, agent, mom):
+            best = (None, (float('inf') * mom))
+            actions = state.getLegalActions(agent)
+            if not actions:
+                return (None, self.evaluationFunction(state))
+            for action in actions:
+                child = state.generateSuccessor(agent, action)
+                result = minimax(child, depth+1)
+                if mom > 0:
+                    if result[1] < best[1]:
+                        best = (action, result[1])
+                else:
+                    if result[1] > best[1]:
+                        best = (action, result[1])
+            return best
+
+        return minimax(gameState, 0)[0]
 
 class AlphaBetaAgent(MultiAgentSearchAgent):
-    """
+    """ 
       Your minimax agent with alpha-beta pruning (question 3)
     """
 
@@ -141,7 +212,40 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
           Returns the minimax action using self.depth and self.evaluationFunction
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        agents = gameState.getNumAgents()
+
+        def minimax(state, depth, alpha, beta):
+            if depth == self.depth*agents:
+                return (None, self.evaluationFunction(state))
+            agent = depth%agents
+            if agent:
+                return minormax(state, depth, agent, 1, alpha, beta)
+            else:
+                return minormax(state, depth, agent, -1, alpha, beta)
+
+        def minormax(state, depth, agent, mom, alpha, beta):
+            best = (None, (float('inf') * mom))
+            actions = state.getLegalActions(agent)
+            if not actions:
+                return (None, self.evaluationFunction(state))
+            for action in actions:
+                child = state.generateSuccessor(agent, action)
+                result = minimax(child, depth+1, alpha, beta)
+                if mom > 0:
+                    if result[1] < best[1]:
+                        best = (action, result[1])
+                    if best[1] < alpha:
+                        return best
+                    beta = min(beta, best[1])
+                else:
+                    if result[1] > best[1]:
+                        best = (action, result[1])
+                    if best[1] > beta:
+                        return best
+                    alpha = max(best[1], alpha)
+            return best
+
+        return minimax(gameState, 0, -float('inf'), float('inf'))[0]
 
 class ExpectimaxAgent(MultiAgentSearchAgent):
     """
@@ -156,18 +260,101 @@ class ExpectimaxAgent(MultiAgentSearchAgent):
           legal moves.
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        agents = gameState.getNumAgents()
+
+        def minimax(state, depth):
+            if depth == self.depth*agents:
+                return (None, self.evaluationFunction(state))
+            agent = depth%agents
+            if agent:
+                return expormax(state, depth, agent, 0)
+            else:
+                return expormax(state, depth, agent, -1)
+
+        def expormax(state, depth, agent, mom):
+            best = (None, (float('inf') * mom))
+            exp = 0
+            actions = state.getLegalActions(agent)
+            if not actions:
+                return (None, self.evaluationFunction(state))
+            prob = 1.0/len(actions)
+            for action in actions:
+                child = state.generateSuccessor(agent, action)
+                result = minimax(child, depth+1)
+                if mom >= 0:
+                    exp += result[1] * prob
+                else:
+                    if result[1] > best[1]:
+                        best = (action, result[1])
+            return best if abs(mom) else (None, exp)
+
+        return minimax(gameState, 0)[0]
 
 def betterEvaluationFunction(currentGameState):
     """
       Your extreme ghost-hunting, pellet-nabbing, food-gobbling, unstoppable
       evaluation function (question 5).
 
-      DESCRIPTION: <write something here so we know what you did>
+      DESCRIPTION:
+        I get the current score that I start at and all the information I need
+        I take any possible chance to win (setting evaluation super high)
+        I am comparing the current position to the location of all the food, pellets and ghosts
+        I subtract the amount of food from the evaluation so that large amounts of food dont overpower the ghost weights
+        then I am doing a weighted addition to the evaluation based on those distances
+        then I am dividing by the amount of food left
     """
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
 
+    pos = currentGameState.getPacmanPosition()    
+    food = currentGameState.getFood()
+    ghostStates = currentGameState.getGhostStates()
+    scaredTimers = [ghost.scaredTimer for ghost in ghostStates]
+    pellets = currentGameState.getCapsules()
+
+    evaluation = currentGameState.getScore()
+
+    num_ghosts = len(ghostStates)
+    num_food = food.count(True)
+    if num_food == 0:
+        return 100000
+
+    grid_size = food.width*food.height
+    for foodx, row in enumerate(food):
+        for foody, col in enumerate(row):
+            if col:
+                food_dist = util.manhattanDistance(pos, (foodx, foody))
+                if food_dist <= grid_size/(num_food*num_ghosts):
+                    if food_dist:
+                        evaluater = abs(grid_size/(food_dist*num_food))
+                    else:
+                        evaluater = 1000
+                    evaluation += evaluater
+
+    evaluation -= num_food
+
+    num_pellets = len(pellets)
+    for pellet_pos in pellets:
+        pellet_dist = util.manhattanDistance(pos, pellet_pos)
+        if pellet_dist <= grid_size/(num_food*num_pellets):
+            if pellet_dist:
+                evaluater = abs(grid_size/(num_pellets*pellet_dist))
+            else:
+                evaluater = abs(grid_size/(num_pellets*1))
+            evaluation += evaluater
+
+    for ghost in ghostStates:
+        ghost_pos = ghost.getPosition()
+        ghost_dist = util.manhattanDistance(pos, ghost_pos)
+        if ghost_dist <= grid_size/(num_food*num_ghosts):
+            if ghost_dist:
+                evaluater = abs(grid_size/(num_ghosts*ghost_dist))
+            else:
+                evaluater = 10000
+
+            if ghost.scaredTimer > 1:
+                evaluation += evaluater
+            else:
+                evaluation -= evaluater
+    return evaluation/num_food
 # Abbreviation
 better = betterEvaluationFunction
-

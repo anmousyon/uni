@@ -42,7 +42,7 @@ complexity of connected components idea
     finding optimal separators
 
 iterative algs for CSPs
-    hill-climbing, simulated annealing tpically work with complete state
+    hill-climbing, simulated annealing typically work with complete state
         ie all vars assigned
     to apply to CSPs
         allow states with unsatisfied constraints
