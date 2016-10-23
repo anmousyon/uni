@@ -1,0 +1,110 @@
+outline
+    reducing first-order inference to prop inference
+    unification
+        ensuring equality (equality only for inference purposes)
+    generalized modus ponens
+    forward and backward chaining
+    resolution
+        same idea as prop resolution but works for first-order
+
+universal instantiation
+    every instantiation of a universally quantified sentense is entailed by it
+        ?A(v) a |= subst({v/g}, a)
+            for any var v and ground term g
+        ?A(x) king(x) and greedy(x) -> evil(x)
+            |= king(john) and greedy(john) -> evil(john)
+            |= king(richard) and greedy(richard) -> evil(richard)
+
+Existential instantiation
+    for any sentence a, var v, and const symbol k
+        ?E(v) a |= subst({v/k}, a)
+        ?E(x) crown(x) and onHead(x, john) yields
+            crown(john) and onhead(john, john)
+        skolem constant
+
+idea
+    UI cant be applied several times to add new sentences
+    EI can be applied once to replace the EI
+
+reduction to prop inference
+    KB
+        ?A(x) king(x) and greedy(x) -> evil(x)
+        king(john)
+        greedy(john)
+        brother(richard, john)
+    instantiating uni sentence in ALL possible ways
+        k(john) and g(john) -> e(john)
+        k(richard) and g(richard) -> e(richard)
+        k(john)
+        g(john)
+        brother(richard, john)
+    claims
+        a ground sent is entailed by new kb iff entailed by original kb
+        every fol kb can be proped so as to preserve entailment
+    idea
+        prop kb and query, apply resolution, return result
+    problem
+        with function symbols, there are infinitely many ground terms
+    theorem (hebrand (1930))
+        if a sentence a is entailed by an fol kb
+            it is entailed by a fiite subset of the prop kb
+    idea
+        for n=0 to inf
+            create a prop kb by instantiating with depth-n terms
+            see if a is entailed by this kb
+    prob
+        works if a is entailed
+        loops if a is not entailed
+
+problems with propping (grounding method)
+    seems to generate lots of irrelevent sentences
+    with p k-ary predicates and n constants
+        there are p * n^k instantiations
+    with function symbols it gets much worse
+
+unification
+    we can get the inference immediately if we can find a substitution O
+        such that k(x) and g(x) match k(j) and g(y)
+    O = {x/j,y/j} works
+    unify(a,b) = O if aO=bO
+        if we apply sub to two diff sentences they are logically equivalent
+    standardizing apart eliminates overlap of variables
+        every formula uses its own variables
+
+generalized mosud ponens
+    p'[1]',p'[2],...,p'[n], (p[1] and p[2] and ... and p[n] -> q) |= qO
+        where p'[i]O = p[i]O for all i
+    gmp used with kb of definite clauses (exaclty one pos literal)
+    all vars assumed universally quantified
+
+fol forward chaining
+    expand kb until you reach query
+    sound and complete for fol definite clauses
+    datalog = fol definite clauses + no functions (eg crime KB)
+    forward chaining terminates for datalog in poly iterations: at most p*n^k
+    may not terminate if a is not entailed
+    this is unavoidable: entailment is semi-decidable
+    efficiency
+        simple observation: no need to match a rule on iteration k
+        if a premise wasnt added on iteration k-1
+            match each rule whose premise conatins a newly added literal
+        matching itself can be very expensive
+        database indexing allowss O(1) retrieval of known facts
+
+backward chaining
+    much like prop logic but working backward (duh)
+    much more efficient
+        dfs: space is linear in size of proof
+    incomplete due to inf loops
+        fix by checking current goal against every goal on stack
+    inefficient due to repeated subgoals
+        fix using chaching of previous results
+    widely used for logic programming
+
+resolution
+    l[1] or ... or l[k], m[1] or ... or m[n]
+        |= (l[1] or ... or l[i-1] or l[i+1] or ... or l[k] or m[1] or ... or m[j-1] or m[j+1] or ... or m[k])O
+    where unify(l[i], not m[j]) = O
+    convert to CNF
+        eliminate biconditionals and implications
+        move not inwards

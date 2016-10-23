@@ -34,6 +34,10 @@ multi-player non-zero-sum games
         propogate (or back up) nodes from children
         can give rise to cooperation and competition dynamically
 
+## END OF LOCAL SEARCH ##
+
+## START OF PROP ##
+
 knowledge base
     set of sentences in a formal language
     delcarative approach to building an agent (or other system)

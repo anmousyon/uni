@@ -1,0 +1,120 @@
+?Ax a(x) or b(x)
+?Az not b(z) or c(z)
+|= ?Ay a(y) or c(y) | (x = y = z)
+
+resolution
+    CNF(KB and not a)
+        hard part is comverting set of formulas to CNF
+    try to derive empty clause
+        means KB |= a
+
+conversion to CNF
+    get formula to convert
+        ?Ax [?Ay a(y) -> l(x,y)] -> [?Ey l(y,x)]
+    eliminate biconditionals and implications
+        ?Ax [not ?Ay not a(y) or l(x,y)] or [?Ey l(y,x)]
+    move not inwards
+        ?Ax [?Ey not (not a(y) or l(x,y))] or [?Ey l(y,x)]
+        ?Ax [?Ey not not a(y) or not (lx,y)] or [?Ey l(x,y)]
+        ?Ax [?Ey a(y) or not l(x,y)] or [?Ey l(y,x)]
+    standardize vars: each quantifier should use different one
+        ?Ax [?Ey a(y) or not l(x,y)] or [?Ez l(z,x)]
+    skolemize: a more general form of existential instantiation
+        each existing var is replaced by a skolem function of enclosing universally quantified vars
+        ?Ax [a(F(x)) or not l(x,F(x))] or l(G(x),x)
+    drop universal quantifiers
+        [a(F(x)) or not l(x,F(x))] or l(G(x),x)
+    distribute and over or
+        [a(F(x)) or l(G(x),x)] and [not l(z, F(z)) or l(G(z),z)]
+
+CNF in FOL
+    no universal or existentially quantified logical vars
+        all vars are implicitly universally quantified
+    conjunction of clauses (and)
+    clause is a disjunction of literals (or)
+    literal is an atomic formula or it negation
+    atomic formula
+        T(X)
+        T(F(x))
+        T
+
+## END OF FOL ##
+
+## START OF PROB ##
+
+sensor model
+    noisy sensors that require prob to make sense of the data
+
+random variables
+    some aspect of the world about which we may have uncertainty
+        R = is it raining?
+        L = where am i?
+    denote random vars with capital lettes
+    random vars have domains
+        R : {True, False}
+        L = {home, school, work}
+
+joint probability/distributions
+    over set of random variables: X[1], X[2], ..., X[n]
+    specifies a real number for each assignment
+    must obey these two rules
+        P(x[1], x[2], ..., x[n]) >= 0
+        SUM(P(x[1], x[2], ..., x[n])) = 1
+    outcome
+        joint assignment for all the vars
+        (x[1], x[2], ..., x[n])
+    event
+        set E of outcomes
+        P(E) = SUM(P(x[1], ..., x[n]))
+        from joint distribution we can calculate prob of any event
+
+marginal probability/distributions
+    sub-tables which eliminates vars
+    marginalization (summing out)
+        combine collapsed rows by adding
+        P(X[1]=x[1]) = sum{over x[2]}(X[1] = x[1], X[2]=x[2])
+
+conditional probability/distributions
+    prob dist over some vars givn fixed values of others
+    P(x[1]|x[2]) = P(x[1],x[2]) / P(x[2])
+
+normalization trick
+    get a whole conditional dist at once
+        select joint probs matching the evidence
+        normalize the selection (make it sum to one)
+    P(R=rain) = P(T=hot, R=rain) + P(T=cold, R=rain)
+
+probabilistic inference
+    compute desired prob from other known probs (conditional from joint)
+    we generally compute conditional probs
+        P(on time | no accidents) = 0.9
+        these represent agent's beliefs GIVEN the evidence
+    probs change with new evidence
+        P(on time | no accidents, 5 am) = 0.95
+        P(on time | no accidents, 5 am, raining) = 0.8
+        observing new evidence causes beliefs to be updated
+
+inference by enumeration
+    complexity
+        time
+            O(d^n)
+        space
+            O(1) at each moment
+            O(d^n) to store the table
+
+product rule
+    convert conditional to joint
+    P(x|y) = P(x,y) / P(y)
+    P(x,y) = P(x|y) * P(y)
+
+chain rule
+    can always write any joint as an incremental product of conditional
+    P(x[1], x[2], x[3]) = P(x[1])*P(x[2]|x[1])*P(x[2]|x[1],x[2])
+
+bayes rule
+    two wats to factor a joint over two var
+    P(x,y) = P(x|y)P(y) = P(y|x)P(x)
+    dividing, we get
+        P(cause|effect) = (P(effect|cause)*P(cause)) / P(effect)
+        P(cause|effect) is directly proportional to (P(effect|cause)*P(cause))
+    lets us build one conditional from its reverse
