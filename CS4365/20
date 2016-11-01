@@ -1,0 +1,111 @@
+hmm defined by
+    initial dist
+        P(X[1])
+    transistions
+        P(X[t]|X[t-1])
+    emissions
+        P(E|X)
+    E
+        evidence
+    X
+        hidden variable
+
+defines a joint prob dist
+    P(X[1],...,X[n],E[1],...,E[n])
+        P(X[1:n],E[1:n])
+
+computations
+    given
+        joint(P(X[1:n],E[1:n])
+        evidence E[1:n]=e[1:n]
+    inference probs
+        filtering
+            find P(X[t]|e[1:t]) for all t
+        smoothing
+            find P(X[t]|e[1:t]) for all t
+        most probable explanation
+            find x[1:n] = argmax[1:n](P[1:n]|e[1:n])
+
+filtering/monitoring
+    tracking distribution of B(X) [belief state] over time
+    start with B(X) in intial setting
+    P(x[1]|e[1]) = P(x[1],e[1])/P(e[1])
+        directly proportional to x[1]*P(x[1],e[1])
+            P(x[1])*P(e[1]|x[1])
+
+online belief updates
+    every time step, we start with current P(X|evidence)
+    we update for time
+        P(x[t]|e[1:t-1]) = sum(x[t]-1)(P(x[t-1]|e[1:t-1]*P(x[t]|x[t-1])
+    we update for evidence
+        P(x[t]|e[1:t]) dp x O(x[t]|e[1:t-1])*P(e[t]|x[t])
+    PROBLEM
+        space is |X| and time is |X|^2 per time step
+
+passage of time
+    as time passes, uncertainty "accumulates"
+        we dont know anything anymore
+    B'(X') = sum(x)(P(X'|x)B(x))
+
+observation
+    assume we have current belief P(X|previous evidence)
+        B'(X[t+1]) = P(X[t+1]|e[1:t])
+    we can get evidence and reweight and renormalize our beliefs
+    basic idea
+        beliefs reweighted by likelihood of evidence
+        unlike passage of time, we have to renormalize
+    as we get observations
+        beliefs get reweughted, uncertainty decreases
+
+summary of filtering
+    inference process of finding dist over X[t] given e[1:t]
+        P(X[t]|e[1:t])
+    compute P(X[1]|e[1])
+    ...
+
+particle filtering
+    sometimes |X| is too big to use exact inference
+        |X| may be too big to even store B(X)
+        X is continuous
+        |X|^2 may be too big to do updates
+    solution: approximate inference
+        tack samples of X, not all vals
+        samples are called particles
+        time per step is linear in num of samples
+        but number needed may be large
+        in memory: list of particles, not states
+    how robot localization works in practice
+    our rep of P(X) is now a list of N particles (samples)
+        generally N << |X|
+        sotring map from X to counts would defeat the point
+        P(x) approx by num of particles with val x
+    each particles is moved by sampling its next pos from transition model
+        x' = sample(P(X'|x))
+        like prior sampling
+            samples frequencies reflect the transistion probs
+        this captures the passage of itme
+    slightly trickier
+        dont do rejection sampling
+        we dont sample the observation, we fix it
+        this is similar to likelihood weighting
+            we downweight our samples based on evidence
+            w(x) = P(e|x)
+            B(X) dp P(e|X)*B'(X)
+        we now get 'fat' and 'thin' particles
+            fat have higher probs
+            thin have lower probs
+        probs dont sum to 1, sum to approx of P(e)
+    resample
+        helps us get rid of very low prob particles (very thin ones)
+        rather than tracking weighted samples, we resample
+        N times, we hoose from our weighted sample dist
+            this is equiv to renormalizing the dist
+        not the uupdate is complete for this time step
+            now al the particles have the same weight
+    sumary
+        represent current belief P(X|e) as set of n samples
+        for each observation e
+            sample transition, once for each current particles
+            for each new sample, compute importance
+            ...
+        initial -> elapse -> weight -> resample -> end

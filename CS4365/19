@@ -1,0 +1,63 @@
+sometimes P(x|e) is hard to compute but P(e|x) is easy to compute
+    using bayes rules makes solving for P(x|e) much easier
+
+posterior distribution
+    P(g|r) +> P(r|g)*P(g)
+        where +> means directly proportional to
+
+independence
+    two variables are independent in a joint dist if
+        P(X,Y) = P(X)*P(Y)
+        ?Ax,y P(x,y) = P(x)*P(y)
+        O(d) entries if independent
+            otherwise O(d^2) tuples
+        says the joint dist factors into a product of two simple ones
+        usually vars arent independent
+            can still use independence as a modeling assumption
+                simplifies model
+                empirical joint dist: at best "close" to independent
+
+conditional independence
+    ## EXAMPLE
+    t = toothache, c = cavity, f = found through probe
+    P(t,c,f)
+    if c, prob of f doesnt depend on t
+        P(f|t, c) = P(f|c)
+        f is conditionally independent of t given c
+    equiv statements
+        P(t|f,c) = P(t|c)
+        P(t,f|c) = P(t|c)*P(f|c)
+        one can be derived from other easily
+    ## EXAMPLE
+    unconditional (absolute) independence is very rare
+    conditional independence is our most basic and robust
+        form of knowledge about uncertain envs
+
+product rule
+    p(x,y) = p(y|x) * (px)
+
+chain rule
+    p(1,2,3) = p(1) * p(2|1) * p(3|1,2)
+    prob of x given everything before it
+
+markov model (markov chains)
+    chain structured bayesian network
+    random vars x[t] for all time steps t (the state)
+    params:
+        called transition probs or dynamics
+        specify how the state evolves over time
+    joint prob dist
+        p(1, ..., n) = p(1) product(2->n)(p(t|t-1)
+    basic conditional independence
+        past and future independent of present
+        each step only depends on previous step (first order markov property)
+    stationary distribution
+        independent of initial distribution
+        p[inf](X) = p[inf+1](X) = sum(x)(P(X|x)*P[inf](X))
+    not useful for most agents
+        eventually you dont know anything anymore
+        need observations to update your beliefs
+    hidden markov models (HMMs)
+        underlying markov chain over states s
+        you observe outputs (effects) at each time step
+        POMDPs without actions
