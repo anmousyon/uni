@@ -1,0 +1,66 @@
+prob models
+    bayesian networks
+    independence in BNs
+    networks for rep high-dimensional prob dist in a compact manner
+
+## BAYES NET ##
+
+two probs with using full joint dist tables as prob models
+    unless few vars, joint dist is WAY too big
+    hard to learn (estimate) anything about more than a few vars at a time
+
+technique for describing complex joint dist using simple, local dist
+    more properly called graphical models
+
+displays how vars are related to each other
+
+semantics
+    set of nodes, one per var X
+    it is a dag
+    conditional dist for each node
+        collection of dists over X, one for each comb of parents vals
+        P(X|a[1],...,a[n]) where a[i] is a parent of X
+    CPT
+        conditional prob table
+
+topology (graph) + local conditional probs
+
+implicitly encode joint dists
+    product of local conditional dists
+    prob BN gives to full assignment, mult all relevant conditionals together
+        P(x[1],...x[2]) = product(i=1 to n)P(x[i]|parents(X[i]))
+
+fully connected -> bad idea
+    d is number of parents
+    P(X) -> O(d)
+    P(Y|X) -> O(d^2)
+    grows exponentially
+
+extra arcs dont prevent rep independence
+    just allow non-independence
+
+independence
+    are two nodes independent given certain evidence?
+        d-sep (dependency separation)
+    if x1, x2, x3 are three disjoint subsets of nodes in a dag
+        then x2 is said to d-separate x1 and x2
+            if every undirected path from x1 and x3 are blocked by x2
+    direct connection x->y
+    indirect
+        x->y->z
+    serial connection
+        a->b->c
+        evidence about b blocks
+        no evidence about b allows
+    diverging
+        z->x and z->y
+        evidence about z will block
+        no evidence about z will allow
+    converging connection
+        a->b->c and d->b->c
+        comment effect
+        evidence about b or its children will allow
+        no evidence about b or its children will block
+    multiple paths
+        ALL paths must be blocked to stop flow
+    d-sep(x,y,z) only if x is cond independent of y given z

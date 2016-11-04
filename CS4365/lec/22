@@ -1,0 +1,83 @@
+reachability
+    series
+        knowledge of middle block
+    converging
+        knwoledge of middle allows
+    diverging
+        knowledge of middle blocks
+
+original test
+    if there are multiple paths between vars
+        must look at all paths
+
+d_sep(x,y,x) test (simpler)
+    true if x is conditionally independent of y given z
+    check whether x and y are disconnected in a new dag G'
+        obtained from G using the following steps
+            delete any leaf node W from G as
+                as long as w is not in x or y or z
+            repeat precious until no more nodes can be deleted
+            delete all edges outgoing from nodes in z
+
+## end d-sep ##
+
+## start bayesian networks inference ##
+
+exact inference
+    variable elimination
+approximate inference
+    sampling
+
+prob inference
+    compute a desired prob from other known probs
+        ie conditional from joint
+    probs change with new evidence
+        observing new evidence causes beliefs to be updated
+
+inference by enumeration
+    exponential in space and time
+        O(d^n)
+    sep into 3 sets
+        evidence
+            what we know
+            known knowns
+        query
+            what we care about
+            unknown knowns
+        hidden
+            what we dont care about
+            can remove from model
+            unknown unkowns or known unknowns
+    we want P(Q,e[1],...,e[n])
+    select entries consistent with evidence
+    sum out H to get joint of query and evidence
+    use conditions to normalize
+
+## end of bayesian networks inference ##
+
+## start of variabel elimination ##
+
+in enumeration (slow)
+    join up whole joint dist before summing out hidden vars
+    repeat a lot of work
+idea: interleave joining and marginalizing
+    no-hard but much master than inference
+need new notation
+
+outline
+    maintain a set of tables called factors
+    initial factors are local CPTs (one per node)
+    any known values are selected
+
+general VE
+    start with initial factors
+        local CPTs (but instantiated by evidence)
+    while there are still hidden vars
+
+instantiate evidence
+pick ordering of vars to sum-out or eliminate (H[1],...,H[k])
+for i=1 to k
+    multiply all factors that mention H[i]
+    sum-out H[i] from the product
+    add the new factor to the database of factors
+    remove all the factors that mention H[i] from the database
