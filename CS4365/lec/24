@@ -1,0 +1,59 @@
+rejection sampling
+    we want P(C)
+        no point keeping all samples around
+        tally where C is true
+    we want P(C|+s)
+        same idea
+            tally where C is true and reject where s is not true
+
+likelihood weighting
+    problems with rejection sampling
+        if evidence is unlikely, you reject most samples
+        dont exploit your evidence as you sample
+        consider P(B|+a)
+            +a doesnt happen very often so samples wont tell you much
+    idea: fix evidence variables and sample the rest
+        only create samples with +a
+            now b is the only one that changes and we get better samples
+    weight
+        w = 1 * s[1] * s[2] * ... * s[n]
+        where
+            s is the sample
+        ie w = 1 * 0.01 * 0.99
+        where
+            0.01 is prob of sprinkler given cloudy
+            0.99 is prob of wet grass given sprinkler and given cloudy
+        S[ws](z,e) = product(i=1 ot m)P(e[i]|parents(ei))
+    likelihood weighting is good
+        we have taken evidence into account to gen samples
+        more samples will reflect the state of the world suggested by evidence
+    doesnt solve all our problems
+        evidence influences the choice of downstram vars but not upstream
+            C isnt more likely to get a val matching the evidence
+    we would like to consider evidence when we sample every var
+
+dist over X,E
+P(e) = sum|x in X|(P(x,e))
+
+## end of variable elimination ##
+
+## starting machine learning ##
+
+given data
+    examples of a function (X,F(X))
+predict function F(X) for new examples X
+    discrete F(X): classification
+    continuous F(X): regression
+    probablistic F(X): probablistic
+
+important concepts
+    data: labeled instances
+        training set
+            learns the function
+        held out set
+            tune parameters
+        test set
+            test the function
+
+bayes net for classification
+    naive bayes    

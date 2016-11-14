@@ -1,0 +1,51 @@
+cpt -> conditional probability table
+
+prob of X is P(X|Y) where Y is X's parents
+
+steps for algorithm
+    1.
+        instantiate evidence
+        f[e](B,D), f(A), f(A,B) f(A,C), f(A,D,C)
+    2.
+        select an ordering of variables
+        A,B,C,D
+    3.
+        multiply all functions that mention A
+            f'(A,B,C,D) = f(A) * f(A,B) * f(A,C) * f(A,D,C
+        sum out A from this function
+            f''(B,C,D) = sum(A)(A,B,C,D)
+    4.
+        f[e](B,D), f''(B,C,D)
+            f'''(B,C,D) = f[e](B,D) * f''(B,C,D)
+    5.
+        g(C,D) = sum(B)(f'''(B,C,D))
+    6.
+        sum(D)(g'(D)) = answer
+            where answer is probability of evidence
+
+correctness
+    P(E=e) = sum(A,B,C,D)(P(A) * P(B|A) * P(C|A) * P(D|A,C) * P(E=e|B,D))
+        sum(D)(sum(C)(sum(B)(sum(A)(P(A)*P(B|A)*P(C|A)*P(D|A,C)*P(E=e|B,D)))))
+        sum(D)(sum(C)(sum(B)(P(E=e|B,D)*sum(A)(P(A)*P(B|A)*P(C|A)*P(D|A,C)))))
+        sum(D)(sum(C)(sum(B)(P(E=e|B,D)*f''(B,C,D))))
+        = ...
+        eventually get a number which is the answer
+
+complexity of this algorithm
+    O(n*(d^c))
+        n is total number of vars
+        d is number of possible values for each value
+        c is number of vars left to sum out at that step
+    goal is to minimize c
+    each ordering gives a specific compleity
+        for a given network and evidence
+    best complexity: minimum over all ordering
+        finding the best ordering is O(n^n)
+            so we use heuristics instead
+
+minimum degree heuristic
+    select a var that is connected to as few vars as possible
+        appears together with fewer vars in functions
+
+prior sampling
+    topological ordering / respectful ordering
