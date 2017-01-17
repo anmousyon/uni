@@ -164,29 +164,26 @@ class GreedyBustersAgent(BustersAgent):
              if livingGhosts[i+1]]
         "*** YOUR CODE HERE ***"
         ghosts = []
-
-        for ghost_dist in livingGhostPositionDistributions:
-            max_prob = ghost_dist.argMax()
-            ghosts.append(max_prob)
-
         goal = pacmanPosition
         min_dist = float("inf")
-
-        for pos in ghosts:
-            test_dist = self.distancer.getDistance(pacmanPosition, pos)
-            if test_dist < min_dist:
-                min_dist = test_dist
-                goal = pos
-
         best = legal[0]
         optimal = float("inf")
 
+        for ghost_dist in livingGhostPositionDistributions:
+            ghosts.append(ghost_dist.argMax())
+
+        for pos in ghosts:
+            dist = self.distancer.getDistance(pacmanPosition, pos)
+            if dist < min_dist:
+                min_dist = dist
+                goal = pos
+
         for action in legal:
-            next_pos = Actions.getSuccessor(pacmanPosition, action)
-            next_dist = self.distancer.getDistance(next_pos, goal)
+            next_dist = self.distancer.getDistance(
+                Actions.getSuccessor(pacmanPosition, action),
+                goal
+            )
             if next_dist < optimal:
                 best = action
                 optimal = next_dist
         return best
-
-        #util.raiseNotDefined()

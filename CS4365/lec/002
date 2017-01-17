@@ -1,0 +1,146 @@
+## start first half ##
+
+optimality
+    not optimal
+        bfs
+        dfs
+    optimal
+        ucs
+        A*
+            heuristic must be admissable
+
+CPSs
+    domain redcution
+        arc-consistency
+            AC3 constraint propogation
+        cutset conditioning
+
+games
+    minimax
+    alpha-beta pruning
+    expectimax
+    evaluation functions
+
+propositional logic
+    representation
+    reasoning
+    inference
+    SAT search (DPLL, Walksat)
+
+## end first half ##
+
+## start second half ##
+
+fol
+    representation
+        valid sentences, etc
+    unification
+    inference
+        answering queries on kb
+        resolution
+        forward/backward chaining
+
+hmm
+    temporal prob models
+    markov chains
+    forward algoithm
+        exact inference algorithm
+    particle filter
+        sample based
+
+bayesian networks
+    basic, independence
+    variable elimination
+        generalizing forward
+    sampling-based inference
+        generalizing particle filtering
+
+machine learning
+    basics
+    naive bayes
+    perceptrons
+
+#EXAMPLES#
+
+1.
+
+    a.
+
+        delete all leaf nodes not x,y,z
+        delete outgoing edges from y2
+        graph still connected, not conditionally independent
+
+    b.
+
+        delete all leaf nodes not x,y,z
+        delete all outgoing edges from xw
+        not connected, is conditionally independent
+
+    *c.
+
+        draw bayesian network over P(x1,z1,x2,y2,z2,x3)
+            given y1
+        P(x1,z1,x2,y2,z2,x3) = sum(P(all vars)|y1)
+        P(y1|x1) and P(x2|y1,z1)
+        sum{y1}(f(x1,y1,z1.x2)) = f(x1,z1,x2)
+        P(x1) P(z1|x1) P(x2|z1,x1)
+
+2. -> variable elimination
+
+    a.
+
+        eliminate var
+            multiply all functions that mention it
+            sum out the variable
+            add back to database
+
+        P(x1=1|x2=0)
+        eliminating x3
+            sum{x3}(P(x3|y2,z2))
+            = f(y2,z2)
+        eliminating y2
+            sum{y2}(P(y2|x2))
+        eliminating z2
+            sum{z2}(P(z2|x2))
+
+        relevancy based reasoning
+
+    b. -> best elimination ordering
+
+        optimal if it never creates a function
+            such that the scope of the function created is not included in the total scope
+
+        ie it never creates a large function
+
+    c. _. time and space complexity
+
+        finding degree of var
+            number of variables that form functions with it
+
+        ie for y2
+            x2, x3, z2
+            p(y2|x2)
+            p(x3|y2,z2)
+
+4.
+    a.
+    
+        laplace smoothing
+            pretend like we see each example at least once
+            laplace-k smoothing -> see them at least k times
+                tuned using validation data
+
+    b.
+
+        classification
+
+5.
+
+    a.
+        
+        perceptron classification
+        separability
+    
+    b.
+
+        error and separability

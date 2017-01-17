@@ -1,0 +1,85 @@
+# general background #
+
+eval criteria
+    readability
+        simplicity
+        orthogonality
+    writability
+        simplicity
+        orthogonality
+        support for abstraction
+        expressivity
+    reliability
+        type checking
+        exception handling
+        aliasing
+        readability and writability
+    cost
+        learning/training
+        writing
+        compiling
+        testing
+        executing
+        maintaining
+        availability of free compilers
+        reliability
+
+categories
+    imperative
+    functional
+    logic
+    answer set programming
+
+trade-offs
+    reliability vs cost of execution
+    readability vs writability
+    writability vs reliability
+
+compiler
+    von neumann bottleneck
+        conn speed between a computers mem and its processor determines speed of computer
+        program instructions often can be executed much faster than the information can be transmitted
+    ie. c, c++
+
+pure interpretation
+    no translation
+    easier implementation of programs
+    source -> interpreter -> results
+    ie. python
+
+hybrid
+    compromise between compilers and pure interpreters
+    ie. jvm (bytecode)
+
+jit compilers
+    initially translate programs to an intermediate language
+    compile intermediate lang to machine code
+    machine code kept for subsequent calls
+    widely used for java and .NET programs
+    essentially delayed compilers
+
+preprocessors
+    macros used to specify code from other files to be used
+
+# lisp #
+
+background
+    functional
+    interactive
+    symbolic representation & computation
+        linked list as expression
+    everything is either an atom or a list (expresssion)
+    dynamically typed
+    recursion
+        even a list is defined recursively
+
+atom and list
+    atom
+        a
+        b
+        etc
+    list
+        list of atoms
+            '(a b c)
+        list of lists and atoms
+            '(a (b c) d (e f) g)

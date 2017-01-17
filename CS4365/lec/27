@@ -1,0 +1,45 @@
+## start deep learning ##
+
+uses deep architectures to learn high-level feature representation
+
+features - x | desired output - y
+    want to learn f of y = f(x)
+
+feature engineering
+    raw features -> low accuracy
+
+raw data -> trainable features -> trainable classifier
+
+architecture
+    input -> hidden layers -> output
+
+hidden layers contain more complex features
+    how many hidden layers?
+    how many hidden nodes?
+
+allows you to go from raw input vector representation
+    to a very high level representation like "man sitting"
+
+## start markov logic ##
+
+a logical kb is a set of hard constraints on set of possibl words
+    lets make them soft constrinats
+
+when word violates formula
+    if becomes less probable, not impossible
+
+give each formula a weight
+    higher weight -> stronger constraint
+
+P(word) dp exp(sum(weights of formulas is satisfies))
+
+markov logic netowrk (MLN) is a set of pairs (F,w) where
+    F is a formula in fol
+    w is a real number
+
+together with a set of constants, it defines a bayesian network
+
+## start NLP ##
+
+machine translation
+    hidden markov model

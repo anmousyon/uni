@@ -1,0 +1,12 @@
+=, eql, equal, equalp
+    eql true if
+        args are eq
+        same numbers of the same type with the same value
+        char objects that represent the same char
+
+reverse
+    recursively done
+
+factorial
+    tail-recursion
+

@@ -1,0 +1,86 @@
+## start nueral networks ##
+
+linear classifiers
+    inputs are feature vals
+    each feature has a weight
+    sum is the activation
+        activation[w](x) = sum[i](w[i] * f[i](x)) = w * f(x)
+        positive -> +1
+        negative -> -1
+    separability
+        true if some params get training set perfectly correct
+    convergence
+        if training is separable
+            perceptron will eventually converge
+    mistake bound
+        max num mistakes related to margin or degree of separability
+
+imporiving perceptron
+    problems
+        if data isnt separable, weights might thrash
+            averaging weight vecotrs over time can help (avgeraged perceptron)
+        mediocre generalization: finds barely separating solution
+        overfitting / overtraining
+            test on held-out data, try to find global max
+    fixes
+        MIRA algorithm
+            adjust the weights to mitigate these effects
+            choose an update size that fixes the current mistake
+                but doesnt change it too much (minimizes changes to w)
+            w[y] = w'[y] - t*f(x)
+                w[y] -> new, w'[y] -> old
+                y -> predicted answer
+            w[y*] = w'y[*] + t*f(x)
+                w[y*] -> new, w'[y*] -> old
+                y* -> correct answer
+            t = (w'[y] - w[y]) / f(x)
+                but w[y] is not known
+            min[w] (1/2) * sum[y](||w[y] - w'[y]||^2)
+            w[y*] * f(x) > w[y] * f(x) + 1
+                +1 helps to generalize
+        minimum correcting update
+            min[t](||t*f(x)||^2)
+            w[y*] * f(x) >= w[y] * f(x) + 1
+            t = (w'[y] - w'[y*]) * f(x) + 1) / (2 * f(x) * f(x))
+        maximum step size
+            bad to make too large of a step
+                bad label
+                not enough feautres
+            cap max possible val of t with some constant C
+                t* = ((w'[y] - w'[y*]) * f(x) + 1) / (2 * f(x) * f(x)), C)
+
+## end of neural networks ##
+
+support vector machines (svm)
+    maximize the margin (street width)
+    only support vecotrs matter
+    basically, SVMs are MIRA where you optimize over ALL examples at once
+        instead of a single example at a time
+
+summary
+    naive bayes (probabilities)
+        gives prediction probs
+        strong assumptions about feature independence
+        one pass through
+    perceptrons / mira (error, mistakes)
+        makes less assumptions about data
+        mistake-driven learning
+        multiple passes through data
+        often more accurate than naive bayes
+    idea behinf ml
+        3 key items
+            representation
+                all the assumptions are here (independence, separability, etc)
+            objective function
+            optimization
+        naive bayes
+            naive bayesian network
+            maximize the likelihood
+            counting
+        perceptron
+            linear classifier
+                w * f > 0
+            minimize classification error
+            iterative algorithm
+
+## end of classification ##

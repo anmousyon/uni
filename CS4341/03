@@ -1,0 +1,8 @@
+Dual of a function applied to complement of inputs equal to complement of function 
+
+normal form
+    sum of products form
+    all vars appear in product terms
+    ie. f(a,b,c) = a or (b and c)
+
+know NAND and NOR

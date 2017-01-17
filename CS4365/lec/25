@@ -1,0 +1,21 @@
+bayes nets for classification
+    use prob model
+    features are observed random vars F[i]
+    Y is the query var (class var)
+    use prob inference to compute most likely Y
+        y = argmax[y] P(y|f[1], ..., f[n])
+    simple classification
+        two binary features
+        direct estimate -> P(m|s,f)
+        bayes estimate -> P(s,f|m)P(m) / P(s,f)
+        cond ind -> -> P(s|m)P(f|m)P(m) / P(s,f)
+
+laplace smoothing
+    pretend you saw every outcome k extra times
+    P[LAP,k](x) = (c(x) + k) / (N + k|X|)
+        k is the strength of the prior
+
+partially observable case
+    expectation maximization
+
+## END OF NAIVE BAYES ##

@@ -1,0 +1,40 @@
+modules
+    combinational
+        assign
+        case or casex (with default)
+        if -> only if all signals have default
+        instantiations of other comb modules
+    sequential
+        combinational logic
+        explicitly declared registers (flip flops)
+
+dont use
+    loops
+    always except for case, casex, or if statements
+
+do use
+    signal concatenations
+        {a,b} = {c,d}
+    signal subranges
+        a[7:1]
+
+constants
+    width defined as 5'd31 not 31
+
+signals
+    buses are numbered high to low
+        wire [31:0] bus
+    all signals should be high-true (except primary inputs and outputs)
+
+sim flow
+    create a working library
+    compile design files
+    load and run sim
+    debug results
+
+project flow
+    create project
+    add files to project
+    compile design files
+    run sim
+    debug
