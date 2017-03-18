@@ -1,0 +1,70 @@
+origins of attitudes
+    political socialization
+        process of developing political attitudes
+    development venues
+        agent-based (ordered most ot least important)
+            family
+            education
+            social circles
+            political environments
+        life-cycle (each age range has itself ordered most ot least important)
+            early childhood (0-7)
+                family
+                school (small amount)
+            late childhood (7-13)
+                family (-)
+                school (+)
+                social circles (small amount)
+            teenage adolescence (13-26)
+                school (+)
+                social circles (+)
+                family (-)
+                political environments
+            adulthood (26+)
+                social circles (+)
+                political environments (+)
+                family and political envirnoment drop off completely (-)
+                older you get the more political envirnoment means over social circles
+
+collecting public opinion
+    instruments
+        The Afrobarometer
+        ANES
+        Pew
+    sampling
+        collecting all opinion is ideal
+            but that is time/cost prohibitive
+        sample is taken to collect opinion
+        survey sample
+            smaller segment of pop used to determine aggregate opinion
+            probability sample
+            sample size
+            margin of error
+                percentage
+                confidence interval around our opinion
+                based on sample sizr
+                    ss +, moe -
+                    ss -, moe +
+
+measurement
+    nominal level (named categories WITHOUT ordering)
+        sex
+            male
+            female
+        religion
+            baptist
+            catholic
+            atheist
+            etc
+    ordinal level (named categories WITH ordering)
+        agreement
+            strongly agree -> strongly disagree
+        education
+            high school diploma -> doctorate
+    interval level (named, ordered, ordering means something (ordering is equal and significant between categories))
+        ideology
+            1-100
+                1 = very liberal
+                100 = very conservative
+        hours of media viewership
+            0-3, 3-6, 6-10, 10+

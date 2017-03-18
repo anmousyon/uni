@@ -1,0 +1,47 @@
+init vector
+    random block used to randomize encryption
+    should not be reused
+    not considered secret
+
+padding
+    multiple of block size
+
+message authentication codes
+    ensure integrity and authenticity
+    takes secret key and message and returns tag
+    needed for most communication
+    encrypt-then-MAC
+        IPSec
+    MAC-then-encrypt
+        SSH
+    MAC-and-encrypt
+        SSL/TLS
+
+block modes
+    electronic codebook (ECB)
+        not recommended
+        each plaintext is related to its encoded block
+    cipher block chaining
+        most widely used
+        changes are cascaded
+        XOR with previous ciphertext
+        cant be parallelized for encryption
+        chain in single bit flip is propogated throughout everything
+
+breaking block ciphers (SSL/TLS)
+    BEAST - browser exploit against SSL/TLS
+    september 2011
+    stems from ability to know the init vector at time of encryption
+    this means every packet but the first will have a known init vector
+
+POODLE
+    padding oracle on downgraded legacy encryption
+    attack against CBC after a forced downgrade
+    CBC MAC in SSLv3 doesnt cover padding
+        attacker can manipulate padding at will
+    SSLv3 mandates padding is (# of bytes) -1 in the final bytes
+        and those bytes are ignored
+    results in a padding oracle
+    attacker can send requests, but not see their plaintext
+    attacker forces the final block to be completely padding (message length is a multiple of block size)
+        so we know final byte is 15

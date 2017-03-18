@@ -1,0 +1,83 @@
+# expressions and assignment statements #
+
+arithmetic expressions
+    operators, operands, parentheses, and function calls
+
+design issues
+    precedence
+        order in which "adjacent" operators of difference precedence levels are evaluated
+    associativity
+        order in which "adjacent" operators of same precedence levels are evaluated
+        ex. left to right, right to left, overriding with parentheses
+    order of operations
+    evaluation side effects
+        when a function chanes a two-way parameter
+        solutions
+            disallow functional side effects
+                no two-way params in function
+                no non-local refs in functions
+            referential transparency
+                if any two expression in the program that have the same val can be substituted for one another anywhere in the program without affecting action of the program
+                if functions have no side effects then they have the same results all the time
+                advantages
+                    semantics of a program is much easier to understand if it has referential transparency
+                    functional languages
+                        functions cannot have state, which would be stored in local vars
+                        if functio uses an outside value, it must be a constant (no variables)
+                            so val of a function depends only on its parameters
+    overloading
+        use of an operator for more than one purpose
+        ex
+            + for int and float
+            + for addition and concatenation
+        user-defined
+            can help readability
+            can define nonsense ops
+            can redefine a useful operator
+    type mixing
+        narrowing conversion
+            converts to a type that canot include all of the values of the original type
+        coercion -> implicit type conversion
+            ada
+                virtually no coercions in expressions
+            ml and F#
+                no coercions in expressions
+        casting -> explicit type conversions
+
+operators
+    unary, binary, ternary
+
+ruby: precedence and associativity
+    arithmetic expressions are implemented as methods
+
+# ON TEST #
+
+prolog: precedence and associativity
+    :-(precedence, type, name)
+
+    ?- op(500, yfx, '#')
+    ?- (A#B) = 1#2#3#4
+        etc
+#   ON TEST #
+
+conditional expression
+    x = y if y>0 else z
+
+relational and boolean expressions
+    relational
+        use relatioal ops and operands of verious typs
+        evals to some bool rep
+    boolean
+        operands are boolean and result is boolean
+
+short circuit eval
+    (3*a)*(b/13)
+        if a is zero, no need to evaulate the rest
+    a or b
+        if a is true, no need to evaluate b
+
+assignment statements
+    general form
+        <target_var> <assign_operator> <expression>
+    conditional targets
+        ($flag ? $total : $subtotal) = 0

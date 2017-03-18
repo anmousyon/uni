@@ -1,0 +1,64 @@
+#project life cycle#
+
+lifecycle
+    phases a project goes through from inception to release and eventually maintenance
+
+predictive (plan-driven)
+    product and deliverables are def at beginning of project and any changes to scope are carefully managed
+
+adaptive (change-driven)
+    product is developed over mult iters and detailed scope is defined for each iter only as iter begins
+
+waterfall
+        phases
+        reqs
+        analysis
+        design
+        implementation
+        maintenance
+        retire
+    all info needed for each step is readily available by the time you get to that step
+
+real world
+    people make mistakes
+    operating env (tech) changes
+    business env (competition) changes
+    customer changes their mind
+
+the royce "waterfall" model (1970)
+    need feedback loops
+    "do it twice"
+
+inc and iter dev
+    inc means add onto
+        even if reqs do not change, early releases add customer value
+    iter means re-do
+        when reqs change, rework is necessary
+    strengths
+        mult opportunities for checking sofwtare product is correct
+            every iter includes test workflow
+            faults can be detected and corrected early
+        arch
+            various component modules and how they fit together
+        robustness
+            property of being able to handle extensions and changes without falling apart
+        mitigates risks early
+        have working version of the software product from near the start
+            provide early value to the users
+
+#project management#
+
+estimating
+    time
+    cost
+        largely driven by effort
+    size
+        loc
+        function points
+        etc
+    critical resources
+    schedule and effort are NOT the same
+        schedule gives time
+        effort gives cost
+    tools and other env factors also effect productivity
+

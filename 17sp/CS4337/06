@@ -1,0 +1,7 @@
+denotational semantics
+    state of program is the values of all its current vars
+
+program proof process
+    post condition for entire program is desired result
+        work back through program to first statement
+

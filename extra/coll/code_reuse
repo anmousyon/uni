@@ -1,0 +1,40 @@
+CodeHow
+    searching reusable code in software repos
+    uses free-form queries
+    text similarity and relevant APIs
+    extended boolean model that combines boolean query with vector space model
+    built on elasticsearch and microsoft azure
+
+code retrieval
+    query expansion
+        relevant APIs
+        method body
+        method name
+    natural language query
+        retrieve code based on similarity between expanded query and a code snippet
+
+searching for API usage
+    recommends API sample code extracted from repo
+
+applying deep learning
+    adapts RNN encoder-decoder
+    language model encodes a query and decodes an API sequence
+    encoder
+        rnn that encodes a sequence into a context vector
+    decoder
+        rnn that sequentially gens a sentence based on the context vector
+    code
+        natural language annotation and api sequences
+            training instance
+                train
+                api related query
+                        result
+
+code generation
+    programming by example (PBE)
+        given input/output pairs
+        PBE synthesizes a program
+    neural programming by example (NPBE)
+        given input.output
+        NPBE finds relevant tools
+            then synthesizes a program

@@ -1,0 +1,89 @@
+# estimation #
+
+contributors to poor estimation
+    lack of
+        estimating experience
+        historical data
+        systematic estimation process, sound techniques, or models
+        feedback
+    unrealistic
+        expectations
+        assumptions
+    failure to
+        include essential project activities and products within the scope
+        recognize and address the inherent uncertainty
+
+estimates affect behaviour
+    different estimates create different projects
+        more accurate estimates are not necessarily better
+    estimation should not be judged solely on how accurate it is
+    should also be judged on hoe costly are the projects it creates
+
+parametric cost estimation models
+    metric used as an input to a model to compute cost and duration
+        parametric model is unbiased and therefore, in principle, superior to expert opinion
+        estimates are only as good as the underlying assumptions
+    ex
+        SLIM model
+            larry putnam
+            very high level
+        COCOMO -> COnstructive COst MOdel
+            very detailed (considers many differnt factors)
+
+input to cost model
+    loc (or fp) is accurately known only when the project is finished
+    estimation on loc is therefore double dangerous
+        start the estimation process, loc (fp) in the finished product must be estimated
+        loc (fp) estimate is then used to estimate cost of the product
+
+SLIM
+    (E/B)^(1/3) * t[d]^(4/3) = size/pp
+    e = effort
+    B = a constant (function of project size)
+    t[d] = dev time
+    size = source lines of code
+    pp = process productivity
+    k = e / 0.39
+    mb = manpower builup
+    impossible and impractical regions
+        if we knew enough to draw the critical path (or PERT) diagram the length of critical path would represent the minimum schedule
+            impossible region is that less than the minimum
+        usually impractical to plan a dev time much greater than 130% of the minimum
+            lengthening the dev time (just two or three months) leads to greatly reduced cost
+        death march projects attempt to enter the impossible region
+
+COCOMO (COCOMO 2)
+    application comp model for early phases
+        based on feature points
+    early design model
+        based on function points
+    post arch model
+        based on function points
+        PM = A * size^(E*pi) (EM[i])
+            PM = person months of effort
+            A = 2.94
+            size is in KSLOC
+        E = B + 0.01 * sum(SF[i])
+            B = 0.91
+        A and B are constants that can be calibrated
+        effort multiplies (EM)
+            17 different ones
+
+activity network
+    logical order of tasks that define the sequence of work in a project
+    based on info and/or material deps alone
+    includes the duration of the tasks
+
+critical path
+    path with longest total time
+    allows for "slack" on non-critical paths
+
+duration compression
+    crashing
+        analyze cost and schedule tradeoffs to determine how to obtain the greatest amount of schedule compression for the least incremental cost
+            does not always result in a viable alternative
+            usually results in increased cost
+    fast tracking
+        doing activities in parallel that would normally be done in sequence
+            usually results in rework
+            usually increases risk

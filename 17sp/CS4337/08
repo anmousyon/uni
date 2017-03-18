@@ -1,0 +1,51 @@
+lexical analysis
+    state diagram
+
+pairwise disjointness
+    other characteristic of grammars that disallows top-down parsing is the lack of pairwise dijointness
+        inability to determine the correct RHS on bases of one token lookahead
+    test
+        for each nonterminal, A, in grammar that has more than one RHS, for each pair of rules
+            A -> a[i] and
+            A -> a[j]
+            it must be true that
+                FIRST(a[i]) and FIRST(a[j]) = {}
+            eg
+                A -> a | bB | cAb   #ok
+                A -> a | aB         #conflict
+
+bottom-up parsing
+    finding correct RHS in a right-sentential form to reduce to get the previous right-sentential form in the derivation
+    =>[rm] means right-most derivation
+    intuition about handles
+        def: B is the handle of the right sentential form y = aBw
+            iff S =>*[rm] aAw =>[rm] aBw
+            (1 step derivation of B to A is the 'ROOT OF A SUBTREE' B)
+        def: B is a phrase of the right sentential form y
+            iff S =>* y = a[1]Aa[2] =>+ a[1]Ba[2]
+            (this is, a[1]Aa[2] =>+ a[1]Ba[2] in 'ONE OR MORE' steps - all subtrees)
+        def: B is a simple phrase of the right sentential form y
+            iff S =>* y = a[1]Aa[2] => a[1]Ba[2]
+            (that is, a[1]Aa[2] => a[1]Ba[2] in 'ONE' step)
+    handle
+        handle of a right sentential form is its leftmost simple phrase
+    more intuition
+        parsing can be though of as handle pruning
+    LR parsing: shift-reduce algs
+        reduce is the action of replacing the handle on the top of ht eparse stack with its corresponding LHS
+        shift is the action of moving the next token to the top of the parse stack
+    advantages of LR
+        works for nearly all grammars
+        can detect syntax errors as soon as possible
+        lr is a superset of class parsable by ll
+        work on larger class than ll but are as efficient as ll
+    lr parsers must be contrsucted with a tool
+    parser history
+        parser state
+        parser stack
+    !!!table driven with two components!!! ON QUIZ
+        action table
+            specifies the action of the parser, given the parser state and next token
+        GOTO table
+            specifies which state to put on top of the parse stack after a reduction is made
+

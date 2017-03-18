@@ -1,0 +1,155 @@
+names
+	special characters
+		ie. @, :
+
+case sensitivity
+	disadvantage
+		readability
+
+special words
+	keyword
+		special only in certain contexts
+	reserved
+		special word that cannot be used as a user-defined name
+
+vars
+	abstraction of a memory cell
+	six tuple of attributes
+		name
+			not all vars have them
+		address
+			memory address with which it is associated
+			if two names can be used to access same mem location
+				they are called aliases
+		value
+			contents of location with which it is associated
+			I-value
+				address (location)
+			r-value
+				the value at the address
+		type
+			determines
+				range of values
+				set of operations
+				precision (ie for float)
+		abstract memory cell
+			physical cell or collection of cells associated with var
+		lifetime
+				static
+					bound to memory cells before exec begins
+					remains bound to same memory cell throughout exec
+					advantages
+						efficiency
+					disadvantages
+						lack of flexibility
+				dynamic
+					stack dynamic
+						storage bindings created for bar when declaration statements are evaluated
+						if scalar, all attriutes except address are statically bound
+						local vars in C subprograms (not declared static) and java methods
+						advantages
+							allows recursion
+							conserves storage
+						disadvantages
+							overheard of allocation and deallocation
+							subprograms cannot be history sensitive
+							inefficient references
+					explicit heap-dynamic
+						allocated and deallocated by explicit directives specified by programmer
+							happens during runtime
+						referenced only through pointers or references
+							dynamic objects in C++
+								all objects in java
+						advantage
+							provides for dynamic storage management
+						disadvantage
+							inefficient (and unreliable)
+					implicit heap-dynamic
+						allocation and deallocation caused by assignment statements
+						all strings and arrays in perl, js, and php
+						advantage
+							flexibility
+						disadvantage
+							inefficient
+							prone to errors in runtime
+		scope
+			range of statements over which it is visible
+			local
+				declared in that unit
+			non-local
+				visible in unit but not declared in that unit
+			static scope
+				to connect a name reference to a var, you must find the declaration
+				search process
+					search decs, first locally then in increasining larger enclosing scope until found
+				static ancestors
+					enclosing static scopes
+				static parent
+					nearest static ancestor
+				nested subprogram definitions create nested static scope
+			global scope
+				C, C++, php, python
+					allow var decs to appear outside functions defs
+				php
+					programs are embedded in html
+					scope of var declared in function is local to the function
+					scope of var implicitly dec outside functions is from the dec to end of program
+						but skips over intervening functions
+			dynamic scope
+				based on calling sequences of program units not textual layout
+				refs to vars are connected through decs and searches backwards temporally
+				advantage
+					convenience
+				disadvantages
+					while subprogram is exec, its vars are visible to other subprograms
+
+binding
+	an association between an entity and an attribute
+	examples 
+		var and type/value
+		operation and a symbol
+	binding time
+		time at which binding takes place
+		possible times
+			language design or implementation time
+				bind operator symbols to operations
+				bind floating point type to representation
+			compile time
+				bind a var to a type in C or Java
+			load time
+				bind a C or C++ static var to a memory cell
+			runtime/execution
+				bind a non-static local var to a mem cell
+	static binding
+		first occurs before runtime and remains unchanged throughout program execution
+	dynamic binding
+		first occurs during runtime or can change during execution of the program
+		python, ruby, javascript, etc
+		advantages
+			flexibility
+		disadvantages
+			high cost
+			type error detection by compiler is difficult
+type systems
+	explicit declaration
+		program state used for declaring types of vars
+	implicit declaration
+		default system for identifying types without use definition
+
+scope and lifetime are related by not the same
+
+referencing envs
+	collection of all names that are visible in the statement
+	static-scoped
+		local vars plus all visible vars in all enclosing scopes
+	subprogram is active if its execution has begun but not yet terminated
+	dynamic-scoped
+		local vars plus all visible vars in all active subprograms
+
+named constants
+	var that is bound to a val only when it is bound to storage
+	advantages
+		readability
+		modifiability
+	used to parameterize programs
+	binding to named constants can be static or dynamic

@@ -1,0 +1,49 @@
+the iron triangle
+    three things
+        scope
+        cost
+        schedule
+    changing one affects one or both of the others
+    you cannot "set" all three at the same time
+    five things (karl wiegers)
+        schedule
+        staff
+        cost
+        quality
+        scope
+
+software design principles
+    divide and conquer
+        aka stepwise refinement, reductionism
+    modules
+        small enough to understand
+    high cohesion
+        focused on one thing
+    low coupling
+        minimize interconnections
+    information hiding
+        abstraction
+
+critical software practices
+    project integrity
+    construction integrity
+    product stability and integrity
+
+unified process
+    iterative and incremental design
+    phases
+        inception
+        elaboration
+        construction
+        transition
+    workflows
+        requirements
+        analysis
+        design
+        implementation
+        test
+
+mcconnells rapid development
+
+pmi
+    project management institute

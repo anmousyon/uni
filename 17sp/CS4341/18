@@ -1,0 +1,116 @@
+# half adder #
+    two inputs, two outputs
+    no carry-out
+
+# half adder verilog #
+
+module ha(a,b,c,s);
+    input a,b;
+    output c,s;
+    wire s = a^b;
+    wire c = 
+
+# full adder #
+
+created by
+    two half adders and an or gate
+    a majority and xor
+        majority of a,b,cin
+            (a and b) or (a and cin) or (b and cin)
+
+# full adder verilog #
+
+// from two half adders
+module fa(a,b,cin,cout,s);
+    input a,b,cin;
+    output,cout,s;
+    wire g,p;
+    wire cp;
+    ha ha1(a,b,g,p);
+    ha ha2(cin,p,cp,s);
+    or o1(cout,g,cp);
+endmodule
+
+// from truth table
+module fa(a,b,cin,cout,s);
+    input a,b,cin;
+    output cout,s; // carry and sum
+    wire s=a^b^cin;
+    wire cout=(a&b)|(a&cin)|(b&cin); // majority
+endmodule
+
+cout=(a&b)|(cin&(a|b))
+c[i+1] = (a and b) or (c[i] and (a or b))
+
+# multi-bit adder #
+
+rippling the carry
+    carry-out from previous adder goes to carry-in
+
+# verilog #
+
+module ripple(xxx);
+    parameter n=8;
+    input [n-1:0] a,b;
+    input cin;
+    output[n-1:0] s;
+    output cout;
+
+    wire [n-1:0] p=a^b;
+    wire [n-1:0] g=a&b;
+    wire [n:0]
+    ...
+endmodule
+
+# negative integers #
+
+sign magnitude
+    flip sign bit
+    magnitude stays the same
+
+one's complement
+    flip sign bit
+    flips all the bits
+
+two's complement
+    flip sign bit
+    take one's complement and add one
+
+# 2's complement #
+
+makes subtraction easy
+
+represent neg numbers
+    -x as (2^n - x)
+
+overflow
+    if both inputs have same sign and output has different sign
+
+# multiplication #
+
+shifting left multiplies by 2
+    5 = 101, 10 = 1010, 20 = 10100
+    3x = 2x+x
+    4x = 2(2x)
+    first gen partial products
+        p[ij] = a ^ b <- wrong
+    then sum partial products to get sum
+
+
+# 4 bit multiplier verilog #
+too long to type
+
+# division #
+
+check for 0
+
+long division approach
+    
+
+short division approach
+
+start
+-> subtract div reg from remainder register and place result in remainder
+-> once remainder is negative, add back the div
+-> divide remainder by divisor
+

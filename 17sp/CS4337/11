@@ -1,0 +1,27 @@
+prolog
+    member
+        arguments
+            two arguments
+            is first arg a member of second arg
+        how it works
+            if first arg is head
+                return true
+            else
+                check if first arg is member of list - head
+        creates a right-heavy tree
+    append
+        arguments
+            three arguments
+            first two arguments make up third arument
+            A + B = C
+        how it works
+            append([X|Y],Z,[X|W]) :- append(Y,Z,W)
+            append([],X,X).
+    prefix
+        arguments
+            two args
+            append first arg before second arg
+    suffix
+        arguments
+            two args
+            append second arg before first arg

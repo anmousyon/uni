@@ -1,0 +1,107 @@
+stepwise refinement
+    recursively breaking down a problem into two or more sub-problems
+        until theyre simple enough to solve directly
+    hierarchical structure
+        partial ordering 9uses or depends on) between modules or programs
+    clean decomp
+        every module hides its implementation from all others
+
+understandable modules
+    divided into modules small enough to understand
+    one or two pages max is a good rule of thumb
+
+high cohesion
+    degree to which elements of a module belong together
+    focusing on a simple concept
+    strength of relationship between pieces of functionality
+
+low coupling
+    manner and degree of interdependence between software modules
+    measure of how closely connected two routines are
+
+information hiding
+    segregating design decisions that are likely to change
+    protects other modules from extensive modification on design change
+    provides stable interface which protects reaminder from implementation
+
+abstraction
+    generalization by reducing information content of a concept
+    to retain only info thats relevant for particular purpose
+
+decomposing modules
+    allowing one module to be written with little knowledge of code in another
+    modules can be reassembled and replaced without reassembly of whole system
+
+module -> responsibility, not necessarily a subprogram
+
+information hiding
+    hierarchy nd "clean" decomp are independent props of system structure
+
+abstraction
+    data abstraction
+        designer thinks at the level of an abstract data type
+    procedural abstraction
+        define a procedure -> extend the language
+
+coincidental cohesion
+    no cohesion
+    performs multiple, completely unrelated actions
+        eg. helpers or utilites classes
+
+temporal cohesion
+    performs a series of actions related in time
+
+communicational cohesion
+    all actions operate on same data
+    lack of reusability
+
+informational cohesion
+    performs a number of actions
+    each with its own entry point
+    independent code for each action
+    all peformed on same data structure
+
+sequential cohesion
+    ouput of one procedure is direclty related to input of another
+
+functional cohesion - best one
+    performs exactly one action
+
+lack of cohesion of methods (LCOM)
+    if they acces disjoint sets
+        P++
+    if P > Q
+        LCOM = P-Q
+    else
+        LCOM = 0
+
+content coupling
+    two modules are content couples if one directly references contents of the other
+    when one module modifies or relies on internal workings of another
+
+stamp coupling
+    entire data structure passed as parameter to module
+        but called module operates on some but not all individual components of data structure
+
+data coupling
+    all parameters are homogeneous data items
+        simple params, or data structures all of whose elements are used by called module
+
+low coupling supports information coupling
+
+coupling measuring
+    fan-out
+        number of modules called by this module
+    fan-in
+        number of modules that call this module
+
+data and actions
+    two aspects of a product
+        actions that operate on data
+        data on which actions operate
+    two basic ways of designing a product
+        operation-oriented design
+        data-oriented design
+    third way: hybrid methods
+        object-oriented analysis and design
+

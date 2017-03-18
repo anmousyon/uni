@@ -1,0 +1,142 @@
+#c program memory layout#
+
+memory layout of c program
+    text segment
+        machine instructions that the cpu executes
+    inited data segment
+        aka data segment
+        containing vars that are specifically init in the program,
+    uninited data segment
+        aka bss segment
+        named after an acient assembler operator that stood for block started by symbol
+    stack
+        where automatic vars are stored
+        info that is saved each time a function is called
+    heap
+        where dynamic memory allocation usually takes place
+
+memory layout
+    -> high address
+    command-line args and env vars
+    stack and heap
+        grow toward each other
+    uninited data (bss)
+        inited to zero by exec
+    init data and text
+        read from program file by exec
+    -> low address
+
+textt segment
+    consisting of machine instructions that CPU executes
+    shareable so that only a single copy needs to be in memory for frequently executed stuff
+
+inited data segment
+    containing vars that are specifically inited for the program
+
+bss
+    appearing outside any function causes this var to be stored in the uninitied data segment
+
+stack
+    each time function is called
+        address of where to return to and certain info about callers env (machine regs) are saved here
+    newly called func then allocs room on the stac for its auto and temp vars
+        this is how rec functions in C can work
+
+heap
+    heap located between uninited data and stack
+
+shared libs
+    remove common lib routines from the exec file, instead maintaining a single copy of the lib routine somehwere in mem that all processes reference
+    reduces size of each exec but adds overhead in runtime
+    shared libs can then be replaced with newer ones without changing the code of all programs
+
+mem allocation
+    malloc, calloc, realloc
+    malloc
+        allocates specified num of bytes in mem
+        init val of mem is unknown
+    calloc
+        allocs space for specified num of objects
+    realloc
+        reallocates a specific amount of memory
+
+free
+    deletes allocated section of memory
+
+# data types #
+
+data type
+    defs a coll of data obj and a set of predef ops on those obj
+
+descriptor
+    coll of the attr of a var
+
+primitive data types
+    those not def in terms of other data types
+    some are reflection of hardware
+    other require only a little non-hardware support
+    examples
+        integer
+            almost always an exect reflectionof hardware
+        float
+            models real nums, but only as approx
+            usually exactly like the hardware, but not always
+        complex nums
+            each val consists of two floats (real and imaginary parts)
+        decimal
+            for business applications (money)
+            store a fixed nuber of decimal digits
+        bool
+            simplest of all
+            could be implemented as buts, but often as bytes
+        char
+            stored as numeric coding
+                ASCII
+                UNICODE
+        string
+            values are sequence of chars
+            design issues
+                primitive or array of chars?
+                    not primitive in c and c++
+                    primitive in java and python
+                should length be static or dynamic?
+            ops
+                assignment and copying
+                comp
+                concat
+                substring ref
+                pattern matching
+                length
+                    static in java
+                    limited in c and c++
+                    dynamic in perl and js
+            descriptors
+                compile-time
+                    static string
+                    length
+                    address
+                run-time
+                    static string
+                    max length
+                    current length
+            char string implementations
+                static length
+                    compile-time descriptor
+                limited dynamic length
+                    may need runtime descriptor for length
+                dynamic length
+                    need run-time descriptor
+                    run-time overhead
+                    alloc/dealloc is biggest implementation program
+                        fragmentation & which chunk to be allocated (best-fit, first-fit, etc)
+
+subscript binding
+    static
+        subscript ranges are statically bound and storage alloc is static
+            efficient
+    fixed stack-dynamic
+    stack-dynamic
+    fixed heap-dyanmic
+    heap-dynamic
+        flexibility
+        large overhead

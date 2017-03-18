@@ -1,0 +1,7 @@
+switching power
+    switching take power
+    P dp a * f
+    P dp C[L] * V[dd]^2
+
+dynamic power
+    circuits "leak" current

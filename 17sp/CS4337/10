@@ -1,0 +1,39 @@
+prolog
+    general-purpose logic programming language
+        ai and computational linguistics
+    single data type
+        term
+            atoms, numbers, vars, or compound terms
+                atom
+                    general-purpose game with no iherent meaning
+                numbers
+                    float or integer
+                vars
+                    denoted with uppercase letters
+                    eg. X
+                compound terms
+                    composed of an atom called a "functor" and number of arguments which are terms
+                    functor followed by comma-sep list of argument terms, which is contaied in ()
+                    list
+                        ordered collection of terms
+                        eg. [1,2,3]
+                    strings
+                        sequence of chars
+    syntax
+        rule
+            Head :- Body.
+                head is true if body is true
+        clauses
+            cat(tom).
+                tom is a cat
+            cat(tom) :- true.
+                tom is always a cat
+        questions
+            ?- cat(tom).
+                true
+            ?- cat(X).
+                X=tom
+        clause with body = rule
+            animal(X) :- cat(X)
+                ?- animal(X).
+                    X=tom

@@ -1,0 +1,61 @@
+# equality operator #
+use nor gate on all corresponding bits ithen and them all together
+
+
+module eqcomp(a,b,eq);
+    parameter k=8;
+    input [k-1:0] a,b;
+    output eq;
+    wire eq;
+    
+    assign eq = (a==b);
+endmodule
+
+# magnitude comparator #
+
+module magcomp(a,b,gt);
+    parameter k=8;
+    input[k-1:0] a,b;
+    output gt;
+
+    wire [k-1:0] eqi = a ~^ b;
+    wire [k-1:0] gti = a & ~b;
+
+    wire [k:0] gtb {(eqi[k-1:0] & gtb[k-1:0]) | gti[k-1:0], 1'b0};
+    wire gt = gtb[k];
+endmodule
+
+module behavmagcomp(a,b,gt);
+    parameter k=8;
+    inmput [k-1:0] a,b;
+    output gt;
+    wire gt = (a>b);
+endmodule
+
+# max unit #
+
+send to comp and a mux and send signal from comp to mux as selector
+
+# arbiter #
+
+handles requests from multiple devices to use a single resource
+
+# priority encoder #
+
+n-bit input signal a
+m-bit output signal b
+    b indicates the pos of the first bit in a
+
+n -> arbiter -> encoder -> m
+
+# rom #
+
+address -> decoder -> inverters for each bit -> combined -> inverter -> multiplexer (also has selector from address)
+
+# ram #
+
+address and data input and (read or write) -> ram -> data output
+
+# pla #
+
+input -> and plane (implicants where circuit has output of 1) -> or plane -> output

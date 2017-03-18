@@ -1,0 +1,120 @@
+unified phases process
+    inception
+    elaboration
+    construction
+    transition
+
+tom gills
+    4 major defects in each page of requirements
+
+requirements
+    complete
+        include descriptions of all facilities required
+    consistent
+        no conflicts or contradictions in description of system facilities
+
+requirements jargon
+    shall
+        requirements are mandatory binding provisions
+    will
+        statement of fact, non-binding provisions
+    should
+        preferences, non-binding provisions
+    may
+        non-mandatory
+    avoid negative requirements (shall not)
+    use active voice
+
+srs outline (boilerplate)
+    in chapter 3
+
+most popular way of writing requirements
+    use cases
+        scenarios
+        steps for how things are to be done
+
+process activities
+    discovery
+        interact with stakeholders tp discover requirements
+        discover domain requirements at this stage
+    classification and organization
+        group related requirements and organize them into coherent clusters
+    prioritization and negotiation
+        prioritize requirements and resolve requirements conflicts
+    specification
+        document requirements and input into the next round of the spiral
+
+UP requirements workflow
+    what must the product do?
+    develop understanding of application domain
+    build business model of clients bisiness process
+
+requirements management (sommerville)
+    identification
+    change management process
+    traceability policies
+        define relationships between each requirement
+            and between requirements and system design that should be recorded
+    tool support
+        range from specialist management systems to spreadsheets and databases
+
+percentage of change on software projects of varying size
+    on avg, 45% of features in waterfall are never used
+        19% are rarely used
+    early waterfall schedules and estimates vary up to 400% from final actuals
+
+customer relationships in agile
+    capture requirements in user stories rather than requirements specification
+        emphasize conversation
+        user story = card + conversation + confirmation
+
+# requirements analysis #
+
+analysis
+    focus on INVESTIGATION of problem
+
+design
+    focus on CONCEPTUAL solution to problem
+
+UP analysis workflow
+    analyze and refine the requirements to achieve detailed understanding
+    requirements uses language of the client
+    analysis workflow uses a more precise language
+
+system perspectives
+    external
+        model context or environment of system
+    interaction
+        model interactions between system and environment
+            or between components
+    structural
+        model organization of system
+            or structure of data that is processed by system
+    behavioral
+        model dynamic behavior of system and how it responds to events
+
+graphical models (uml)
+    facilitates discussion about existing or proposed system
+        incomeplete or incorrect models are ok if they help support discussion
+    documenting an existing system
+        accurate but not necessarilly complete
+    detailed system to generate system implementation
+        both correct and complete
+
+formal vs informal
+    informal enough for client
+        client is generally not a specialist
+    formal enough for developers
+        primary source of info for drawing up the design
+    these two requirements are mutually contradictoruy
+    informal
+        written in a natural language
+
+solution strategy
+    general approach to building the product
+    find strategies without worrying about constraints
+        modifying strategies in light of constraints, if necessary
+    keep written record of all discarded strategies (and reason for discarding)
+        protect the analysis team
+        prevent unwise new "solutions" during postdelivery maintenance
+

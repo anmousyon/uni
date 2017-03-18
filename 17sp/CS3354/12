@@ -1,0 +1,45 @@
+# testing #
+
+unit
+    developers and maintainers
+integration and system
+    independent testing group
+    not part of development group
+acceptance
+    independent verifcation & validation
+    not part of company
+
+encompasses
+    dynamic testing of the code
+    static peer reviews of requirements, design, code
+    formal specs and proofs of correctness
+
+DOES NOT demonstrate it works
+    finds as many defects as possible
+
+debugging
+    process of determining the cause of defects and removing them
+
+black box
+    measure
+        percentage of requirement covered
+
+equivalence partitioning
+    subdivide inputs into relatively small number of subdomains
+    partitions
+        subdomains are disjoint
+    classses fpr vars
+        range
+            < x
+            < x <
+            > x
+        string
+            semantic info identifying legal and illegal strings
+            length
+        enumerations
+            each value
+            may combine vals if program behaviour is the same
+
+white-box testing
+    structural testing
+        takes into account the internal mechanism of a system or component

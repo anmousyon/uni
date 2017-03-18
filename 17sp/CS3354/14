@@ -1,0 +1,60 @@
+# project life cycle #
+
+project life cycle
+    series of phases that a project passes through from init to close
+    phases are time bounded with start and ending/control points
+    predictive (plan-driven) -> waterfall
+        product and deliverables are defined at beg of project
+        any changes to scope are carefully managed
+    adaptive (change-driven) -> agile
+        developed over multiple iterations
+        detailed scope def for each iteration as it begins
+
+waterfall
+    process
+        requirements
+        analysis
+        design
+        implementation
+            develop then operate and maintain
+        maintenance
+            corrective
+            perfective
+            adaptive
+        retirement
+    no changes to requirements or operating env
+    all info needed to complete a task is available before/during performance of task
+
+inc and iter dev (IID)
+    def
+        staging and sheduling strategy
+        various parts of system are developed at different time or rates
+        integrated as they are completed
+    inc
+        add onto
+    iter
+        re-do
+    multiple opportunities for checking the software is correct
+        every iter incorporates test worflow
+        faults can be detected and corrected early
+    robustness of architecture can be determined early in life cycle
+        arch
+            various component modules and how they fit together
+        robustness
+            property of being able to handle extensions and changes without falling apart
+    mitigate risks early
+    working version of software product from near the start
+        experiment with eraly releases to determine what changes are needed
+        provide early value to users (80/20)
+        deliver partial versions to smooth intoof new product into client org
+
+up phases
+    inception
+        requirements
+    elaboration
+        desiugn
+    construction
+        code
+    transition
+        deployment
+

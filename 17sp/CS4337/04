@@ -1,0 +1,178 @@
+look at using JFLAP for grammars
+
+# 02 #
+
+machine code
+    poor readability/writability
+
+ibm 704 and fortran
+    designed in 1954
+    implemented in 1957
+    ibm 704
+        had index registers and floating point hardware
+            led to idea of compiled languages
+    fortran 1
+        for loop
+        formatted i/o
+        conditionals
+    fortran 4
+        much more popular
+    fortran 77
+    fortran 2003
+        oop
+        web programming
+    fortran is still being used
+
+lisp
+    list processing language
+    symbolic computation
+    pioneererd fuctional programming
+        no need for vars or assignment
+        control via recursion and conditional expressions
+    common lisp
+        combines features of multiple dialects
+    scheme
+
+algol 60
+    combination of fortran and lisp
+    designed as a universal language
+    goals
+        close ot mathematical notation
+        good for describing algs
+        compiles to machine code
+    if had an elif clause
+    concept of type formalized
+    semicolon as a statement separator
+    assignment is :=
+    no i/o
+        on manufacturer to provide i/o library
+    block structure
+    subprogram recursion
+    stacking arrays
+
+basic
+    easy to learn
+    user time more important than computer time
+    visual basic (perl, python)
+    first widely used language with time sharing
+
+pl/1
+    pointers
+    array cross sections
+    exception handling
+    unit-level concurrency
+
+prolog
+    based on formal logic
+    non-procedural
+    intelligent database system
+        uses inferencing process to infer truth of queries
+    comparatively inefficient
+    few application areas
+
+ada
+    required by dod for a long time
+
+smalltalk
+    full implementation of oop
+        data abstraction
+        inheritance
+        dynamic binding
+    pioneered ui design
+
+c++
+    evolved from c
+    supports both procedural and oo programming
+    large and complex
+
+related oop langs
+    objective-c
+        c plus oop
+        based on smalltalk
+    go
+
+java
+    based on c++
+    significantly simplified
+    supports only oop
+    has references but not pointers
+    applets and concurrency
+    eliminated many unsafe c++ features
+    portable
+        jvm concept
+        jit compilers
+
+perl
+    scripting based
+    statically typed vars
+        implicitly declared
+    three distinct namespaces
+        denoted by first char of vars name
+
+js
+    purely interpreted
+    only related to java through similar syntax
+    originally client-side
+        now server side too (node)
+
+php
+    most popular language for web
+
+python
+    oop interpreted scripting language
+    type checked but dynamically typed
+    lists, tuples and hashes
+
+ruby
+    pure oop scripting lang
+        all data are objects
+    most operators are implemented as methods
+
+clojure
+    dialect of lisp
+    functional prog lang
+    immutable, persistent data structures
+    compiled but dynamic
+
+lua
+    oop scripting lang
+    type checked but dynamically typed
+
+c#
+    part of .NET
+    based on c++, java, delphi
+    pointers
+    props
+    enum typs
+    limited dynamic typing
+    anonymous types
+
+markup
+    xslt
+        has programming constructs
+        transforms xml docs
+    jsp
+        java server pages
+    jsf
+        mvc (model, view, control)
+
+# 03 #
+
+intro
+    syntax
+        form or structure of the expressions, statements and program units
+    semantics
+        meaning of the expressions, statements and program units
+    syntax and semantics combined provide land def
+
+terms
+    sentence
+        string of chars over some alpabet
+    language
+        set of sentences
+    lexeme
+        lowest level syntactic unit of a language
+        eg. *, sum, begin
+    token
+        category of lexemes
+        eg. identifier

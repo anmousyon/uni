@@ -1,0 +1,42 @@
+LL Parsing
+    <var> -> identifier | identifier [<exp>]
+    rewrite the grammar
+    left facoting can solve problem
+    <var> -> identifier <new>
+    <new> -> lambda | [<exp>]
+
+bottom-up parsing
+    =>[rm] means right-most derivation
+    intuition about handle
+        handle
+            y = aBw
+            iff S =>*[rm] aAw =>[rm] aBw
+        phrase
+            y
+            iff S =>* y = a[1]Aw[1] + a[2]Aw[2]
+        simple phrase
+            ???
+            ???
+
+aaAbb
+    phrases
+        aaAbb, aAb, b
+    simple phrase
+        b
+    handle
+        b
+
+bBab
+    phrases
+        bBab, ab
+    simple phrases
+        ab
+    handle
+        ab
+
+LR Parsing
+    table contains action and goto
+    S#
+        push ???
+    R#
+        use rule #

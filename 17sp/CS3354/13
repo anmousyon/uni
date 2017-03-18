@@ -1,0 +1,48 @@
+structural testing
+    white-box testing
+        coverage
+            every statement in the program
+                doesnt need to include syntactical markers
+            every branch of every condition of every decision
+                loops, ifs, switches, and, or, etc
+        measure
+            % of statements, decisions, conditions covered
+
+levels of testing
+    unit testing
+        developers test if units work correcly alone
+    integration testing
+        internal qa tests if units combine correctly
+    product/system testing
+        company tests if system works as a whole
+    acceptance testing
+        customer tests if it is what they wanted
+    alpha release
+        internal end user testing with employees
+    beta release
+        public end user testing with selected portion of public
+    
+
+regression testing
+    did fixing a bug introduce a new bug?
+
+# exam #
+
+up to software testing
+
+problem types
+    requirements
+    fsm
+    uml (class and sequence)
+    equivalence class partitioning
+    boundary value analysis
+    statement, decision, and condition coverage
+
+similar to assignments and quizzes
+
+can bring notes
+    one page
+    front and back
+    pencil preffered
+
+# exam #

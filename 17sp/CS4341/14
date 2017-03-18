@@ -1,0 +1,14 @@
+karnaugh map
+    combine into squares and rectangles
+        can combine ends also
+
+prime implicant examples
+    0xx1
+    001x
+    x101
+    x011
+
+minterm is always an implicant
+implicant is not always a minterm
+
+essential prime implicant is a prime implicant with at least one distinguished one

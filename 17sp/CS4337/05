@@ -1,0 +1,70 @@
+syntax
+    form or structure of the expressions, statements, and program units
+
+semantics
+    meaning of the expressions, statements and program units
+
+sentence
+    string of chars ocer some alpha
+
+language
+    set of sentences
+
+lexeme
+    lowest level syntactic unit (*, sum, begin)
+
+token
+    category of lexemes
+    eg. toekn
+
+recognizers
+    reads input strings over alpha
+    decides whether input belongs to lang
+
+generators
+
+grammar
+    sigma, N, P, S
+    4 parts
+        sigma - alpha
+        N - set of nonterminal symbols
+        P - production of rules
+        S - starting symbol
+
+contezt-free grammars
+    dev by noam chomsky
+    language generators
+        mean to describe syntax of natural languages
+    BNF is equivalent to context-free grammars
+
+BNF
+    abstractions used to represent classes of syntactic tructures
+        act like syntactic vars (also called nonterminal symbols)
+    terminals are lxemes
+    nonterminals
+        often enclosed in angle brackets
+            <ident_list)> -> indentifier | identifier, <ident_list>
+            <if_stmt> -> if <logic_expr> then <stmt>
+    grammar
+        finite non-empty set of rules
+    start symbol
+        special element of the nonterminals of a grammar
+
+an abstraction (or nonterminal symbol) can have more than one rhs
+    <stmt> -> <single_stmt> | begin <stmt_list> end
+        is same as
+            <stmt> -> <single_stmt>
+            <stmt> -> <begin <stmt_list> end
+
+describing lists
+    syntactic lists are described using recursion
+        <ident_list> -> ident | ident, <ident_list>
+    
+ambigious
+    generates a sentential form with at least two different parse trees
+
+semantics
+    operational
+    denotational
+    axiomatic
+

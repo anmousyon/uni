@@ -1,0 +1,88 @@
+requirements engineering
+    everything associated with the requirements
+        finding, analyzing, validating , documenting, managing and communicating
+
+start with abstract definition of the problem where the solution is not defined
+    this leads to a creation of requirements for the solution
+
+statement of work
+    abstract
+    usually written by company with request for the software
+
+requirements specification
+    specific
+    usually written by contractor
+
+requirement
+    statement of a need and its associated constrains and conditions
+
+derived requirement
+    requirement deduced or inferred from the collectio and organization of requirements
+        into a particular system config and solution
+
+categories
+    functional requirements
+        action software must be able to perform
+        often expressed in terms of inputs and outputs
+    nonfunctional requirements (quality attributes)
+        prporties of software itself
+        response times
+        maintainability
+        security
+        interoperability
+        availability
+    
+quality attributes
+    availability
+    interoperability
+    modifiability
+    performance
+    security
+    testability
+    usability
+
+requirements elicitation
+    determine requirements from stakeholders
+
+systems (business) analyst role
+    bridge gap between designer and customer
+    need to understand business and software side of the problem
+
+interviewing
+    two types of questions
+        close-ended
+            require specific answer
+        open-ended
+            encourage interviewee to speak out
+    two types of interviews
+        structured
+            specific preplanned questions
+        unstructured
+            questions posed in response to received answers
+
+other elicitation techniques
+    questionnaire
+        used when opinions of hundreds of individuals is needed
+    examination of business forms to determine current method used
+    observation of employees to determine current methods used
+
+ethnography
+    observing and analyzing how people actually work
+        people dont have to describe htemselves
+        social and organizational factors may be observed
+    used for understanding existing processes but cant identify new features to add
+
+user stories and scenarios
+    real-life examples of how a system can be used
+    scenarios
+        semi-formal description of scenarios for using the system
+
+requirements should be
+    consistent
+    ranked for importance
+    modifiable
+        changes to requirements can be made easily
+    traceable
+        origin of requirement is clear
+        backward, forward and bi-directional traceability
+    feasible

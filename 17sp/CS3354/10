@@ -1,0 +1,146 @@
+# uml #
+
+ooa
+    semi-formal analysis technique for the oo paradigm
+        unified process is only viable alternative today
+
+uml diagrams
+    structure
+        class
+        compnonent
+        object
+    behaviour
+        use case
+        interaction
+            sequence
+
+class diagram
+    top
+        name
+    middle
+        attributes
+    bottom
+        methods
+
+association in UML
+    line between them
+        with optional reason for why
+    optional navigation triangle
+        shows directionality of association
+    calling a method from one class in another
+
+aggregation
+    open diamond
+    this thing is madeup of these other things
+
+inheritance
+
+polymorphism
+    correct method is invoked at run-time
+        dynamically
+    method can be applied to objects of different classes = polymorphic
+
+subclasses and polymorphism
+
+notation
+    <<interface>>
+    <<constructor>>
+    +
+        public
+    -
+        private
+    nothing
+        for attribute
+            assumed private
+        for method
+            assumed public
+    #
+        protected
+    ~
+        package visible method
+
+domain model
+    only worry about name and attributes
+
+domain vs design class
+    domain
+        name and attributes
+        named connections
+        amount of connections between each class
+    design class
+        name, attributes, methods
+        amount of connections between each class
+
+unneeded to know uml diagrams
+    component
+    composite structure
+        insides of somehintg
+    ???
+        mapping between process and nodes
+    object
+    package
+        good for big systems
+    profile
+        <<stereotype>>
+        extensions
+    dynamic view (behavior diagrams)
+
+sequence diagrams
+    shows how objects communicate with each other in terms of a sequence of messages
+    parallel vertical lines
+        different process or objects that live simultaneously
+    horizontal arrows are messages between objects
+        solid arrow with full head
+            synchronous
+        solid arrow with stick head
+            asynchronous
+        dashed arrows with stick heads
+            return messages
+
+uml frames
+    region of diagram
+    eg. loop
+        box around a section with description (in small inclued box) of condition for loop
+    operators
+        alt
+            if, then
+        opt
+            if , then
+        loop
+            execute while true
+        par
+            parallel fragments
+        region
+            critical region within which only one thread can run
+    use dashed lines to separate conditions
+
+use case
+    describes functionality provided by a system it terms of
+        actors and their goals
+        dependencies among those use cases
+
+communication
+    interactions between objects or parts in terms of sequenced messages
+    messages are labeled chronologically
+    placed near link message is sent over
+
+interaction overview
+    overview of which nodes involved in communication and how
+
+applying UML
+    sketch
+        informal and incomplete diagrams
+        emphasized in agile modeling    
+    blueprint
+        detailed design diagrams used for reverse engineering or code gen    
+    programming language
+        complete executable spec of software system in uml
+
+obvious
+    class and sequence diagrams
+        static and dynamic views of the design
+    at least one sequence diagram for each use case
+    every class defined should occur in a dynamic (sequence) diagram
+        it should DO something
+    every communicating object in a dynamic (sequence) diagram should have been defined in class diagram
+    

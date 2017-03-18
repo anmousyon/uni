@@ -1,0 +1,11 @@
+sum{k=1 to n} a[k]*w[k] = >a * >w
+
+sigmoid function adds a nonlinear component to make anns more useful
+    otherwise there isnt any point in having hidden layers
+    1/(1 + e^-(>a * >w))
+
+output = g(a[i]*w[i])
+
+bias node
+    constant value
+    every layer has one

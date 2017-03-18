@@ -1,0 +1,71 @@
+safely estimating
+    be pessimistic in estimates
+    each level in the management hierarchy should add their own safety factor
+    protect your estimates froma global cut
+
+wating the safety
+    student syndrome
+    multi-tasking
+    dependency reliance
+
+planning fallacy
+    unrealistically close to best-case scenarios
+    could be improved by consulting the statistics of similar cases
+
+suspect plans
+    straight lines
+        usually indicative of not enough thought put into it
+    step function
+        work breakdown may not be granular enough for effective tracking
+    the cliff
+        more of a prayer than a plan
+
+CCPM: multi-tasking
+    biggest killer of lead time (throughput)
+
+risk management
+    risk
+        an undertain event or condition that, if it occurs, has a + or - effect on a project's objectives
+    risk exposure
+        prob of bad outcome * loss from bad outcome
+        RE = P(BO) * L(BO)
+
+risk response planning
+    avoid
+        change the plan to eliminate the risk or protect from its impact
+    transfer
+        shift the consequence of a risk to a thrid part along with ownership of the response
+    mitigate
+        reduce the prob and/or consequences of an adverse risk event to an acceptable threshold
+    acceptance
+        it is seldom possible to eliminate all risk
+    contingent response strategy
+        executed under predefined conditions
+
+top ten software risk items
+    personnel shortfalls
+    unrealistic scheules and budgets
+    developing the wrong functions and properties
+    developing the wrong user interface
+    gold-plating
+    continuing stream of requirements changes
+    shortfalls in externally furnished components
+    shortfalls in externally performed tasks
+    real-time performance shortfalls
+    straining computer science capabilities
+
+earned value management
+    define the work
+    schedule the budget
+    measure the performance
+    relates three independent variables
+        planned value (PV)
+            estimated cost planned for a activity during a given period
+        actual cost (AC)
+            costs incurred in accomplishing work on an activity during the given period
+        earned value (EV)
+            value of the work completed
+        scheduled variance (SV)
+            how much you spend versus how much you planned
+        cost variance (CV)
+            how much you spend versus how much you allocated

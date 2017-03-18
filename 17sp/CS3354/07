@@ -1,0 +1,73 @@
+entity-relationship modeling
+    understanding the data
+    putting it in a format for reltionship modeling
+    semi-formal technique
+        widely used for specifying databases
+    doesnt deal well with many-to-many reltionships
+
+many-to-many
+    join tables
+
+more complex
+    joining multiple tables
+    i (item) is supplied by c (company) for use in p (project)
+
+@NEED TO KNOW
+finite state machines (restricted turing machine)
+    abstract representation of behavior exhibited by some systems
+    dervied from app requirements
+        network protocol could be modeled using an FSM
+    not all aspects of requirements can be modelled with an fsm
+        eg. timing
+    state
+        description of a status of a system at a specific point in time
+    transition
+        set of actions to execute when a condition is true or event is recieved
+    completely specified
+        every state has every input mapped to an action
+
+extended fsm
+    fsm tansition rules
+        current state and event -> next state
+
+fsm tradeoffs
+    advantages
+        easy to write
+        easy to validate
+        easy to convert into code
+        more precise than graphical models
+        almost as easy to understand
+    disadvantages
+        timing not handled
+
+requirements or design?
+    fsm could serve
+        as a specification for required behavior
+        design artifact according to which an application is to be implemented
+
+uml state machines
+    introduce the concepts of hierarchically nested states and orthogonal regions
+        while extending notion of actions
+    combo of mealy and moore machines
+        mealy
+            triggering event
+
+petri nets
+    powerful technique for specifying systems that have potential problems with interrelations
+    consists of four parts
+        P - set of places
+        T - set of transitions
+        I - input function
+        O - output function
+
+@NEED TO KNOW
+classical analysis methods
+    formal
+        more powerful than either
+        harder to understand then either
+    semiformal
+        easier to understand than formal
+        more precise than informal
+    informal
+        not as powerful as either
+        easier then either to understand

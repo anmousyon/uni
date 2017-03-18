@@ -1,0 +1,18 @@
+minterm
+    product term that includes each input of a circuit or its complement
+
+implicant
+    product term that if true implies the function is true
+
+prime implicant
+    implicant that cant be made any larger and still be an implicant
+
+essential prime implicant
+    only prime implicant that contains a particular minterm of the function
+
+distinguished one
+    minterm that is contained in only one implicant
+
+these allow you to represent a function in much less terms
+
+karnaugh map???

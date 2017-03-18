@@ -1,0 +1,34 @@
+bnf
+    example
+        expr -> <term> {(+|-) <term>}
+        <term> -> <factor> {(*|/) <factor>}
+
+reason to separate lexical and syntax analysis
+    simplicity
+    efiiciency
+    portability
+
+lexical analysis
+    lexical analyzer
+        pattern matcher for character strings
+        "front-end" for the parser
+        usually a function
+            called by parser to determine next meaning of next term
+    identifies lexemes
+    transitions can be combined to simplify state diagram
+    reserved words and identifiers can be recognized together
+    convenient utility subprograms
+        getchar
+            gets next char of input
+            puts it in nextchar
+            determines class and puts class in charclass
+        etc
+
+parsing
+    top-down
+    bottom-up
+    complexity
+        O(n^3) - any unambiguous grammar
+        O(n) - subset of all unambiguous grammars 
+    recursive descent
+        

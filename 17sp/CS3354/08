@@ -1,0 +1,62 @@
+# design #
+
+strategies
+    code-and-fix
+    functional decomposition
+        aka
+            reductionism
+            stepwise refinment
+        resolve a functional relationship into its constituent parts
+            reductionism
+            hierarchy
+            modularity
+        miller law
+            we can only concentrate on a limited number of things at a time
+        incremental process
+    structured programming
+        manage complexity with functions, block strucutres and loops
+            avoid tests and GoTos
+            single entry and exit for routines and loops
+        any program can be written as a structured program
+    oop, design, and requirement analysis
+    design patterns and tactics
+
+#req elicitation project#
+
+history: every game, opponent, date and time, scores of each person in game
+4 version: by last version you need an ai
+player: anyone that can play spades online
+friends list, messaging (email, text), scheduled games
+timeout
+    2 three minute intervals to ask are they there twice
+    then after 4 minutes kick them out
+    10 minutes to play then time them out
+graphical ui
+    green felt
+    see cards
+    picture of other players
+        static pictures
+        uncle timmy
+    drag and drop cards
+timeout
+    forfeit for leaver
+    incomplete for everyone else
+info available
+    cards in hand
+    tricks bid
+    tricks others have bid
+    tricks everyone has taken
+    what card each player has played
+    complete hand visible until next hand started
+communication
+    chatbox in corner
+support
+    chrome
+    firefox
+    ie
+    safari
+must have 4 players available
+no in-app purchases
+laptop/desktop
+lobby system with chat functionality
+scheduled games become pick-up games if missing someone

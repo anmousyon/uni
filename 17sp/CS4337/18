@@ -1,0 +1,25 @@
+# assignment #
+
+assignment statements
+    unary assignment operators
+        ++
+        --
+
+assignment as an expression
+    while((ch=getchar()) != EOF) {...}
+        1. ch=getchar() is carried out
+        2. c != EOF is carried out
+
+multiple assignment
+    a, b, c = 10, 20, 30
+
+mixed-mode assignment
+    in ada, there is no assignment coercion
+
+# closures #
+
+subprogram and the referencing env where it was defined
+
+object closure
+    we can encapsulate our subroutine as a method of a simple object
+        and let the onkects fields hold context for the method

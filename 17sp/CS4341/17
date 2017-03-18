@@ -1,0 +1,124 @@
+rom
+    linear array implementation
+        a -> decoder -> each output goes through inverter -> combined into one -> inverter -> m
+    2-d array implementation
+        a   -> decoder
+                -> d0-d3
+                -> d4-d7
+                ...
+                -> d252-d255
+                    -> each bit's 4 bits goes through not
+                        -> d0, d4, ..., d252
+                        -> d1, d5, ..., d253
+                        -> d2, d6, ..., d254
+                        -> d3, d7, ..., d255
+                            -> multiplexer as input -> output
+            -> multiplexer as selector
+
+# rom verilog #
+
+module rom_case (a,d);
+    input [3:0] a;
+    output [7:0] d;
+    reg [7:0] d;
+    always@(*) begin
+        case(a)
+            4'h0: d=8'h00
+            4'h1: d=8'h11;
+            4'h2: d=8'h22
+            4'h4: d=8'h33
+            :
+            4'ha: d=8'hbc;
+            :
+            4'hf: d=8'h56;
+            defulat: d=8'h0;
+        encase
+    end
+endmodule
+
+# ram #
+
+a, di, wr as input to ram -> do as output from ram
+    similar to rom but has write as input
+
+ao, ai, di, wr as input to ram -> do as output from ram
+    ao = address out
+    ai = address in
+    di = data in
+    wr = write
+    do = data out
+    similar to first ram block but allows read and write at the same time
+
+ao -> read decoder -> wo0, wo1, ..., wo[n-1]
+ai, wr -> write decoder -> wi[0], wi[1], ..., wi[n-1]
+    combined with di -> 
+
+# ram verilog #
+
+module ram(ra, wa, write, din, dout);
+    parameter b=32;
+    parameter w=4;
+
+    input   [w-1:0]     ra, wa;
+    input               write;
+    input   [b-1:0]     din;
+    output  [b-1:0]     dout;
+
+    reg     [b-1:0]     ram[2**w-1:0];
+
+    assign dout=ram[ra];
+    always@(*) begin
+        if (write==1)
+            ram[wa]=din;
+    end
+end
+
+# pla #
+
+a0, a1, a2
+    -> split1 -> combined
+    -> split2 -> inverter -> combined
+        -> AND plane (ex. a0 & !a1 & !a2, !a0 & a1 & !a2, !a0 & !a1 & a2, a0 & a1 & a2, ...)
+            -> OR plane
+                -> output as two bits
+
+# adder #
+    a, b, cin
+        -> majority
+        -> XOR
+
+full adder from 3 halfadders
+
+module fulladder(a,b,cin,cout,s);
+    iput    a,b,cin;
+    output  cout,s;     //carry and sum
+    wire    g,p;        //generate and propogate
+    wire    cp'
+
+    halfadder ha1(a,b,g,p);
+    halfadder ha2(cin,p,cp,s);
+
+    or o1(cout,g,cp);
+endmodule
+
+cmos version of full adder
+    a,b
+        -> nand -> not
+        -> nor
+            -> combined into or
+            -> ...
+
+multibit adder
+    a[0], b[0], cin -> fulladder -> s[0], cout[0]
+    a[1], b[1], cout[0] -> fulladder -> s[1], cout[1] 
+    ...
+    a[n-1], b[n-1], cout[n-2] -> fulladder -> s[n-1], cout[c-1]
+
+# minimum/maximum value #
+
+decoder -> or -> arbiter -> encoder
+
+decode each number 4->16 bits
+or these together w/ 16 4-bit ors
+use an arbiter to get highest or 16
+encode the 16->4
