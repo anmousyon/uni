@@ -1,0 +1,43 @@
+sprint planning meeting
+    when the iteration (sprint) is planned
+    time boxed to eight hours (for a one month sprint)
+        4 hours for two week sprint
+    two parts (4+4 hours)
+        determining what will be done in the sprint
+        how the team is going to build the product increment during the sprint
+
+division of concerns
+    ...
+
+daily scrum meetings
+    time-boxed to 15 minutes
+    used to inspect progress toward sprint goal and to make adaptations that optimize the value of the next workday
+    three questions
+        what did you do since last scrum?
+        what got in your way?
+        waht are you going to do before the next scrum?
+
+sprint retrospective
+    time-boxed to 3 hours
+    held after the sprint review and prior to next sprint planning meeting
+    team discusses
+        what went well in the last sprint
+        what can be improved in the next sprint
+
+extreme programming practices
+    planning game
+    small releases
+    metaphor
+    testing
+        tdd
+        customer tests
+    refactoring
+        design improvement
+    pair programming
+    collective (code) ownership
+    continuous integration
+    40-hour week
+        sustainable pace
+    on-site customer
+        whole team
+    coding standard

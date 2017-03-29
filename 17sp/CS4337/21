@@ -1,0 +1,101 @@
+# subprograms #
+
+fundamentals of subprograms
+    each subprogram has a single entry point
+    calling program is suspended during execution of the called subprogram
+    control always returns to the caller when the called subprogram's execution is terminated
+
+subprogram parts and info
+    header
+        first part of def
+        name, kind of subprogram, formal params
+    profile (aka signature)
+        number, order, types of params
+    protocol
+        param profile and, ifits is a function, return type
+    decs are often called prototypes
+        provides protocol but not body
+    formal param is a dummy var
+    formal params
+        positional
+            binding of actual params to formal params is by position
+        keyword
+            param is tied to keyword of var
+    variable number of params
+    procedures
+        collection of statements that define paramed computations
+    functions
+        input and output
+
+design issues
+    local vars static or dynamic?
+    nested definitions?
+    param type checks?
+    overloading?
+    generic?
+    closures?
+
+local ref env
+    local vars can be stack-dynamic
+        adv
+            rec
+            storage for locals is shared among some subprograms
+        dis
+            allocation, init time
+            indirect addressing
+            subprograms cannot be history sensitive
+    local cars can be static
+        adv and dis are opposite of stack-dynamic
+
+semantic models of param passing
+    in mode
+        pass
+    out mode
+        return
+    inputmode
+        pass and return
+
+pass-by-value (in mode)
+    val of actual param is used to init the corresponding formal params
+    implemented by copying
+
+pass-by-result (out mode)
+    param is passed by result
+    no val is transmitted to the subprogram
+    corresponding formal param acts as a local var
+    val is transmitted to call callers actual param when control is returned, by physical move
+    requires extra storage location and copy operation
+
+pass-by-value-result (inout mode)
+    combination of pass-by-value and pass-by-result
+    sometimes called pass-by-copy
+    formal params have local storage
+    same dis as pass-by-result and pass-by-value
+
+pass-by-reference
+    pass an access path
+    also called pass-by-sharing
+    adv
+        passing process is efficient
+            no copying
+            no dup storage
+    dis
+        slower accesses
+        has side-effects
+        unwanted aliases
+
+pass-by-name
+    by textual sub
+    formal params are bound to an access method at time of call
+    ...
+
+param communication takes place thy the run-time stack
+
+coroutine
+    subrpogram that has multiple entries and controls them itself
+    also called symmetric control
+        caller and called coroutines are on a more equal basis
+    coroutine call is named a resume
+    first resume of a coroutine is to its beginning
+        subsequent calls enter at the point just after last executed statement
+

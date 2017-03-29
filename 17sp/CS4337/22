@@ -1,0 +1,22 @@
+integer addition
+    overflow if result out of range
+    addig two +ve operands
+        overfow id result sign is 1
+    adding two -ve operands
+        overflow is result sign is 0
+
+floating point
+    single precision (32-bit)
+    double precision (64-bit)
+
+inf and NaNs
+    +-inf
+        exp = 111...1, fraction = 000...0
+    NaN
+        exp = 111...1, fraction != 000...0
+
+vhdl
+    <=
+        result of
+        ie. C <= A and B after 5 ns;
+

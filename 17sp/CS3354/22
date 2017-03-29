@@ -1,0 +1,93 @@
+# scrum #
+
+paradigm
+    insepct and adapt
+    steer project in direction you want to go
+    ensures that the most valuable work has been completed when the project ends
+
+process
+    start -> product backlog -> sprint backlog -> sprint with daily scrum meetings -> potentially shippable product increment -> goto start
+    product backlog
+        list all the requirements
+        master list of all functionality desired in the product
+        each item has a description, priority, and estime of the effort needed to complete it
+    sprint backblog
+        start at top of product backlog
+            grab a chunk from it
+    sprint length
+        2-4 weeks
+    daily scrum meeting
+        check how things are going
+    product increment
+        customer evaluates if product increment is what was wanted
+
+framework
+    product owner
+        * see roles *
+    sprint planning
+        team pulls a small chunk off top of wish list and puts it in sprint backlog
+        decide how to implement those pieces
+    sprint
+        development iteration of 2-4 weeks
+            2-6 weeks according to Sutherland and Vodde
+        sprint duration is fixed
+        only product owner has the authority to cancel the sprint
+        implement items from sprint backlog
+    end of sprint
+        see what could have been done better
+    cycle repeats until
+        enough items in product backlog are done
+        budget is depleted
+        deadline arrives
+
+roles
+    product owner
+        responsible for maximizing roi
+        constantly re-prioritizes product backlog
+        accepts or rejects each product increment
+        decides whether to
+            ship
+            continue development
+        considers stakeholder interests
+        has a leadership role
+    ScrumMaster
+        helps resolve impediments
+        captures empirical data to adjust forecasts
+        enforces timeboxes
+        keeps scrum artifacts visible
+        promotes improved engineering practices
+        has no management authority over the team
+            anyone with authority over the team is, by def, not its ScrumMaster
+        has a leadership role
+        development teams
+            cross-functional
+            self-organizing / self-managing
+                no externally assigned roles
+            negotiates commitments with the product owner, one sprint at a time
+            co-located
+                especially for first few sprints
+            has autonomy on how to reach commitments
+            7 +- 2 members
+            has a leadership role
+
+user story
+    promise to have a discussion
+        not every detail needs to be included
+    process
+        card
+            written desc of story used for planning and as reminder
+        conversation
+            about the story that serve to flesh out details of the story
+        confirmation
+            details that canbe used to determine when a story is complete
+    story points
+        people are better at estimating relative values rather than absolute values
+        story point estimates do not change because of experience
+        estimates relative to estimates for other features
+            it does not matter if ther are correct as long as they are consistent
+                velocity is the equalizer
+        planning poker
+            everyone on team is involved in estimating every story
+                build common understanding, collective ownership
+            simultaneous estimation by facing card with time estimate in story points
+            anchor with typical story being 5 points

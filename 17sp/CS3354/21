@@ -1,0 +1,54 @@
+activity network
+    directed graph
+    critical path: possible alg
+        forward and backward pass
+    !!! look at slides !!!
+
+risk exposure
+    use formula from slides
+    place on matrix
+
+# agile methods #
+
+methodology that follows the agile manifesto
+
+agile : mark paulk
+    method that supports responding rapidly to changing requirements
+
+needs to be adapted to the needs of the particular environment
+
+methods
+    SHALL HAVE
+        evolutionary / iterative / incremental development
+            length of increment needs to be short
+                most popular is 2 weeks
+                longest is 6 weeks
+    SHOULD HAVE
+        empowerment / participation of the development team
+        active collaboration with the customer
+
+agile manifesto
+    indivs and interactions >   processes and tools
+    working software        >   comprehensive docs
+    customer collab         >   contract negotiation
+    responding to change    >   following a plan
+
+main ideas
+    face-to-face
+        most efficient and effective method of conveying info
+    working software is the primary measure of progress
+    continuous attention to technical excellence and good design
+    simplicity
+        the art of maximizing the amount of work not done
+    best archs, reqs, and designs emerge from self-organizing teams
+    reflect on how to be more effective then tune and adjust behavior accordingly
+        at reg intervals
+    
+sweet spots
+    dedicated devs
+    experienced devs
+    small co-located team
+    automated regression tests
+    easy access to users
+    short incs and frewuent delivery to real users
+        only one that is very unique to agile

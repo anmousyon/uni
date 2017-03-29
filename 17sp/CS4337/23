@@ -1,0 +1,28 @@
+rules and constraints
+    program P: a set of rules
+    herbrand universe
+        set of ground terms constructed from function symbols and constants occurring in the program P
+        HU(P)
+    herbrand base
+        set of ground atoms constructed from predicate symbols and ground terms from the herbrand universe
+        HB(P)
+    rule with vars
+        shorthand for the collection of its collection of its ground instances
+    program with variables
+        collection of ground instances of its rules
+    translate program (with vars) to ground program (without vars)
+    to ground program
+        enumerate each predicate with var by subbing each var with each constant in HU to get HB
+
+herbrand universe becomes infinite with a function
+    function can call itself
+    0, f(0), f(f(0), ...
+
+stable models
+    a set of x factsc(ground atoms) is a model of a logic program P 
+        if head(r)  elementOF X whenever body(r)+ elementOF X and
+        body(r) intsectedwith X = emptySet
+    gelfond-lifshitz reduct (gl-reduct)
+        removing rules with "not c" in the body for each c elementPf C
+        removing literals "not c" from all other rules for each c not elementOf x
+

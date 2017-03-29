@@ -1,0 +1,21 @@
+# party affiliation #
+
+more likely to be
+    democrat than republican
+    independent than any party
+
+over time
+    strong dem and rep is consistent
+    weak dem decreases
+    weak rep is consistent
+
+party functions
+    mobilization
+    recruit leaders
+    manage government
+
+party systems
+    effecgive number of political parties
+        N = 1 / sum(s[i]^2)
+        s = seat share
+        i = the ith political party

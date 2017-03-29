@@ -1,0 +1,21 @@
+flip-flop
+    _|-|_|-|_|-|_
+
+RS flip-flop
+    inputs: set, reset
+
+D flip-flop
+    used in implementation
+    input: D, clock
+    output: Q
+    q outputs a staeady value
+    edge on clock changes q to be d
+    flip-flop stores state
+    allows sequential circuits too iterate
+
+synchronous sequential logic
+    combinational logic takes input: in, state
+    use clock to separate state inputs
+        each switch from low to high is a new state
+
+
