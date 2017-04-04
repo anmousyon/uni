@@ -1,0 +1,126 @@
+###############
+# measurement #
+###############
+
+tips
+    start small
+    provide adequate training
+    demonstarte commitment
+    minimize costs
+    adopt an action orientation
+    communicate
+
+complexity
+    relationship between size, schedule, and cost
+    fan-in, fan-out
+
+fundamental rule
+    do you have a REASON for measuring it?
+        if you dont know, dont measure it
+
+4-10 things should be measured at the same time at most
+
+statistics
+    who says so?
+    how does he know?
+        biased sample, self-selected, too small
+        correlation
+            big enough to mean anything
+            enough cases to be significant
+    whats missing?
+        number of cases
+        no measure of reliability (probable error, standard error)
+        unspecified kind of average (mean, median)
+        no comparison (indicator)
+        percentages
+        index (base)
+        missing factor
+    did somebody change the subject?
+    does it make sense?
+
+Dysfunctional Behavior
+    Austin's Mearuign and Managing Performance in Organizations
+        motivational versus information measurement
+    Deming strongly opposed performance measurement, merit ratings, etc
+
+#############
+# use cases #
+#############
+
+def
+    set of scenarios that identify a thread of usage for the system to be constructed
+
+captures a contract
+    describes the system's behavior under various conditions as the system respons to a request from one of its stakeholders
+
+list of steps, typically defining interactions between a role (actor) and a system to achieve a goal
+
+unified process is use-case driven
+    use cases and artifcats derived from them replace the traditional textual specs doc
+
+use case model
+    models interactions between software product itself and the users of that software product (actors)
+
+actors
+    member of the world utside the software product
+        actor isnt necessarily a human
+    usually easy to identify an actor
+        frequently a user of the software product
+    user can play more than one role
+    one actor can be participant in multiple use cases
+    generic actor can represent many roles
+    overlapping actors
+        potential problem when identifying actors
+    specializations
+        inheritance
+
+order of use case implementation
+    risk
+        technical complexity
+        degree of uncertainty
+    coverage
+        want use cases that provide "wide and shallow" functionality for system
+        base scenarios of the use case
+    large business value
+
+finding use cases
+    for each role, there will be one or more use cases
+        find the actors
+        use cases then follow
+
+larman's fully dressed use case
+    use case name
+        start with a verb
+    scope
+        system under design
+    level
+        "user goal" or "subfunction"
+        an elementary business process
+    primary actor
+        calls on the system to deliver its services
+    stakeholders and interests
+    preconditions
+        what must be true on start, and worth telling the reader?
+        not tested within the use case
+    success guarantee (postconditions)
+        what must be true on successful completion, and worth telling the reader
+
+scenarios
+    main success scenario (happy path scenario, basic flow)
+        steps of three kinds
+            interactions between actors
+            validation
+            state change by the system
+    extensions (alternate flows)
+        basic flow should satisfy "nearly all" of stakeholder interests
+        condition + handling
+            when possible write the condition as something that can be detected by the system or an actor
+        sometimes branches to another use case scenario
+    special reqs
+        related non-func reqs
+        performance, reiability, usability, design constraints, security
+    technology and data variations list
+        varying I/O methods and data formats
+    frequency of occurrence
+        influences investiagtion, testing, and timing
+    extra (miscellanious)

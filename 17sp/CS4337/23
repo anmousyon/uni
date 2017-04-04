@@ -23,6 +23,5 @@ stable models
         if head(r)  elementOF X whenever body(r)+ elementOF X and
         body(r) intsectedwith X = emptySet
     gelfond-lifshitz reduct (gl-reduct)
-        removing rules with "not c" in the body for each c elementPf C
+        removing rules with "not c" in the body for each c elementOf C
         removing literals "not c" from all other rules for each c not elementOf x
-

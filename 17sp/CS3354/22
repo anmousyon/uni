@@ -1,4 +1,6 @@
+#########
 # scrum #
+#########
 
 paradigm
     insepct and adapt
@@ -59,27 +61,27 @@ roles
         has no management authority over the team
             anyone with authority over the team is, by def, not its ScrumMaster
         has a leadership role
-        development teams
-            cross-functional
-            self-organizing / self-managing
-                no externally assigned roles
-            negotiates commitments with the product owner, one sprint at a time
-            co-located
-                especially for first few sprints
-            has autonomy on how to reach commitments
-            7 +- 2 members
-            has a leadership role
+    development teams
+        cross-functional
+        self-organizing / self-managing
+            no externally assigned roles
+        negotiates commitments with the product owner, one sprint at a time
+        co-located
+            especially for first few sprints
+        has autonomy on how to reach commitments
+        7 +- 2 members
+        has a leadership role
 
 user story
     promise to have a discussion
         not every detail needs to be included
     process
         card
-            written desc of story used for planning and as reminder
+            written desc of story used for planning and as a reminder
         conversation
             about the story that serve to flesh out details of the story
         confirmation
-            details that canbe used to determine when a story is complete
+            details that can be used to determine when a story is complete
     story points
         people are better at estimating relative values rather than absolute values
         story point estimates do not change because of experience

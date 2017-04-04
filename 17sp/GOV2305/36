@@ -1,0 +1,53 @@
+###################
+# interest groups #
+###################
+
+interest groups
+    organized group of citizens that seek to achieve a common set of goals by influencing elected representatives in government
+    types of groups
+        public
+            try to achieve public goals / goods
+        private
+            try to achieve private goals / goods
+    goals
+        public goals / goods
+        private goals / goods
+
+goods
+    goods
+        tangible items that satisfy human desire and provie positive utility
+    bads
+        same as goods, but provide a negative utility
+    types of goods
+        public
+            non-excludable and non-rival
+        private
+            excludable and rival
+    classification based on two characteristics
+        excludability
+            excludable
+                you can stop someone from accessing a good based on if they can pay for it
+                examples
+                    bottled water
+                    candy
+                    toll-roads
+                    gasoline
+            non-excludable
+                you cant stop someone from accessing it even if they cant pay for it
+                examples
+                    tap water
+                    air
+                    non-toll roads
+        rivalry
+            rivalrous
+                use of a good diminishes from somone elses ability to use the same good
+                zero-sum good
+            non-rivalrous
+                use of a good doesnt affect someone elses ability to use the good
+                non zero-sum good
+    expected utility
+        sum(i)[p(pos[i])] - sum(i)[p(neg[i])] 
+        if pos utility > neg utility
+            good
+        if pos utility < neg utility
+            bad

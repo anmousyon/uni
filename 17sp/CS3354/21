@@ -8,7 +8,9 @@ risk exposure
     use formula from slides
     place on matrix
 
+#################
 # agile methods #
+#################
 
 methodology that follows the agile manifesto
 
@@ -39,7 +41,7 @@ main ideas
     working software is the primary measure of progress
     continuous attention to technical excellence and good design
     simplicity
-        the art of maximizing the amount of work not done
+        the art of maximizing the amount of work done
     best archs, reqs, and designs emerge from self-organizing teams
     reflect on how to be more effective then tune and adjust behavior accordingly
         at reg intervals
@@ -50,5 +52,5 @@ sweet spots
     small co-located team
     automated regression tests
     easy access to users
-    short incs and frewuent delivery to real users
+    short incs and frequent delivery to real users
         only one that is very unique to agile

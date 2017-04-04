@@ -1,0 +1,104 @@
+#####################
+# when to use agile #
+#####################
+
+requirements change
+    1-2% -> plan-driven
+    30-40% -> agile
+
+culture
+    order -> plan-driven
+    chaos -> agile
+
+team size
+    large -> plan-driven
+    small -> agile
+
+criticality
+    life-critical -> plan-driven
+    comfort -> agile
+
+personnel (experience level)
+    less experienced developers -> plan-driven
+    more experienced developers-> agile
+
+########################
+# software measurement #
+########################
+
+key questions
+    are we measuring the right thing?
+        goal / question / metric (GQM)
+        business objectived <-> data
+            cost ($, effort)
+            schedule (duration, effort)
+            functionality (size)
+            quality (defects)
+    are we measuring it right?
+        operational definitions
+        is the measurement and its result repeatable?
+
+practical measurement
+    if the information is not needed, the measurement is useless
+
+goal-driven measurement
+    goal / question /metric (GQM)
+        * see above *
+    SEI variant: goal-driven measurement
+        goal / duestion / indicator / metric (GQIM)
+    ISO 15939 and PSM variant: measurement information model
+
+operational measures
+    operational definition
+        one which resonable people can agree on and do business with
+        rules and procedures used to capture and record data
+        meet two citeria
+            communication
+                will others know what has been measures and why?
+            repeatability
+                would other be able to repeat the measurements and get the same results?
+        examples
+            loc
+                new, modified, deleted, retained function, comments
+            time units
+                hours vs minutes
+            how is a defect defined?
+                severity, criticality, impact
+            is the data collected at the same point in the process each time?
+                peer review before or after compile / unit test
+
+putnam and myers measurements
+    size
+        how much has been built?
+        how much needs to be built?
+    prdouctivity
+    time
+        how long have we been working on it?
+        how much longer do we neeed?
+    effort
+        how many man hours has been put it?
+        how many more man hours do we need?
+    reliability
+        how many defects are in it?
+        how many defects do we need to fix in the end?
+
+SEI core measurements
+    checklisy-based approach with strong emphasis on operational defs
+    measurements
+        size
+            sloc
+        effort
+            person hours
+        schedule
+        quality
+            defects
+
+#############
+# side note #
+
+critical design review (cdr)
+    review of detailed design by the customer
+
+# side note #
+#############
+

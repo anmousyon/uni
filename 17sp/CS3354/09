@@ -1,3 +1,7 @@
+####################
+# design continued #
+####################
+
 stepwise refinement
     recursively breaking down a problem into two or more sub-problems
         until theyre simple enough to solve directly

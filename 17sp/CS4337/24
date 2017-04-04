@@ -1,0 +1,94 @@
+################################
+# asp - answer set programming #
+################################
+
+
+lparse
+    orignially created as a grounding tool
+
+rule
+    <head> :- <body>
+
+symbol :- ("if") is dropped if <body> is empty.
+
+choice rule
+    {p,q,r}
+
+def of stable model was generalized to programs with choice rules
+
+constrained choice rules
+    1{p,q,r}2
+        at least 1 of the atoms p,q,r but not more than 2
+
+cardinality bounds
+    used in the body of a rule
+    :- 2{p,q,r}
+    adding this constraint to an lparse program eliminates the stable model that contains at least two atoms
+
+variables
+    used to abbreviate colletions of rules that follow the same pattern
+    abbreviate atoms in the same rule
+
+shorthand
+    P(a).p(b).p(c).
+    {q(X):-p(X)}2.
+    -> shorthand for ->
+    p(a).p(b).p(c).
+    {q(a),q(b),q(c)}.
+
+conditional literal
+    p(x):q(x)
+        the choice of C for p(x) is restricted by all possible q(x)
+
+graph coloring
+    an n-coloring of a graph G=<V,E> is a function color : V EO {1,...,n} st color(x)!=color(y) for every pair of adjacent veritces (x,y) EO E.
+    lparse version
+        c(1..n).
+        1{color(X,l)} :c(l)}1 :- v(x).
+        :- color(X,l), color(Y,l), e(X,Y), c(l).
+
+fluent
+    value than can change between true and false over time
+
+action
+    changes a fluent's value
+
+yale shooting problem
+    word problem
+        turkey alive, gun unloaded
+        loading gun, waiting, shooting should kill turkey
+        if inertia formalized in logic by minimizing changes in situation, it cant be proven that turkey is dead after loading, waiting, and shooting
+        in one solution turkey dies, in another gun becomes mysteriously unloaded and the turkey survives
+    logic prblem
+        two fluents: turkey alive, gun loaded
+        true, false
+        true, true
+        true, false or false, false
+    The problem is that the formula only include the effects of actions, but do not specify that all fluents not changed by the actions remain the same
+
+#############
+# recursion #
+#############
+
+characteristics
+    one or more base cases are used to stop recursion
+    every recusrive call reduces the original problem toward one of the base cases
+
+induction and coinduction
+    duality provides a source of new math tools that reflect the sophistication of tried and true techniques
+    least fixed point
+        proof -> induction
+        mapping -> recursion
+    greatest/maximal fixed point
+        proof -> coinduction
+        mapping -> corecursion
+
+corecursion
+    dont need base
+        can be infinite
+
+deadlock
+    mutual exlcusion
+    holad and wait or resource holding
+    no preemption
+    circular wait

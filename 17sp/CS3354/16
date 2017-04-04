@@ -1,4 +1,6 @@
-#project life cycle#
+######################
+# project life cycle #
+######################
 
 lifecycle
     phases a project goes through from inception to release and eventually maintenance
@@ -46,7 +48,9 @@ inc and iter dev
         have working version of the software product from near the start
             provide early value to the users
 
-#project management#
+######################
+# project management #
+######################
 
 estimating
     time

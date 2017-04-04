@@ -8,7 +8,6 @@ district magnitude
 
 electoral systems are based on their rules
 
-
 finding the effective number of political parties
 
 num of parties effects on voting
@@ -56,11 +55,45 @@ protest
     know what is happening in the model
 
 why people vote
-    pivotality
-    know downs / ricker and ordeshook models
+    anthony downs
+        PB - C > 0
+        P -> pivotality
+            p = 1 / voters
+        B -> benefits
+            b = security + tax costs + healthcare + jobs + equal opportunity
+        C -> costs
+            time, travel, stress, knowledge
+        wtp
+            how much would you pay to have it
+    riker and ordeshook
+        PB - C + D > 0
+        P -> pivotality
+            p = (1/v)
+        B -> benefits
+            b = security + tax costs + healthcare + jobs + equal opportunity
+        C -> costs
+            c = time, travel, stress, knowledge
+        D -> civic duty
+            d = enjoyment of norms, satisfaction of development, sense of duty to vote
 
 lifecycle model
-    importance of different agents in different cycles
+    early childhood (0-7)
+        family
+        school (small amount)
+    late childhood (7-13)
+        family (-)
+        school (+)
+        social circles (small amount)
+    teenage adolescence (13-26)
+        school (+)
+        social circles (+)
+        family (-)
+        political environments
+    adulthood (26+)
+        social circles (+)
+        political environments (+)
+        family and school drop off completely (-)
+        older you get the more political envirnoment means over social circles
 
 mobilization
     phone calls have no effect
@@ -68,7 +101,26 @@ mobilization
     green and gerber
 
 party organization
-    kow the different levels of conventions and what happens at each level
+    know the different levels of conventions and what happens at each level
+    precint convention
+        occurrs immediately after primary election
+        delegate nomination and selection
+        propose resolutions
+    county convention
+        occurrs about a month after primary election
+        precinct delegates go to county convention
+        delegate nomination and selection
+        propose resolutions
+    state convention
+        occurrs a couple months after primary election
+        delegate nomination and selection
+        propose resolutions
+        leadership nomination and selection
+        selection of presidential electors
+    national convention
+        occurrs a few months after primary election
+        nominate president / vice president candidates
+
 
 measurement
     reliability

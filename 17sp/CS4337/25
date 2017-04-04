@@ -1,0 +1,96 @@
+###################
+# call and return #
+###################
+
+subprogram call and return ops of a lang are together called its subprogram linkage
+
+semantics
+    param passing ethods
+    stack-dynamic allocation of local vars
+    cave exec status of calling method
+    ...
+
+semantics of return
+    mode and inout mode params must have val returned
+    dealloc of stack-dynamic locals
+    restore exec status
+    return control to caller
+
+semantics of call
+    save exec status of caller
+    pass params
+    pass return address
+    transfer control to called
+
+return semanitcs
+    if appas-by-val-result or out mode params used
+        move current vals of those params to correspponding actual params
+
+implementing simple subprograms
+    two separate parts
+        actual code
+        non-code part
+            local vars
+            data that can change
+    activation record
+        format of non-code part of an exec subprogram
+            |local vars    |
+            |params        |
+            |return address|
+
+implementing
+    stack-dynamic
+        recursion must be available
+    dynamic local vars
+        activation record format is static, but size may be dynamic
+        dynamic link points to top of an instance of the activation record of the caller
+        act rec inst is dyn created when sub called
+        act rec inst resides on run-time ustack
+        example
+            C Function
+                |local      |
+                |local      |
+                |local      |
+                |param      |
+                |param      |
+                |param      |
+                |dyn link   |
+                |ret address|
+
+revised
+    caller actions
+        creat act rec inst
+        save exec status of current unit
+        compute and pass params
+        pass ret address
+        transfer control
+    return actions
+        if pbvr or out-mode params
+            curr vals of those params are moved to corr actual params
+        if sub is a func
+            its val is moved to a place acc to the caller
+        restore stack point by setting it to the val of current ep-1 and set ep ...
+        ...
+
+static scoping
+    static chain
+        chain of static links that connects certain act rec insts
+    static link
+    chain offset / nesting depth
+        diff between static depth of the ref and that of the scope when it was dec
+
+block
+    user-specified local scopes for vars
+    lifetime of local var begins when control enters the block and end when it leaves the block
+    implementing
+        parameter-less subprograms always called from same location
+        since max storage can be statically determined
+            space can be allocated on creation fo act rec?
+
+dynamic scoping
+    deep access (dynamic)
+        one stack for all vars?
+    shallow access (static)
+        locals in one place
+        one stack for each var name
+
