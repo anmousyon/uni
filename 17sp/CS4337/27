@@ -1,0 +1,99 @@
+###############
+# inheritance #
+###############
+
+basics
+    productivity increases can come from code reuse
+        adts are difficult to reuse
+        all adts are independent and at the same level
+    allows new classes defined in terms of existing ones
+    resuse adts after minor changes and define classes in a hierarchy
+
+oo concepts
+    adts are usually called classes
+    class instances are called objects
+    class that inherits is a derived/sub/child class
+    class from which another class inherits is a super/parent class
+    funcitons defined on the class are called methods
+        calls to methods are called messages
+        entire collection of methods on an object is called it message protocol or message interface
+    complications
+        access control to encapsulated entities
+            hide from
+                subclasses
+                clients
+                from client while allowing sub classes to see them
+        overriding methods
+        overloading methods
+    two types of vars
+        class
+            static keyword sometimes
+            one per class
+        instance
+            one per object
+    two types of methods
+        class
+            accespts messages to the class
+        instance
+            accepts messages to objects
+    single vs multiple inheritance
+
+dynamic binding
+    polymorphic variables
+    overriding methods
+        when overriding through polymorphic vars, the binding to correct method will be dynamic
+    abstract method
+        doesnt include a definition
+    abstract class
+        includes at least one virtual method
+        cannot be instantiated
+
+oop design issues
+    exclusivity of objects
+        everything is an object
+            adv
+                elegance and purity
+            dis
+                slow ops on simple objects
+        add objects to a complete typing system
+            adv
+                fast ops on simple objects
+            dis
+                results in confusing type system (two kinds of entities)
+        include imerative-style for primitives but make everything else objects
+            adv
+                fast ops on simple objects, ...
+            dis
+                ...
+    are subclasses subtypes?
+        does an "is-a" rel hold between a parent and child?
+            if true, then objects of dervied class must behave same as parent class object
+        derived class is subtype if is-a beteween parent and child
+    single vs multiple inheritance
+        mult inheritance allows a new class to inherit from two or more classes
+        adv
+            sometimes convenient and valuable
+        dis
+            language and impl complexity
+            potential inefficiency
+    object allocation and deallocation
+        from where are objects allocated?
+            if behave like adts they cna allocated from anywhere
+        if all heap-dynamic, refs can be uniform though a pointer or ref var
+    dynamic vs static binding
+        shoud all binding of messages to methods be dynamic?
+            if none are, you lose adv of dynamic bidning
+            if all are, it is inefficient
+            allow use to specify?
+            c++ -> methods are mostly static, virtual method is dynamic
+    nested classes or not
+        if new class needed by only one clas, no reason to define so it can be seen by other classes
+            can class contain itself
+            class in subprogram instead of directly in another class sometime
+            which facilities of outer class should be available to nested class
+    init of objects
+        init issue is whether and how objects are init to vals when they are created
+        first question is whether objects must be init manually or through some implicit mechanism
+        second, when an object of a subclass is created
+            is the associated init of the inherited parent class memeber implicit?
+            or must the programmer explicitly deal with it?

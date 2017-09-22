@@ -1,0 +1,61 @@
+file resolution and size
+    pixels
+        expand and contract to fit the space they are given
+        not a fixed size
+    competitions
+        1200 x 800
+    dpi
+        density of pixels per inch
+    greyscale smaller than color
+        rgb is 3 times the size
+    A4 = 24
+    image interpolation
+
+file types
+    PDS
+        photoshop
+        personal working files
+    jpg/jpeg
+        compressed files
+        uploading on the internet
+        not printing or saving
+    tiff
+        saving and printing
+        safe way of preserving the image
+
+camera parts
+    lens
+        aperture
+            hole that lets the light in
+            fstop
+                higher number
+                    smaller the opening and less light
+                    long depth of field
+                lower number
+                    larger opening and more light
+                    short depth of field
+    body
+        shutter speed
+            how fast shutter closes
+                measured in fractions of a second
+                higher number
+                    faster shutter
+                    less light
+                lower number
+                    slower shutter
+                    more light
+            increase aperture, increase shutter speed too
+            decrease aperture, decrease shutter speed too
+            going below 1/60
+                use tripod
+    "film"
+        iso
+            sensitivity of cells (how fast film is)
+            higher
+                more noise (grainy film)
+            lower
+                less noise (fine grain)
+    
+    edward weston
+    andre kertesz
+    rocker eckstein

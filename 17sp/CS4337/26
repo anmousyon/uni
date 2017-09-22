@@ -1,0 +1,34 @@
+abstraction
+    view or rep of an entity that includes only the most significant attributes
+
+abstract data type
+    rep of objects  ot the type is hidden from the program units that use these objects
+        only the ops possible tare those provided in types def
+    syntactic unit
+    adv of hidden
+        reliability
+        security
+        name conflicts less likely
+    adv of unit
+        organization modifiability
+        separate compilation
+    lang reqs
+        syntactic unit in which to encapsulate type def
+    design issues
+        form of container for interface to the type?
+        can they be parameterized?
+        what access controls are provided?
+        is specification separate from implementation?
+
+parameterized adt
+    allow designing an adt that can store any type elements
+        only an issue for statically styped laguages
+    aka generic classes
+
+encapsulation
+    files containing one or more subprograms can be independently compiled
+    classes
+        class is used as the interface
+        implementation is separate from declaration/definition
+    accessing public/private members of class
+

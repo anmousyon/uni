@@ -1,0 +1,154 @@
+#######################
+# use cases continued #
+#######################
+
+no such thing as object-oriented reqs
+    reqs workflow has nothing to do with how the product is to be built
+
+object-oriented analysis and design (OOAD)
+    model oriented
+        therefore object oriented
+
+user stories
+    brief little description
+    NOT simplified use cases
+        doesnt have the richness of a full use case
+
+######################################
+# software architecture and patterns #
+######################################
+
+software architecture
+    set of structures needed to reason about the system
+        which compromise software elements, relations among them, and properties of both
+    
+methods
+    *main focus* partition systems into impl units (modules), which are static
+        uml diagram
+    *main focus* dynamic, focusing on the way the elements interact with each other at runtime to carry out the system's functions
+        sequence diagram
+        fsm
+    describe mapping from software structs to the systems organizational, developmental, installation, and exec envs (allocation)
+
+views
+    representation of a set of syste, elements and relations among them
+        not all system elements, but those of a particular type
+    divide multidim entity that is a software arch into a numver of manageable reps of the system
+    documenting
+        doc relevant views and then adding docs that applies to more than one view
+
+notations
+    informal
+        general-purpose diagramming and editing tools and visual conventions
+    semiformal
+        standardized notation that prescribes graphical elements and rules of construction
+        uml diagram
+    formal
+        have a precise (usually math based) semantics
+        formal analysis of both syntax and semantics is possible
+        not very heavily used
+
+every system has an arch
+    arch-indifferent design
+        opens the door to complexity
+        "big ball of mud"
+    arch-focused design
+    arch hoisting
+        design the arch with the intent of guaranteeing a goal or property of the system
+        you will either find
+            code that manages the goal or property
+            deliberate structural constraint (often with reasoning or calcs) that ensures it
+
+software design patterns
+    general reusable solution to a commonly occurring problem within a given context in software dsign
+        description or template for how to solve a problem that can be used in many different situations
+
+gang of four
+    software design patterns book
+
+discovering patterns
+    patterns are, by def, found in practice
+        one does not invent them
+        one discovers the
+    patterns spontaneously emerge in reaction to environmental conditions
+        as long as conditions change, new patterns will emerge
+
+functional reqs
+    state what the system must do and how it must behave or react to runtime stimuli
+    are satisfied by assigning an appropriate sequence of responsibilities throughout the design
+    assigning responsibilities to arch elements is a fundamental arch design decision
+    arch is not driven by functional reqs
+        non-functional reqs are the primary arch drivers
+
+quality attribute
+    measure ot testable prop of a system this is used to indicate how well the system satisfies the needs of its stakeholders
+        measures the "goodness" of a product along some dimension of interest to a stakeholder
+    examples
+        availability
+        interoperability
+        modifiability
+        performance
+        security
+        testability
+        usability
+
+tactics
+    design decision that influences the achievement of a qaulity attribute response
+    focus of a tactic is on a signle quality attribute response
+    building blocks of design where patterns are created
+
+arch patterns
+    module
+        layered
+    componenent-and-connector
+    allocation
+
+examples
+    broker
+        mediates communication between a number of clients and servers
+    model-view-controller (MVC)
+        breaks system functionality into three components
+            model
+                rep of app data or state
+                contains (or provides api to) the app logic
+            view
+                ui component that either produces a rep of the model for the user or allows for some form os user input or both
+            controller
+                mediates between model and view
+                translates user actions into changes to the model or changes to the view
+    pipe and filter
+    client-server
+    peer to peer
+    service-oriented-arch (SOA)
+        computation achieved by a set of coop components that provide and/or consume services over a network
+    publish-subscribe
+        components publish and subscribe to events
+    shared-data
+        communication between data accessors is mediated by a shared data store
+            control may be initiated by the data accessors or the data store
+            data is made persistent by the data store
+    map-reduce
+        provides framework for analyzing large distributed set of data that will exec in parallel
+    multi-tier pattern
+    layered pattern
+        divide software into units called layer
+        layers dont use stuff from the layer above them
+            a module "uses" another module when it depends on the answer it gets back
+        advantages
+            increasing levels of abstraction
+            protability and modifiability
+        weaknesses
+            performance penalties
+            bridging may prevent meeting protability and modifiability goals
+        unidirectional flow
+            can only talk to layer directly below you
+            cant talk to layer above
+        bridging
+            add stairsteps or vertical peices to layers instead of just flat layers
+        sidecars
+            vertical peices that all layers can call
+        arbitrary allowed-to-use
+            not really layered
+        segments
+            allows for finer level of granularity
+

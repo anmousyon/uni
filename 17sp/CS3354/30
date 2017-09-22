@@ -1,0 +1,132 @@
+#######################
+# people and teamwork #
+#######################
+
+software program managers network #6
+    people-aware program management
+        dont make it better for your people want to quit
+        effectiveness and morale of staff should be a factor in rewarding management
+
+myers-briggs preference types
+    extroversion vs intoversion
+        interacting with the world
+    sensing vs intuition
+        gathering data
+    thinking vs feeling
+        making decisions
+    judging vs perceiving
+        orienting your life
+
+five factor model (OCEAN Domains)
+    openness to exp
+    conscientiousness
+    extraversion
+    agreeableness
+        degree of freindliness and altruism
+    neuroticism
+        effected by neg emotional states and moods
+
+tendencies
+    these models suggest prefs and tendencies
+
+productivity variation
+    best outperform worst by 10:1
+    best outperform median by 2.5:1
+    half above median outperform half below by 2:1
+    two people from same organization tend to perform alike
+
+fixed vs growth mindsets
+
+team basics
+    real teams
+        small in number
+            large "teams" -> groups
+            size -> 7 +- 2
+        complementary skills
+        common purpose
+        specific goal or goals
+        clear working approach
+        mutual accountability
+            everyone is responsible for getting the work of the team done
+    high performance team
+        real team
+        members are deeply committed to one another's personal growth and success
+
+puncuated equilibrium
+    each group begins with a unique approach to accomplishing its project
+    about halfway to completion, a major tranition ocurs
+        causes increased progress
+        dropping of old norms and behavior patterns
+        emergence of new behavior and working relationships
+    empirical evidence that it occurs about halfway through a project
+
+approaches to software teams
+    egoless programmers
+        restructure social env
+        restructure programmers vals
+        ecourage team members to find faults in code
+        fault must be considered a normal and accepted event
+        the team as a whole will develop an ethos, a group identity
+        modules will "belong" to the team as whole
+        group of up to 10 egoless programmers constitutes a democratic team
+            works well in research envs
+            hard with autocratic management style
+            have to spring up spontaneously
+    chief programmer team approach
+        problems with 6 person team
+            15 2 person channels
+            total amount of sub-groups is 57
+            cannot do sex person-months of work in one month
+                too much communication overhead
+        have one chief programmer
+            one great programmer
+            farm out grunt work to "flunkies"
+            two key aspects
+                specialization
+                hierarchy
+        chief programmer
+            does architectural deisng
+            allocates coding among team members
+            writes critical sections of code
+            fixes coding from "flunkies"
+        back-up programmer
+            as competent as chief programmer
+        secretary
+            handles linking, compiling, and testing code
+        programmers
+            do nothing but program
+        problems
+            chief programmer needs to be a great progammer AND great manager
+                shortage of both
+                intersection is even smaller
+            back-up needs to be as good as chief by take role as back-up
+            need good people doing pure grunt work
+    open source programming teams
+        problems
+            generally staffed by teams of unpaid volunteers
+            communicte asynchronously
+            no team meetings
+            no managers
+            no specs or designs
+            little or no docs
+    team software process (TSP)
+        build teams of psp-trained professionals, launched in an industry project context
+        provide
+            supportive env
+            management standards
+            peers doing similar work
+            coaching support
+        on average
+            test defects go down
+            delivered defects goes down
+            test effort goes down
+            productivity increases
+    structured open teams
+        open paradigm teams are in the best pos to freely share and fully utilize coplex info - build consensus
+        consensus based decisions
+            what if you cant reach a consensus?
+        technical leader (first among equals)
+            has full external responsibility
+            court of last resort to decide unresolvable issues
+    agile (scrum) teams
+        small teams

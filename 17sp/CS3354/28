@@ -1,0 +1,108 @@
+##########################
+# peer reviews continued #
+##########################
+
+testing and walkthrough
+    remove roughly 30% of defects
+
+
+inspections
+    remove 60-90% of defects
+        60% for newly trained team
+        90% for experienced teams
+    highest return inspections are of requirements and design
+
+elements of inspections
+    steps
+        planning
+        overview
+        perp
+        meeting
+        rework
+        follow-up
+    roles
+        moderator
+        recorder
+        reader
+            active listening
+        producer
+fagan's rules for inspections
+    optimum number of inspectors is four
+    review rate should be
+        ~140 lor/hr for design docs
+            no more than 280 lot/hr
+        ~125 sloc/hr for code
+            no more than 250 sloc/hr
+    inspection meetings should not last more than two hours
+    no more than two inspection meetings per day
+    key props
+        formal moderator training
+        defined participant roles
+        moderator "drives" the inspection
+        use of "how to find errors" checklists
+        use distribution of error types to look for
+        follow-up to reduce bad fixes
+        less future errors becuase of detailed error feedback to the individual programmer
+
+evidence-based inspections
+    preconditions
+        clear and visible management support
+        defined policy
+        good training for all
+        effective procedures
+        proper planning
+        adequate resources
+
+team size
+    fagan
+        four is a good size
+    buck
+        little difference between 3, 4, and 5
+    freedman and weinberg
+        select reviewers to ensure that the material is adequately covered
+    porter and votta
+        inspections with two reviewers were no less effective than those with four
+
+pareto rule
+    80/20 rule
+        80% of the defects are in 20% of the modules
+    OS/370
+        47% of defects found in 4% of the modules
+
+systemic defects
+    casual analysis at end of ...
+
+lessons
+    inspect before unit test
+    good inspection results can create false confidence
+    inspections can improve the quality of maintenance fixes
+    inspections can replace unit test with significant cost savings
+    no matter how well they are executed, inspections cannot overcome serious flaws in dev process
+
+barriers
+    belief they are too expensive
+        four engineers per review
+        150 sloc/hr for code reviews
+        max of 2 hours per review
+        max of 2 reviews per day for an engineer
+    schedule pressure leaves no time for reviews
+    hostile reviews
+        poor interpersonal skills
+        poor facilitation
+    use of review results for performance evaluations
+
+##################
+# formal methods #
+##################
+
+technique for expressing reqs in a manner that allows the reqs to be studied mathematically
+
+levels
+    0
+        formal spec may be undertaken and then a program dev from this informally
+    1
+        formal dev and formal verification may be used to produce a program in a more formal manner
+            proofs of props or refinements from the spec to a program may be undertaken
+            may be most appropriate in high-integrity systems involving safety or security
+    2
+        theorem provers may be used to undertake fully formal machine-checked proofs

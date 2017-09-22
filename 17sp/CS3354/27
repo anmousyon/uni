@@ -1,0 +1,163 @@
+#########################
+# model-view-controller #
+#########################
+* important for exams, quizzes *
+
+context for use
+    ui most frequently accessed and changed component of an interactive app
+    useres frequently like to have multiple perspectives (views)
+
+parts
+    model
+        internal state of the app
+        interacts with data model of app
+    view
+        external representation of the model
+        presentation layer of app
+    controller
+        coordinates updates of the view in response to user input or model changes
+        defines app behaviour
+
+advantages
+    increases flexibility and reuse
+        sep of concerns
+        reduced coupling
+    easily incorporate multiple views
+
+weakesses
+    some fundamental complexity
+        perhaps too complex for simple apps
+    variance of the pattern among tools can be substantial
+
+examples
+    state query
+        view -> model
+    change notification
+        model -> view
+    state change
+        conoller -> model
+    view selection
+        controller -> view
+    user gestures
+        view  -> controller
+
+##########################
+# object oriented design #
+##########################
+
+Object oriented design is Responsibility driven design
+    how should resp be allocated to classes fo objects?
+        a contract or obligation of a classifier: knowing or doing?
+    how should objects collaborate?
+    what classes should do what?
+    RESPONSIBILITY-DRIVEN DESIGN
+
+responsiblity
+    knowing or doing something
+
+general responsibility assignment software patterns (GRASP)
+    controller
+        what first object beyond ui layer receives and coordinates a system operation?
+        assign resps to an object rep one of these choices
+            one to a couple use cases -> rep overall system , a root object, a device software is running within, or a major subsystem
+                variations of the facade controller
+            lots of use cases -> rep a use case scenario with which the system operation occurs
+                a use case or session controller
+    creator
+        who creates object A?
+        assign class B the resp to create an instance of class A if one of these is true
+            B contains or compositely aggregates A
+            B records A
+            B closely uses A
+            B has the init data for A
+    info expert
+        assign resp to class that has info needed to fulfill it
+    high cohesion
+        how to keep objects focused, understandable, and manageable?
+        assign resps so the cohesion remains high
+            use this to eval alts
+    low coupling
+        how to reduce impace of change?
+        assign resps so that (unnecessary) coupling remains low
+            use this to eval alts
+    polymorphism
+        how to handle alts based o type?
+        when related alts or behaviors vary by type, ...
+    pure fabrication
+        what object should have resp, when you do not want to violat high cohesion and low coupling but other solutions are not applicable?
+        assign a high cohesive set of resps to an artificial class that doesnt rep a problem domain concept
+            something made up to support high cohesion, low coupling, and resuse
+            fab of the imagination
+    indirection
+        where to assign a resp, to avoid direct coupling between multiple things?
+        assign resp to an intermediate object the mediate between other components or services so that they are not directly coupled
+    protected variations
+        how to design objects, subsystems, and systems so that variations or instability in these elements downt have an undesirable impact on other elements?
+        identify points of predicted variation or instability, assign interfaces to cover those points 
+    ...
+
+SOLID principles for OO design
+    srp - single resp prinicple
+        high cohesion
+        single resp for each class
+        all its services should be narrowly aligned with that resp
+    ocp - open-closed principle
+        an entity can allow its behour to be extended without changing existing source code
+        open to extension, closed to modification
+    lsp - liskov substitution principle
+        if it works on the subclass, it should work on the superclass
+        subclass shouldnt thrown new exception except where those new exceptions are subtypes of superclass exceptions
+        dont mess with supertype in the subtypes
+    isp - interface segregation principle
+        no client should be forced to depend on methods it does not use
+        split interfaces into more specific interfaces so they only know about what they need to know about
+    dip - dependency inversion principle
+        decouple modules
+        high-level modules should not depend on low-level modules
+            both should depend on abstraction
+        abstractions should not depend on details
+            details should depend on abstractions
+        implications
+            all member vars must be interfaces or abstracts
+            all concrete class pakgs must connect only through interface/abstract class pkgs
+            no class should derive from a concrete class
+            no method should override an implemented method
+            all var instantiation requires
+                implementation of a creational pattern as the fectory method or the factory pattern
+                    or the more complex use of a dependency injection framework
+
+dependency injection
+    design pattern that implements inversion control
+        resp for location or constructing deps is expresslty sep from code that would take resp for using those deps
+    construcotr injection
+    setting injection
+    interface injection
+
+template method
+    allows generic alg to manipulate many possible detailed implementation
+strategy patterm
+    allows info to be manipulated by many different algs
+factory method
+    higher-level doesnt need to know about how class is implemented in lower-level
+    struct interpretation of DIP would insist on using factories for every volatile class in the system
+
+################
+# peer reviews #
+################
+
+testing
+    meaning can be generic
+        does (not) meet need
+        does (not) meet all reqs
+        (un)acceptable costs or constraints
+        grossly unreliable
+        poor performance
+    assume dynamic exec of a program
+        black box, white box, unit, untegration, system, regression, etc.
+
+formal methods
+    formal specs
+    model/property testing
+    proofs of correctness
+
+earlier you find the mistake, the cheaper it is to fix

@@ -1,0 +1,46 @@
+#############################
+# formal moethods continued #
+#############################
+
+formal methods
+    results in a formal specification
+    allows sets of reqs to be examined for completeness, consistency, and equivalency to another req set
+
+automated proofs
+    automated theorem proving
+        formal proof from scratch
+            desc of system
+            set of logical axioms
+            set of inference rules
+    model checking
+
+ex of formal spec
+    a) water level in boiler is below X lbs.
+    b) water level in boiler is above Y lbs.
+    c) water pump has failed
+    d) pump monitor has failed
+    e) steam meter has failed
+
+    boiler shut down when
+        (a or b) or ((c or d) and e)
+        E[s] = a + b + ((c + d) & e)
+        E[d] = c + d
+        E[s] and E[d] are not mutually exclusive so you can be in both
+            leads to ambiguity
+    
+correctness
+    product is correct if it satisfies its specs
+        is a correctness proof an alt to exec-based testing?
+    not necessary
+        a bug doesnt necessarily make the program unusable
+    not sufficient
+        trickSort example satisfied the spec by not the intent
+
+myths of formal methods
+    can guarantee that software is perfect
+    are all about program proving
+    are only useful for safety-critical systems
+    require highly trained mathematicians
+    increase cost of dev
+    are unaccptable to users
+    are not used on real, large-scale software
