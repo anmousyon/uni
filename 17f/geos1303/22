@@ -1,0 +1,245 @@
+### surface water ###
+
+covers 71% of earth
+
+hydrologic cycle
+    evapotranspiration
+        filters water
+    condensation
+    precipitation
+    infiltration
+    runoff
+        water in motion over the land surface
+    water bodies in cycle
+        groundwater
+        oceans
+        evaporation
+        vapor transport
+        precipitation
+
+stream
+    formation
+        thin surface layer of water
+        moves down steepest slope
+        erodes substrate
+            sheetwash erosion creates tiny rill channels
+                rills merge, deepen, and downcut into channels
+    def
+        any flowing body of water flowing a channel
+    river
+        branch of a stream system
+    drainage system
+        network of channels
+    watershed
+        total area feeding water to a stream
+    
+continental divide
+    drainage divide on a continent such that
+        the drainage basin on one side of the divide feeds into one ocean or sea
+        basin on the other side feeds into a different ocean or stream
+
+stream ordering with drainage system
+    1st order
+        single channel
+    2nd order
+        two 1st orders combined
+    3rd order
+        two 2nd order combined
+    4th order
+        two 3rd order combined
+    ...
+
+watershed order
+    highest order basin in watershed boundary
+
+drainage patterns
+    dendritic
+        treelike branches
+        underlying rock is a uniform material
+        lack of joins and fractures
+        soft rocks
+    radial
+        runoff flows away from dome or hilltop in all directions
+    trellis
+        bedrock exerts strong control over streams because of the structure of the underlying geology
+    rectangular
+        parallel joins and fractures on ground
+        gridlike pattern
+
+discharge
+    Q = AV
+    Q = stream discharge
+    A = cross-sectional area
+    V = flow velocity
+    volume/time = cfs (cubic feet per second) or m^3/s
+    varies seasonally due to precipitation and runoff
+
+flow
+    turblulent
+        irregular pattern
+    laminar
+        straight stream
+        uniform direction
+
+eddie
+    contain flow components not directed downstream
+    ten to produce locally chaotic water movement
+
+amount of water in a river's watershed increases downstream because of the addition of tributaries
+
+channel characteristics
+    gradient
+        decreases as it moves farther from source
+    discharge
+        velocity is not uniform in all areas
+        higher friction in wider, shallower streams
+        in straight channels, highest velocity is in the center, at the surface
+        outside curve is preferentially scoured and deepened
+        thalweg
+            marks the natural direction of flow
+    sediment load
+        suspended load
+            particles carried in load
+        bed load
+            large particles move along stream bed
+            move by
+                traction
+                     hit by other materials   
+                     rolling
+                saltation
+                    pulled up and then set back down by water
+                    jumping
+        dissolved load
+            dissolved compounds such as Ca, Cl, Na, Mg, K
+        
+sediment erosion
+    hjulstrom diagram
+        plots the relationship between water, velocity, and sediment size
+        velocity vs diameter
+        high velocity and low diameter = erosion
+        low velocity and high diameter = deposition
+        med velocity and med diameter = transportation
+
+stream channel types
+    straight
+        rare
+        usually a short segment of meandering channels
+    meandering
+        most common characteristics of a stream that is free to roam across a valley floor
+        looping curves
+            along portion of the profile with a low gradient
+            where streams travel over a broad floodplain
+            when substrates are soft and easily eroded
+        evolving
+            change from variation in thalweg position
+            max velocity swings back and forth across flow
+            oxbow lake
+                meander bend will eventually cut across a neck
+    braided
+        when a stream contains more sediment than it can readily transport
+        assumulates in channel and constructs bars and islands that split the water into multiple channels
+        in areas with high slope
+            moutainous areas
+
+flooding
+    natural process in healthy streams
+    when discharge rate is higher that stream can hold in its banks
+
+floodplains
+    flat areas adjacent to stream channels
+    composed of sediments deposited during floods
+    features
+        natural levees
+        former point bars
+        wetlands
+        oxbow lakes
+    when discharge is lowered, a layer of sediment is deposited across the floodplain
+
+graded profile
+    streams are generally
+        steeper in their upper reaches
+        gentle in lower extents
+    gently concave profile with a flattened lower end
+    near headwater source
+        steep
+        low discharge
+        coarse sediments
+        straight and rocky channel
+    near mouth
+        flatter
+        higher discharge
+        smaller grain-sizes
+        broad meander belts
+
+headward erosion
+    high velocity flow at source
+    stream extends upward into its source
+    stream piracy
+        if it breaches a drainage divide
+            it intersects another channel and captures its flow
+
+fluvial landscape
+    tectonic uplift setting
+        waterfalls
+        v-shaped valleys
+        gorges
+    mass wasting and undercutting of slopes
+        widens valleys
+        meandering more pronounced
+
+graded stream
+    state of dynamic equilibrium between erosion and deposition
+    always defined over a specific segment of channel
+
+base level
+    lowest point to which a stream can erode
+    ultimate base level
+        sea level
+    local base level
+        lake
+            lowering base level increases erosion
+        ledge of resistant rock
+            can create waterfall at edge of resistant rock
+
+incised channels and terraces
+    alluvial terraces
+        graded stream inceises its floodplain
+    can be result of
+        decreased sediment load
+        lowered base level
+        increased gradient due to tectonic uplift
+    terraces
+        former floodplain deposists that are exposed when a stream incises its channel
+
+alluvial fan
+    large, fan or cone shaped deposit of stream sediment
+    when a high gradient stream leaves a narrow vallet and enters a flat plain or valley floor
+    often happends in flash flooding environments
+    size of sediments decreases with distance from mouth
+    10-15 degree angle of slope
+
+deltas
+    form when a stream enters standing water
+        current slows and loses its competence
+            sediment drops out
+    stream divides into a fan of small distributaries
+    shape due to interplay of flow, waves, and tides
+    lobes
+        river periodically switches course via avulsion
+            river breakes through a levee upstream
+            establishes a shorter, steeper path
+        abandoned delta lobes are sediment starved
+            sediments deposited before avulsion slowly subside
+                compaction, dewatering and decay of organic matter
+            eventually submerged
+
+contamination
+    polluted runoff
+        water runs over land and picks up contaminants
+            bacteria
+            oil
+            pesticides
+            animal feces
+            dirt
+    anoxic zones
+        dead zones lacking oxygen

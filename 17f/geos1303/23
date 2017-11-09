@@ -1,0 +1,129 @@
+### groundwater ###
+
+95% of unfrozen surface water is groundwater
+
+vegetation linked to groundwater recharge
+
+location
+    pores
+        fractures, joints, and other spaces below soil regoloth
+        1mm or less usually
+    porosity
+        percentage of void space in a regolith or underlying rock
+        ratio: volume of voids / total volume
+        material
+            sediments
+                silt and clay: 30-60%
+                well-sorted sand and gravel 25-50%
+                mixed sand and gravel: 20-25%
+            rocks
+                shale: 0-10%
+                ...
+
+water table
+    top most boundary of groundwater
+    mimics topography of ground surface above
+    discharge
+        water leaving system
+    recharge
+        water entering system
+    artificial recharge
+        injection wells
+        infiltration ponds
+
+infiltration
+    precipitation collected in fractures in rocks
+
+permeability
+    ability of water to flow through a porous material
+
+aquifer
+    body of ground water with sufficient porosity and permeability to provide useful wauntities of water for wells or springs
+    limestone degrades from CO2 and water reacting and forming carbonic acid
+    unconfined
+        water flows in all directions
+    confined
+        water confined by unpermeable layer
+        water flows in a certain direction
+    artesian
+        water escapes to surface driven by hydraulic gradient of the water table
+        similar to how a water tower works
+
+hydraulic gradient
+    (h2-h1) / L
+
+darcy's law
+    v = (K * (h2 - h1)) / L
+    k = coefficient of permeability
+
+high plains aquifer
+    both withdrawal and recharge streams used in arid region
+    water levels declined
+    feeds approximately 170k wells
+
+subsidence
+    compaction of pore space
+    causes surface elecation decrease and open fissure formation
+
+cone of depression
+    withdraws water faster than recharge rate
+    can be used to create a water treatment facility
+
+saltwater intrusion
+    population increases near coast puts high demand on ground water
+    moves transition zone up toward well
+    leads to saltwater intrusion and deterioration of water quality
+    sea level rising from global warming acclereates this process
+
+sewage waste
+    usually contaminates unconfined aquifers
+
+groundwater remediation
+    air sparging
+        injecting gas into saturated zone
+        mobalizes contaminants into gaseous state if possible
+    directional wells
+    recirculation wells
+        circulating contaminated water up to surface to remove contaminants
+    aquifer fracturing
+        improve access to pollutants to remove them
+    injection wells
+        inject unharmful chemical additives that break down harmful chemicals
+    permeable reactive barriers
+        barrier that removes contaminants but lets water through
+    bioremediation
+        ue microbes or plant tissues to neutralize contaminants
+    phytoremediation
+        utilizes plants to absorb metal into roots and remove contaminants
+    thermal or electrical treatments
+        inject 
+        energy (heat, electricity, etc) to breakdown contaminants
+
+karst topographhy
+    caves
+    sinkholes
+
+hydrothermal activity
+    geiser
+        water goes very deep
+            in contact with magma
+        cold water at surface
+    fumarole
+        oxidation of hydrogen sulfide
+        creates brilliant green and yellow colors
+    hot spring
+
+caves
+    speleothems
+        groundwater entering a cave degasses CO2
+        calcium carbonate precipitated on interior surfaces
+        stalactites
+            hang down
+        stalagmites
+            point up
+        columns
+            where they meet
+
+groundwater velocity
+    measure transit time of a tracer chemical
+    

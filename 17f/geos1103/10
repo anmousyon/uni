@@ -1,0 +1,25 @@
+fault types
+    normal
+        hanging wall has moved down relative to footwall
+        divergent boundary
+    reverse
+        hanging wall has moved up relative to the footwall
+        convergent boundary
+    thrust
+        reverse fault that dips less than 45 degrees
+    strike-slip
+        relative displacement along fault plane in horizontal direction
+        parallel to each other
+        transform boundary
+    horst
+        two normal faults on either side of central block
+        central block is footwall
+    graben
+        two normal faults on either side of central block
+        central block is hanging wall
+    
+earthquakes
+    focus
+        where movement begins on fault plane
+    epicenter
+        point on earth's surface vertically above the focus
